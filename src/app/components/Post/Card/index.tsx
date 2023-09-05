@@ -4,16 +4,16 @@ import steak from "/public/steakcombo.jpeg";
 import user from "/public/penguin.jpeg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
-import { Author, tPostCard } from "@/model/Post";
+import { Author, tPostCard } from "@/model/PostCard";
 
 // Propsの型定義
 type Props = {
   author: Author;
   post: tPostCard;
-  user: string;
+  isLike: boolean;
 };
 
-const PostCard: FC = () => {
+const PostCard: FC<Props> = (props) => {
   return (
     <div className="card">
       {/* ヘッダー */}
@@ -27,11 +27,11 @@ const PostCard: FC = () => {
             width={40}
             height={40}
           />
-          <h2 className="font-bold">ふくえもん</h2>
+          <h2 className="font-bold">{props.author.nickName}</h2>
         </div>
 
         {/* 日付 */}
-        <h2 className="font-bold pr-4 text-xl ">2023-05-26</h2>
+        <h2 className="font-bold pr-4 text-xl ">{props.post.createdAt}</h2>
       </div>
 
       {/* コンテンツ */}
@@ -51,23 +51,26 @@ const PostCard: FC = () => {
               <BsShop />
             </span>
             <h2 className="pl-1" title="ステーキコンボ">
-              8EIGHTH BEEF
+              {props.post.restaurant.name}
             </h2>
           </div>
 
           {/* メニュー */}
           <h2 className="card-subtitle" title="ステーキコンボ">
-            ステーキコンボ
+            {props.post.menu}
           </h2>
         </div>
 
         {/* 右側のコンテンツ */}
         <div className="p-3 px-5 flex flex-col gap-3 items-center">
-          {/* 3Dタグ */}
-          <span className="badge">3D</span>
-
-          {/* いいねボタン */}
-          <AiOutlineHeart className="text-4xl" />
+          {/* 3Dタグ　：　モデルがあるかないかで表示を変える */}
+          {props.post.model ? <span className="badge">3D</span> : null}
+          {/* いいねボタン：いいねの状態によって表示を変える */}
+          {props.isLike ? (
+            <AiOutlineHeart className="text-4xl text-red-500" />
+          ) : (
+            <AiOutlineHeart className="text-4xl" />
+          )}
         </div>
       </div>
     </div>
