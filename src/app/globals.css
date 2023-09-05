@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .card {
+    @apply bg-white text-gray-700  w-96 min-h-[10rem] shadow-xl rounded-lg overflow-hidden
+  }
+  .card-header{
+    @apply container flex justify-between items-center px-2 py-2
+  }
+
+  .card-title {
+    @apply text-2xl font-bold overflow-ellipsis overflow-hidden whitespace-nowrap
+  }
+
+  .card-subtitle { 
+    @apply text-lg font-semibold overflow-ellipsis overflow-hidden whitespace-nowrap
+  }
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs bg-cyan-100 font-mono text-blue-800 border
+  }
+}
