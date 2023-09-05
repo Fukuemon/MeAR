@@ -1,34 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 開発環境
+"next": "13.4.19"    
+"typescript": "5.2.2"
 
-First, run the development server:
+スタイル      
+"tailwindcss": "3.3.3"
 
+
+状態管理    
+"@reduxjs/toolkit": "^1.9.5",
+
+## ディレクトリ構成
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+src
+├── app
+│   ├── components
+│   │   ├── elements
+│   │   └── features
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── template
+│       ├── hooks
+│       └── page.tsx
+├── model
+├── store
+│   ├── Provider.tsx
+│   ├── features
+│   ├── hook.ts
+│   └── store.tsx
+└── types
+│
+│
+└──tailwind.config
+(その他省略)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+layout.tsx：全体の共通となるレイアウトを指定
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+globals.css：tailwindの設定ファイル
 
-## Learn More
+### /template：各機能
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+機能ごとにロジック→hooks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ページ：page.tsx
 
-## Deploy on Vercel
+ページのUIは極力コンポーネントで管理
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### /components：UI部分
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+UIのパーツをまとめる
+
+---
+
+### -/elements：パーツ
+
+共通となる粒度が小さいパーツの元はここで管理する
+
+---
+
+### -/features：機能別のコンポーネント
+
+---
+
+機能ごとのパーツをまとめたもの(UI)
+
+### model：モックデータ
+
+---
+
+各コンポーネントで受け取るpropsの仮データを格納
+
+### store：グローバルステートを管理
+
+---
+
+グローバルステートを管理
+
+/features：各機能ごとのSliceを配置
+
+### types：型定義
+
+---
+
+型を管理する
+各コンポーネントで受け取る型は、データ取得ができてない場合はmodelに定義しておく
+
+
+
+
