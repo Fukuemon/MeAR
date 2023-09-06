@@ -1,5 +1,6 @@
 import { AuthorModel, PostCardModel, RestaurantModel } from "@/model/PostCard";
 import PostCard from "src/app/components/Post/Card";
+import Navbar from "./components/elements/Navbar";
 
 // PostCardに渡すデータ(仮)
 const data = {
@@ -11,8 +12,11 @@ const data = {
 
 export default function Home() {
   return (
-    <main className="h-screen bg-gray-100 flex items-center justify-center">
-      <PostCard {...data} />
-    </main>
+    <div>
+      <Navbar title="投稿一覧" />
+      <main className="flex py-8 justify-center">
+        <PostCard {...data} />
+      </main>
+    </div>
   );
 }
