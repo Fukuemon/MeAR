@@ -19,7 +19,7 @@ const Navbar: FC<Props> = (props) => {
 
   return (
     // ナビゲーションバー
-    <nav className=" flex text-text  w-full h-16 bg-orange-100 justify-between items-center p-4 border-2">
+    <nav className="navbar justify-between">
       <h2 className="text-2xl italic font-bold">{props.title}</h2>
 
       {/*右側のコンテンツ*/}
