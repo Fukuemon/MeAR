@@ -20,7 +20,7 @@ const Navbar: FC<Props> = (props) => {
   return (
     // ナビゲーションバー
     <nav className="navbar justify-between">
-      <h2 className="text-2xl italic font-bold">{props.title}</h2>
+      <h2 className="italic font-bold">{props.title}</h2>
 
       {/*右側のコンテンツ*/}
       {isLogin ? (

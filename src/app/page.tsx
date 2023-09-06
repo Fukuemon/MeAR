@@ -4,7 +4,7 @@ import Navbar from "./components/elements/Navbar";
 import Link from "next/link";
 
 // PostCardに渡すデータ(仮)
-const data = {
+export const Mockdata = {
   author: AuthorModel,
   post: PostCardModel,
   restaurant: RestaurantModel,
@@ -17,7 +17,7 @@ export default function Home() {
       <Navbar title="投稿一覧" />
       <main className="flex py-8 justify-center">
         <Link href="/post/">
-          <PostCard {...data} />
+          <PostCard {...Mockdata} />
         </Link>
       </main>
     </div>

@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import Image from "next/legacy/image";
 import steak from "/public/steakcombo.jpeg";
-import user from "/public/penguin.jpeg";
+
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
 import { Author, tPostCard } from "@/model/PostCard";
+import { CardHeader } from "./Header";
 
 // Propsの型定義
 type Props = {
@@ -17,22 +18,7 @@ const PostCard: FC<Props> = (props) => {
   return (
     <div className="card">
       {/* ヘッダー */}
-      <div className="card-header">
-        {/* 左側：ユーザー紹鴎*/}
-        <div className="flex items-center">
-          <Image
-            src={user}
-            className="rounded-full "
-            alt="ユーザーアイコン"
-            width={40}
-            height={40}
-          />
-          <h2 className="font-bold">{props.author.nickName}</h2>
-        </div>
-
-        {/* 日付 */}
-        <h2 className="font-bold pr-4 text-xl ">{props.post.createdAt}</h2>
-      </div>
+      <CardHeader {...props} />
 
       {/* コンテンツ */}
       {/* 画像 */}
@@ -54,7 +40,6 @@ const PostCard: FC<Props> = (props) => {
               {props.post.restaurant.name}
             </h2>
           </div>
-
           {/* メニュー */}
           <h2 className="card-subtitle" title="ステーキコンボ">
             {props.post.menu}
