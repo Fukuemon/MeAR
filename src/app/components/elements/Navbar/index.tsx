@@ -19,8 +19,8 @@ const Navbar: FC<Props> = (props) => {
 
   return (
     // ナビゲーションバー
-    <nav className=" flex font-sans w-full h-16 bg-orange-100 justify-between items-center p-8">
-      <h2 className="text-xl">{props.title}</h2>
+    <nav className=" flex text-text  w-full h-16 bg-orange-100 justify-between items-center p-4 border-2">
+      <h2 className="text-2xl italic font-bold">{props.title}</h2>
 
       {/*右側のコンテンツ*/}
       {isLogin ? (
@@ -38,7 +38,7 @@ const Navbar: FC<Props> = (props) => {
         // ログインしていない場合
         <div className="flex items-center ">
           {/* <Link href="/login"> */}
-          <GrLogin onClick={onLogin} className="text-2xl" />
+          <GrLogin onClick={onLogin} className="text-3xl mr-2" />
           {/* </Link> */}
         </div>
       )}

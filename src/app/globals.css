@@ -4,7 +4,7 @@
 
 @layer components {
   .card {
-    @apply bg-white text-gray-700  w-96 min-h-[10rem] shadow-xl rounded-lg overflow-hidden
+    @apply bg-white text-gray-700  w-96 min-h-[10rem] shadow-xl rounded-lg overflow-hidden border
   }
   .card-header{
     @apply container flex justify-between items-center px-2 py-2
