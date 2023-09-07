@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  /* カード  */
   .card {
-    @apply bg-white text-gray-700  w-96 min-h-[10rem] shadow-xl rounded-lg overflow-hidden
+    @apply bg-white text-gray-700 w-80 min-h-[10rem] shadow-xl rounded-lg overflow-hidden border sm:w-96
   }
   .card-header{
-    @apply container flex justify-between items-center px-2 py-2
+    @apply  flex justify-between items-center px-2 py-2
   }
 
   .card-title {
@@ -17,7 +18,19 @@
   .card-subtitle { 
     @apply text-lg font-semibold overflow-ellipsis overflow-hidden whitespace-nowrap
   }
+
   .badge {
     @apply px-3 py-1 rounded-full text-xs bg-cyan-100 font-mono text-blue-800 border
+  }
+
+  .tag {
+    @apply px-3 py-1 rounded-full text-xs border
+  }
+
+
+
+  /* ナブバー */
+  .navbar {
+    @apply  flex text-text  w-full h-16 bg-orange-100  items-center p-4 border-2 text-base sm:text-3xl
   }
 }

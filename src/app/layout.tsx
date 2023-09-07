@@ -1,7 +1,8 @@
 import { Providers } from "@/store/Provider";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Navbar from "./components/elements/Navbar";
+import { notojp } from "@/utils/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="h-screen">
+    <html lang="en" className={`${notojp.variable}`}>
+      <body className="h-screen bg-back font-notojp">
         <Providers>{children}</Providers>
       </body>
     </html>
