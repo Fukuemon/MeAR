@@ -8,6 +8,9 @@ import { Mockdata } from "@/app/page";
 import Image from "next/image";
 import steak from "/public/steakcombo.jpeg";
 import { GrLocation } from "react-icons/gr";
+import { DynamicModelViewer } from "../../ModelViewer/DynamicModelViewer";
+import Button from "../../elements/Button";
+
 type Props = {
   restaurant: string;
 };
@@ -28,22 +31,36 @@ export const PostNavbar: FC<Props> = (props) => {
 
 const PostDetail = () => {
   const [isLike, setIsLike] = useState(false);
+  const [isModel, setIsModel] = useState(false);
   // いいねボタンを押したときの処理
   const onClicklike = () => {
     setIsLike((preveState) => !preveState);
   };
+  const onClickModel = () => {
+    setIsModel((preveState) => !preveState);
+  };
+
   return (
     <div>
       <PostNavbar restaurant="8EIGHT BEEF" />
       <CardHeader {...data} />
+
       {/* 画像といいね */}
       <div className="relative z-0">
-        <Image
-          src={steak}
-          className="w-full h-full object-cover"
-          alt="ステーキコンボ"
-        />
-        <span className=" absolute right-4 bottom-2">
+        {/* 3Dタグ　：　モデルがあるかないかで表示を変える */}
+        {isModel ? (
+          <div className="flex items-cente justify-center">
+            <DynamicModelViewer src="/steakcombo.glb" />
+          </div>
+        ) : (
+          <Image
+            src={steak}
+            className="w-full h-full object-cover"
+            alt="ステーキコンボ"
+          />
+        )}
+
+        <span className=" absolute right-4 top-2">
           {isLike ? (
             <AiFillHeart
               onClick={onClicklike}
@@ -52,22 +69,33 @@ const PostDetail = () => {
           ) : (
             <AiFillHeart
               onClick={onClicklike}
-              className="text-5xl text-white"
+              className="text-5xl text-gray-400"
             />
           )}
         </span>
       </div>
 
       <div className="px-5 py-3 flex-col gap-3 space-y-1 ">
-        {/* メニュー */}
-        <h2 className="card-subtitle" title="ステーキコンボ">
-          ステーキコンボ
-        </h2>
+        {/* メニューとボタン*/}
+        <div className="flex justify-between">
+          <h2 className="card-subtitle" title="ステーキコンボ">
+            ステーキコンボ
+          </h2>
+          {/* 3Dボタン　：　モデルがあるかないかで表示を変える */}
+          <Button
+            onClick={onClickModel}
+            className="text-sm font-bold border w-20 bg-main text-gray-600 shadow-md hover:bg-gray-600 hover:text-white "
+          >
+            {isModel ? "画像でみる" : "3Dでみる"}
+          </Button>
+        </div>
 
         {/* 値段と評価 */}
         <div className="flex justify-between">
           {/* 値段 */}
-          <h4 className="text-lg font-thin border-b w-20 pl-2">¥ 1,480</h4>
+          <h4 className=" italic text-lg font-thin border-b w-20 pl-2">
+            ¥ 1,480
+          </h4>
           {/* 評価 */}
           <div className="flex items-center gap-1">
             <span className="text-yellow-400 text-2xl">★</span>
@@ -88,7 +116,7 @@ const PostDetail = () => {
         </div>
 
         {/* コメント */}
-        <h4 className="text-sm font-thin border-b w-20 text-center">
+        <h4 className=" italic text-sm font-thin border-b w-20 text-center">
           ✍️コメント
         </h4>
         <p className="text-sm border-b p-2">
