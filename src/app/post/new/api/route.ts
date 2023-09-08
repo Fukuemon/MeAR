@@ -32,10 +32,11 @@ export async function GET(req: Request) {
   console.log(keyword);
   console.log(apiurl);
   console.log(apikey);
+  console.log(`${apiurl}?key=${apikey}${apiCount}${apiKeyword}&format=json`);
 
   try {
     const resData = await fetch(
-      `${apiurl}&key=${apikey}${apiCount}${apiKeyword}&format=json`
+      `${apiurl}?key=${apikey}${apiCount}${apiKeyword}&format=json`
     );
     console.log(resData);
     const json = await resData.json();
