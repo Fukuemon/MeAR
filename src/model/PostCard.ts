@@ -48,3 +48,11 @@ export const PostCardModel: tPostCard = {
   model: "steakcombo.glb",
   author: AuthorModel,
 };
+
+// PostCardに渡すデータ(仮)
+export const Mockdata = {
+  author: AuthorModel,
+  post: PostCardModel,
+  restaurant: RestaurantModel,
+  isLike: true,
+};

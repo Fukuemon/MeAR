@@ -3,6 +3,8 @@ import React, { FC, useState } from "react";
 import user from "/public/penguin.jpeg";
 import Image from "next/image";
 import { GrLogin } from "react-icons/gr";
+import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
+import Link from "next/link";
 
 type Props = {
   title: string;
@@ -21,27 +23,39 @@ const Navbar: FC<Props> = (props) => {
     // ナビゲーションバー
     <nav className="navbar justify-between">
       <h2 className="italic font-bold">{props.title}</h2>
+      <div className="flex justify-center">
+        {/*右側のコンテンツ*/}
 
-      {/*右側のコンテンツ*/}
-      {isLogin ? (
-        // ログインしている場合：Avatar画像
-        <div className="flex items-center">
-          <Image
-            src={user}
-            alt="username"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+        <div className="flex items-center pl-4">
+          <Link href="/post/search">
+            <AiOutlineSearch className="text-3xl" />
+          </Link>
         </div>
-      ) : (
-        // ログインしていない場合
-        <div className="flex items-center ">
-          {/* <Link href="/login"> */}
-          <GrLogin onClick={onLogin} className="text-3xl mr-2" />
-          {/* </Link> */}
+        <div className="flex items-center px-4">
+          <Link href="/">
+            <AiOutlineHome className="text-3xl" />
+          </Link>
         </div>
-      )}
+        {isLogin ? (
+          // ログインしている場合：Avatar画像
+          <div className="flex items-center">
+            <Image
+              src={user}
+              alt="username"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          </div>
+        ) : (
+          // ログインしていない場合
+          <div className="flex justify-items-center ">
+            {/* <Link href="/login"> */}
+            <GrLogin onClick={onLogin} className="text-3xl mr-2" />
+            {/* </Link> */}
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
