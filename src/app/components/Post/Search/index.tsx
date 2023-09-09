@@ -30,7 +30,7 @@ export const SearchShop: FC = () => {
     }
   }, []);
 
-  // 検索パラメータを作成する
+  // パラメータを作成する
   const createQueryString = useCallback((params: SearchParams) => {
     const query = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
