@@ -4,12 +4,12 @@ import React, { FC, useState } from "react";
 import { AiFillTag, AiFillHeart } from "react-icons/ai";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { CardHeader } from "../Card/Header";
-import { Mockdata } from "@/app/page";
 import Image from "next/image";
 import steak from "/public/steakcombo.jpeg";
 import { GrLocation } from "react-icons/gr";
 import { DynamicModelViewer } from "../../ModelViewer/DynamicModelViewer";
 import Button from "../../elements/Button";
+import { Mockdata } from "@/model/PostCard";
 
 type Props = {
   restaurant: string;
