@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "./components/elements/Navbar";
 import { notojp } from "@/utils/font";
+import BottomNavbar from "./components/elements/BottomNavbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${notojp.variable}`}>
       <body className="h-screen bg-back font-notojp">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <BottomNavbar />
+        </Providers>
       </body>
     </html>
   );

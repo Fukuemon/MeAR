@@ -26,16 +26,6 @@ const Navbar: FC<Props> = (props) => {
       <div className="flex justify-center">
         {/*右側のコンテンツ*/}
 
-        <div className="flex items-center pl-4">
-          <Link href="/post/search">
-            <AiOutlineSearch className="text-3xl" />
-          </Link>
-        </div>
-        <div className="flex items-center px-4">
-          <Link href="/">
-            <AiOutlineHome className="text-3xl" />
-          </Link>
-        </div>
         {isLogin ? (
           // ログインしている場合：Avatar画像
           <div className="flex items-center">
