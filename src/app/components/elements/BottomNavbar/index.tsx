@@ -25,7 +25,7 @@ const BottomNavbar = () => {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="fixed bottom-0 left-0 z-50 w-full  bg-orange-100 h-16 px-6 rounded-t-xl ">
+    <div className="fixed bottom-0 left-0 z-50 w-full  bg-orange-100 h-16 px-6 rounded-t-xl">
       <ul className="flex justify-between relative">
         {Menus.map((menu, i) => (
           <li key={i} className="">
@@ -36,7 +36,8 @@ const BottomNavbar = () => {
             >
               <span
                 className={`text-5xl text-text cursor-pointer duration-500 ${
-                  i === active && "-mt-6"
+                  i === active &&
+                  "-mt-6 bg-orange-100 rounded-full p-4 pb-0 border-t-2 border-gray-200"
                 }`}
               >
                 {menu.icon}
