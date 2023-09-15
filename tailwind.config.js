@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { notojp } from "./src/utils/font";
+
 module.exports = {
   darkMode: ["class"],
   content: [
