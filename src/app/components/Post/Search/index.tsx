@@ -1,8 +1,9 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useCallback, useEffect, useState, ChangeEvent } from "react";
-import Input from "../../elements/Input";
 import { AiOutlineSearch } from "react-icons/ai";
+import InputWithButton from "../../elements/InputWithButtonIcon";
+import { Button } from "@/components/ui/button";
 
 interface SearchParams {
   keyword?: string;
@@ -30,6 +31,7 @@ export const SearchShop: FC = () => {
         });
       });
     }
+    handlePushLocation();
   }, []);
 
   // パラメータを作成する
@@ -46,46 +48,53 @@ export const SearchShop: FC = () => {
     setSearchText(e.target.value);
   };
 
+  // 検索ボタンを押したときの処理
+  const handlePushSearch = () => {
+    const params: SearchParams = {
+      keyword: searchText || undefined,
+    };
+    router.push(pathname + "?" + createQueryString(params));
+  };
+
+  const handlePushLocation = () => {
+    const params: SearchParams = {
+      lat: location?.lat.toString(),
+      lng: location?.lng.toString(),
+      range: "5",
+    };
+    router.push(pathname + "?" + createQueryString(params));
+  };
+
   // 検索フォームのプロパティ
-  const serchProps = {
-    text: searchText,
-    handleInput: handleSearchInput,
-    placeholder: "キーワード",
+  const searchProps = {
+    inputProps: {
+      value: searchText,
+      placeholder: "キーワード",
+    },
+    buttonProps: {
+      // ここに必要な ButtonProps を追加します
+      className: "bg-green-700 hover:bg-green-900 text-white w-24",
+    },
     icon: <AiOutlineSearch />,
+    handleInput: handleSearchInput,
+    handleClick: handlePushSearch,
+    isButton: true,
   };
 
   return (
-    <div className="flex flex-wrap lg:flex-nowrap justify-center pb-8 lg:justify-start">
-      {/* 検索すフォーム */}
-      <Input {...serchProps} />
-
-      {/* 検索ボタン */}
-      <button
-        onClick={() => {
-          const params: SearchParams = {
-            keyword: searchText || undefined,
-          };
-          router.push(pathname + "?" + createQueryString(params));
-        }}
-        className="rounded-md mt-2 hover:bg-lime-900 lg:mt-0 lg:ml-2 w-[100%] lg:w-[100px] bg-[#017D01] text-white py-[10px] border-0 text-[14px] max-w-[400px] shadow shrink-0"
-      >
-        キーワードで検索する
-      </button>
+    <div className="flex flex-col lg:flex-nowrap justify-center pb-4 lg:justify-start">
+      {/* 検索バー */}
+      <InputWithButton {...searchProps} isButton={true}>
+        検索
+      </InputWithButton>
 
       {/* 現在地で検索ボタン */}
-      <button
-        onClick={() => {
-          const params: SearchParams = {
-            lat: location?.lat.toString(),
-            lng: location?.lng.toString(),
-            range: "5",
-          };
-          router.push(pathname + "?" + createQueryString(params));
-        }}
-        className="rounded-md mt-2 hover:bg-lime-900 lg:mt-0 lg:ml-2 w-[100%] lg:w-[100px] bg-[#017D01] text-white py-[10px] border-0 text-[14px] max-w-[400px] shadow shrink-0"
+      <Button
+        onClick={handlePushLocation}
+        className="rounded-md mt-4 bg-green-700 hover:bg-green-900 text-white container h-8 max-w-sm"
       >
-        現在地で検索する
-      </button>
+        現在地付近の飲食店を検索する
+      </Button>
     </div>
   );
 };
