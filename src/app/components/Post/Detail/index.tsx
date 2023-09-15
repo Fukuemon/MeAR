@@ -8,8 +8,9 @@ import Image from "next/image";
 import steak from "/public/steakcombo.jpeg";
 import { GrLocation } from "react-icons/gr";
 import { DynamicModelViewer } from "../../ModelViewer/DynamicModelViewer";
-import Button from "../../elements/Button";
+
 import { Mockdata } from "@/model/PostCard";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   restaurant: string;
@@ -84,7 +85,7 @@ const PostDetail = () => {
           {/* 3Dボタン　：　モデルがあるかないかで表示を変える */}
           <Button
             onClick={onClickModel}
-            className="text-sm font-bold border w-20 bg-main text-gray-600 shadow-md hover:bg-gray-600 hover:text-white "
+            className="text-sm font-bold border w-30 bg-main text-gray-600 shadow-md hover:bg-gray-600 hover:text-white "
           >
             {isModel ? "画像でみる" : "3Dでみる"}
           </Button>
