@@ -1,6 +1,8 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useCallback, useEffect, useState, ChangeEvent } from "react";
+import Input from "../../elements/Input";
+import { AiOutlineSearch } from "react-icons/ai";
 
 interface SearchParams {
   keyword?: string;
@@ -44,17 +46,18 @@ export const SearchShop: FC = () => {
     setSearchText(e.target.value);
   };
 
+  // 検索フォームのプロパティ
+  const serchProps = {
+    text: searchText,
+    handleInput: handleSearchInput,
+    placeholder: "キーワード",
+    icon: <AiOutlineSearch />,
+  };
+
   return (
     <div className="flex flex-wrap lg:flex-nowrap justify-center pb-8 lg:justify-start">
-      <div className="w-[100%] lg:w-[35%] lg:ml-2 mt-1 lg:mt-0">
-        <input
-          type="text"
-          value={searchText}
-          onChange={handleSearchInput}
-          placeholder="キーワード"
-          className="border-[1px] h-[100%] lg:border-t-2 lg:border-l-0 border-[#999s] w-[100%] py-[10px] px-3 text-[14px] outline-none rounded-md shadow"
-        />
-      </div>
+      {/* 検索すフォーム */}
+      <Input {...serchProps} />
 
       {/* 検索ボタン */}
       <button

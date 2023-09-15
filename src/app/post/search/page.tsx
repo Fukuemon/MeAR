@@ -15,7 +15,7 @@ const defaultEndpoint = `${process.env.NEXT_PUBLIC_HOTPEPPER_API}?key=${process.
 export default async function SearchShopPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: SearchParams; // ページのクエリパラメータ(?)を受け取る
 }) {
   //　各パラメータを取得
   const { keyword, lat, lng, range } = searchParams;
@@ -23,7 +23,7 @@ export default async function SearchShopPage({
   // APIパラメータを作成
   const apiParams = new URLSearchParams();
 
-  // 各パラメータをセット
+  // keywordがあればセット
   if (keyword) apiParams.append("keyword", keyword); // keywordがあればセット
 
   // latとlngがあればセット
