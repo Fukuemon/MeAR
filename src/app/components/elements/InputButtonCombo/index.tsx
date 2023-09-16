@@ -12,7 +12,7 @@ interface Props {
   children?: ReactNode; // children プロパティを追加
 }
 
-const InputWithButtonIcon: FC<Props> = ({
+const InputButtonCombo: FC<Props> = ({
   inputProps,
   buttonProps,
   isButton = false,
@@ -52,4 +52,4 @@ const InputWithButtonIcon: FC<Props> = ({
   );
 };
 
-export default InputWithButtonIcon;
+export default InputButtonCombo;

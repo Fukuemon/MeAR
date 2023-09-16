@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useState, ChangeEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import InputWithButton from "../../elements/InputWithButtonIcon";
+import InputWithButton from "../../elements/InputButtonCombo";
 import { Button } from "@/components/ui/button";
 import useLocation from "./hooks/useLocation";
 import useQueryString from "./hooks/useQueryString";
@@ -35,16 +35,17 @@ export const SearchShop: FC = () => {
 
   // 検索ボタンを押したときの処理
   const handlePushSearch = () => {
-    pushToRouter({ keyword: searchText || undefined });
+    pushToRouter({ keyword: searchText || undefined }); // キーワードを元にクエリパラメータを作成してrouter.pushする
   };
 
   // 現在地付近の飲食店を検索する
   const handlePushLocation = () => {
     if (location) {
       pushToRouter({
-        lat: location.lat.toString(),
-        lng: location.lng.toString(),
-        range: "5",
+        // クエリパラメータを作成してrouter.pushする
+        lat: location.lat.toString(), // 緯度
+        lng: location.lng.toString(), // 経度
+        range: "5", // 範囲
       });
     }
   };

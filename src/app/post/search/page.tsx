@@ -1,4 +1,4 @@
-import { SearchShop } from "@/app/components/Post/Search";
+import { SearchShop } from "@/app/components/Shop/Search";
 import Navbar from "@/app/components/elements/Navbar";
 
 interface SearchParams {
