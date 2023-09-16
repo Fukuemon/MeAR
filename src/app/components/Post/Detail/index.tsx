@@ -1,8 +1,6 @@
 "use client";
-import Link from "next/link";
 import React, { FC, useState } from "react";
 import { AiFillTag, AiFillHeart } from "react-icons/ai";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { CardHeader } from "../Card/Header";
 import Image from "next/image";
 import steak from "/public/steakcombo.jpeg";
@@ -11,24 +9,9 @@ import { DynamicModelViewer } from "../../ModelViewer/DynamicModelViewer";
 
 import { Mockdata } from "@/model/PostCard";
 import { Button } from "@/components/ui/button";
-
-type Props = {
-  restaurant: string;
-};
+import { PostNavbar } from "../../elements/Navbar/Back";
 
 const data = Mockdata;
-
-// 投稿詳細画面のナビゲーションバー
-export const PostNavbar: FC<Props> = (props) => {
-  return (
-    <nav className="navbar items-center justify-center relative">
-      <Link href="/" className="absolute z-1 left-2 top-4">
-        <MdOutlineArrowBackIosNew className="text-3xl text-black " />
-      </Link>
-      <h2 className="text-2xl italic font-bold">{props.restaurant}</h2>
-    </nav>
-  );
-};
 
 const PostDetail = () => {
   const [isLike, setIsLike] = useState(false);
@@ -43,7 +26,7 @@ const PostDetail = () => {
 
   return (
     <div>
-      <PostNavbar restaurant="8EIGHT BEEF" />
+      <PostNavbar name="8EIGHT BEEF" />
       <CardHeader {...data} />
 
       {/* 画像といいね */}

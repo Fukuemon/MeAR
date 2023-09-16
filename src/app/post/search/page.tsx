@@ -1,5 +1,8 @@
+import ShopItem from "@/app/components/Shop/Item";
 import { SearchShop } from "@/app/components/Shop/Search";
 import Navbar from "@/app/components/elements/Navbar";
+import { PostNavbar } from "@/app/components/elements/Navbar/Back";
+import { Shop } from "@/store/features/shopSlice";
 
 interface SearchParams {
   keyword?: string;
@@ -37,15 +40,13 @@ export default async function SearchShopPage({
 
     return (
       <div>
-        <Navbar title="店舗検索" />
-        <div className="p-8">
+        <PostNavbar isHome />
+        <div className="flex flex-col justify-center items-center p-8">
           <SearchShop />
           <div>
             {shops?.length ? (
-              shops.map((shop: any, index: number) => (
-                <div key={shop.id || index}>
-                  <h2 className="text-lg py-2 font-bold">{shop.name}</h2>
-                </div>
+              shops.map((shop: Shop, index: number) => (
+                <ShopItem key={shop.id || index} shop={shop} />
               ))
             ) : (
               <p>検索結果に当てはまりませんでした</p>
