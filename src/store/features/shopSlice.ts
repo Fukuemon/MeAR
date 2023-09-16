@@ -8,7 +8,9 @@ export interface Shop {
   lat: number; // 緯度
   lng: number; // 経度
   imageUr?: string; // 店舗画像
-  urls: string; // 店舗のURL
+  urls: {
+    pc: string; // PC版のURL
+  };
 }
 
 interface ShopState {
