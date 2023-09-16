@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import shopReducer from "./features/shopSlice";
 
 export const store = configureStore({
   reducer: {
+    shop: shopReducer,
     // reducerをここに追加
   },
   devTools: process.env.NODE_ENV !== "production", //　開発環境のみ有効
