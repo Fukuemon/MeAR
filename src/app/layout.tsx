@@ -1,7 +1,6 @@
 import { Providers } from "@/store/Provider";
-import "./globals.css";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
-import Navbar from "./components/elements/Navbar";
 import { notojp } from "@/utils/font";
 import BottomNavbar from "./components/elements/BottomNavbar";
 

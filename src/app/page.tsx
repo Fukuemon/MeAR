@@ -1,9 +1,4 @@
-import {
-  AuthorModel,
-  Mockdata,
-  PostCardModel,
-  RestaurantModel,
-} from "@/model/PostCard";
+import { Mockdata } from "@/model/PostCard";
 import PostCard from "src/app/components/Post/Card";
 import Navbar from "./components/elements/Navbar";
 import Link from "next/link";
