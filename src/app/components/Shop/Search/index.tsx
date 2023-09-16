@@ -3,7 +3,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { FC, useState, ChangeEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import InputWithButton from "../../elements/InputButtonCombo";
-import { Button } from "@/components/ui/button";
 import useLocation from "./hooks/useLocation";
 import useQueryString from "./hooks/useQueryString";
 
@@ -38,17 +37,16 @@ export const SearchShop: FC = () => {
     pushToRouter({ keyword: searchText || undefined }); // キーワードを元にクエリパラメータを作成してrouter.pushする
   };
 
-  // 現在地付近の飲食店を検索する
-  const handlePushLocation = () => {
-    if (location) {
-      pushToRouter({
-        // クエリパラメータを作成してrouter.pushする
-        lat: location.lat.toString(), // 緯度
-        lng: location.lng.toString(), // 経度
-        range: "5", // 範囲
-      });
-    }
-  };
+  // レンダリング時に位置情報を取得しt、クエリパラメータを作成してrouter.pushする(初期値として現在地付近の飲食店を検索する)
+  // キーワード入力された場合は、キーワードを元にクエリパラメータを作成してrouter.pushする
+  // 位置情報が取得できなかった場合は、キーワードを元にクエリパラメータを作成してrouter.pushする
+  if (searchText === "" && location) {
+    pushToRouter({
+      lat: location.lat.toString(),
+      lng: location.lng.toString(),
+      range: "5",
+    });
+  }
 
   // 検索ボックスのprops
   const searchProps = {
@@ -68,12 +66,11 @@ export const SearchShop: FC = () => {
   return (
     <div className="flex flex-col lg:flex-nowrap justify-center pb-4 lg:justify-start">
       <InputWithButton {...searchProps}>検索</InputWithButton>
-      <Button
-        onClick={handlePushLocation}
-        className="rounded-md mt-4 bg-green-700 hover:bg-green-900 text-white container h-8 max-w-sm"
-      >
-        現在地付近の飲食店を検索する
-      </Button>
+      {searchText === "" && location && (
+        <div>
+          <p className="text-3lx text-gray-500 items-center">周辺の店舗情報</p>
+        </div>
+      )}
     </div>
   );
 };
