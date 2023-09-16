@@ -3,8 +3,6 @@ import React, { FC, useState } from "react";
 import user from "/public/penguin.jpeg";
 import Image from "next/image";
 import { GrLogin } from "react-icons/gr";
-import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
-import Link from "next/link";
 
 type Props = {
   title: string;
