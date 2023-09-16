@@ -40,7 +40,7 @@ export default async function SearchShopPage({
 
     return (
       <div>
-        <PostNavbar />
+        <PostNavbar isHome />
         <div className="flex flex-col justify-center items-center p-8">
           <SearchShop />
           <div>
