@@ -1,5 +1,6 @@
 "use client";
 import { format } from "date-fns";
+import { ja } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/libs/tailwind/utils";
@@ -30,7 +31,7 @@ export const DatePicker = forwardRef<
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? format(date, "PPP", { locale: ja }) : <span>日付を選択</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" ref={ref}>
