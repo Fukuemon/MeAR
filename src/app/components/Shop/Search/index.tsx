@@ -68,7 +68,9 @@ export const SearchShop: FC = () => {
       <InputWithButton {...searchProps}>検索</InputWithButton>
       {searchText === "" && location && (
         <div>
-          <p className="text-3lx text-gray-500 items-center">周辺の店舗情報</p>
+          <p className="flex pt-4 text-5lx text-gray-500 justify-center items-center">
+            (周辺の店舗情報)
+          </p>
         </div>
       )}
     </div>
