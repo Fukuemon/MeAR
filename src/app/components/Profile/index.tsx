@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import ProfileHeader from "./Header";
 import { Profile } from "@/types/Profile/types";
+import TabBar from "./TabBar";
 
 type Props = {
   profile: Profile;
@@ -8,7 +9,12 @@ type Props = {
 };
 
 const Profile: FC<Props> = (props) => {
-  return <ProfileHeader {...props} />;
+  return (
+    <div>
+      <ProfileHeader {...props} />
+      <TabBar />
+    </div>
+  );
 };
 
 export default Profile;
