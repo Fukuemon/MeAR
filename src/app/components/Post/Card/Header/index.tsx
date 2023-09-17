@@ -1,7 +1,8 @@
 import Image from "next/image";
 import user from "/public/penguin.jpeg";
 import { FC } from "react";
-import { Author, tPostCard } from "@/model/PostCard";
+import { Author, tPostCard } from "@/types/Post/types";
+
 type Props = {
   author: Author;
   post: tPostCard;
