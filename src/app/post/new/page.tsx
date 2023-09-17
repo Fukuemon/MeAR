@@ -15,10 +15,11 @@ const NewPostPage = () => {
       {/* 日付選択 */}
       <div className="p-8">
         <CreatePost />
-        <p className="text-lg py-2">日付</p>
+
         {/*店舗が選択されている場合は店舗情報を表示 */}
-        {selectedShop ? (
+        {selectedShop && (
           <div>
+            <h2 className="text-lg py-2 font-bold">店舗情報</h2>
             {/* 店舗の住所 */}
             <p className="text-lg py-2">住所: {selectedShop.address}</p>
             <Link
@@ -28,8 +29,6 @@ const NewPostPage = () => {
               公式サイト
             </Link>
           </div>
-        ) : (
-          <p className="text-lg py-2">No Shop Selected</p>
         )}
       </div>
     </div>
