@@ -8,7 +8,7 @@ const profile = mockProfileData; // モックデータを取得
 const MyProfilePage = () => {
   return (
     <div>
-      <PostNavbar />
+      <PostNavbar name={profile.nickName} />
       <Profile profile={profile} />
     </div>
   );
