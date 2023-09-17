@@ -1,10 +1,12 @@
 // Profileの型定義
 
+import { StaticImageData } from "next/image";
+
 export interface Profile {
   nickName: string;
   userProfile: number;
   created_on?: string;
-  img?: string | object;
+  img: StaticImageData;
   followings: Follow[];
   followers: Follow[];
 }
