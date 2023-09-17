@@ -21,6 +21,7 @@ export default function RootLayout({
           {children}
           <BottomNavbar />
         </Providers>
+        <div className="h-20"></div>
       </body>
     </html>
   );
