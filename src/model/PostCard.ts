@@ -6,7 +6,7 @@ import { Author, Restaurant, tPostCard } from "@/types/Post/types";
 export const AuthorModel: Author = {
   id: 1,
   nickName: "ふくえもん",
-  avatarImg: { user },
+  avatarImg: user,
 };
 
 export const RestaurantModel: Restaurant = {
@@ -21,7 +21,7 @@ export const PostCardModel: tPostCard = {
   restaurant: RestaurantModel,
   createdAt: "2023-05-26",
   menu: "ステーキコンボ",
-  image: { steak },
+  image: steak,
   model: "steakcombo.glb",
   author: AuthorModel,
 };

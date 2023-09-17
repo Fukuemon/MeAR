@@ -1,8 +1,10 @@
+import { StaticImageData } from "next/image";
+
 // Type (PostCard)
 export type Author = {
   id: number;
   nickName: string;
-  avatarImg: string | object;
+  avatarImg: StaticImageData;
 };
 
 export type Restaurant = {
@@ -17,7 +19,7 @@ export type tPostCard = {
   restaurant: Restaurant;
   createdAt: string;
   menu: string;
-  image: File | object;
+  image: StaticImageData;
   model?: File | string;
   author: Author;
 };

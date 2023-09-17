@@ -5,7 +5,7 @@ export const mockProfileData: Profile = {
   nickName: "ふくえもん",
   userProfile: 12345,
   created_on: "2023-01-01",
-  img: { user },
+  img: user,
   followings: [
     {
       nickName: "Alice",
