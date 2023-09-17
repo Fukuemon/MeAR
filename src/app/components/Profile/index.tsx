@@ -2,17 +2,20 @@ import React, { FC } from "react";
 import ProfileHeader from "./Header";
 import { Profile } from "@/types/Profile/types";
 import TabBar from "./TabBar";
+import ProfilePost from "./Post";
+import { tPostCard } from "@/types/Post/types";
 
 type Props = {
   profile: Profile;
-  contents?: any; // ここにcontents(post, like, model)を追加
+  post: tPostCard; // ここにcontents(post, like, model)を追加
 };
 
 const Profile: FC<Props> = (props) => {
   return (
     <div>
-      <ProfileHeader {...props} />
+      <ProfileHeader {...props.profile} />
       <TabBar />
+      <ProfilePost {...props.post} />
     </div>
   );
 };

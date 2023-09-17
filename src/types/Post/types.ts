@@ -4,7 +4,7 @@ import { StaticImageData } from "next/image";
 export type Author = {
   id: number;
   nickName: string;
-  avatarImg: string | object;
+  avatarImg: StaticImageData;
 };
 
 export type Restaurant = {
@@ -19,7 +19,7 @@ export type tPostCard = {
   restaurant: Restaurant;
   createdAt: string;
   menu: string;
-  image?: StaticImageData;
+  image: StaticImageData;
   model?: File | string;
   author: Author;
 };

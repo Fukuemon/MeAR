@@ -6,7 +6,7 @@ import { Author, Restaurant, tPostCard } from "@/types/Post/types";
 export const AuthorModel: Author = {
   id: 1,
   nickName: "ふくえもん",
-  avatarImg: { user },
+  avatarImg: user,
 };
 
 export const RestaurantModel: Restaurant = {
