@@ -16,7 +16,7 @@ const ShopItem: FC<Props> = ({ shop }) => {
   // 店舗情報をセットする関数を実行し、店舗情報をセットする
   const handleShopClick = () => {
     dispatch(setSelectedShop(shop));
-    router.push("/post/new");
+    router.push("/post/create");
   };
 
   return (

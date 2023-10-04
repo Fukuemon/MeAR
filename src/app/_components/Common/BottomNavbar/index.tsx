@@ -14,7 +14,7 @@ const BottomNavbar = () => {
       name: "Post",
       icon: <PiNotePencil />,
       dis: "translate-x-16",
-      link: "/post/search",
+      link: "/shop/search",
     },
     {
       name: "Profile",

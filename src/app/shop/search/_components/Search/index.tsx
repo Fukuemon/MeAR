@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useState, ChangeEvent } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import InputWithButton from "../../elements/InputButtonCombo";
+import InputWithButton from "../../../../_components/Form/InputButtonCombo";
 import useLocation from "./hooks/useLocation";
 import useQueryString from "./hooks/useQueryString";
 

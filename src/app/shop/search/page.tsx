@@ -1,7 +1,6 @@
-import ShopItem from "@/app/components/Shop/Item";
-import { SearchShop } from "@/app/components/Shop/Search";
-import Navbar from "@/app/components/elements/Navbar";
-import { PostNavbar } from "@/app/components/elements/Navbar/Back";
+import ShopItem from "@/app/shop/search/_components/Item";
+import { SearchShop } from "@/app/shop/search/_components/Search";
+import { BackNavbar } from "@/app/_components/Common/Navbar/Back";
 import { Shop } from "@/store/features/shopSlice";
 
 interface SearchParams {
@@ -40,7 +39,7 @@ export default async function SearchShopPage({
 
     return (
       <div>
-        <PostNavbar isHome />
+        <BackNavbar isHome />
         <div className="flex flex-col justify-center items-center p-8">
           <SearchShop />
           <div>

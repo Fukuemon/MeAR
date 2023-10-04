@@ -10,7 +10,7 @@ type Props = {
 };
 
 //　投稿画面のナビゲーションバー
-export const PostNavbar: FC<Props> = (props) => {
+export const BackNavbar: FC<Props> = (props) => {
   const router = useRouter();
 
   return (

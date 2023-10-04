@@ -2,8 +2,8 @@
 import { useSelector } from "react-redux";
 import { selectSelectedShop } from "@/store/features/shopSlice";
 import Link from "next/link";
-import { PostNavbar } from "@/app/components/elements/Navbar/Back";
-import CreatePost from "@/app/components/Post/New";
+import { BackNavbar } from "@/app/_components/Common/Navbar/Back";
+import CreatePost from "@/app/post/create/_components/CreatePost";
 
 const NewPostPage = () => {
   const selectedShop = useSelector(selectSelectedShop); // 選択された店舗情報を取得
@@ -11,7 +11,7 @@ const NewPostPage = () => {
   return (
     <div>
       {/*店舗が選択されている場合はNavbarに店舗名を表示*/}
-      <PostNavbar name={`店舗名：${selectedShop?.name}`} />
+      <BackNavbar name={`店舗名：${selectedShop?.name}`} />
       {/* 日付選択 */}
       <div className="p-8">
         <CreatePost />
