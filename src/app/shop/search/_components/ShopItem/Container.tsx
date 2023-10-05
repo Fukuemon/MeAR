@@ -1,15 +1,17 @@
 "use client";
-import React, { FC } from "react";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
 import { Shop, setSelectedShop } from "@/store/features/shopSlice";
+import { useRouter } from "next/navigation";
+import { FC } from "react";
 
+import ShopItemPresenter from "./Presenter";
+import { useDispatch } from "react-redux";
+
+// 店舗情報を表示するコンテナンポーネント
 type Props = {
   shop: Shop;
 };
 
-// 店舗情報を表示するコンポーネント
-const ShopItem: FC<Props> = ({ shop }) => {
+const ShopItemContainer: FC<Props> = ({ shop }) => {
   const dispatch = useDispatch(); // 店舗情報をセットする関数をshopSliceから取得
   const router = useRouter();
 
@@ -18,12 +20,7 @@ const ShopItem: FC<Props> = ({ shop }) => {
     dispatch(setSelectedShop(shop));
     router.push("/post/create");
   };
-
-  return (
-    <div key={shop.id} onClick={handleShopClick}>
-      <h2 className="text-lg py-2 font-bold">{shop.name}</h2>
-    </div>
-  );
+  return <ShopItemPresenter shop={shop} onClick={handleShopClick} />;
 };
 
-export default ShopItem;
+export default ShopItemContainer;
