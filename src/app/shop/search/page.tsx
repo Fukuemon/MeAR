@@ -1,7 +1,7 @@
-import ShopItem from "@/app/shop/search/_components/Item";
 import { SearchShop } from "@/app/shop/search/_components/Search";
 import { BackNavbar } from "@/app/_components/Common/Navbar/Back";
 import { Shop } from "@/store/features/shopSlice";
+import ShopList from "./_components/ShopList";
 
 interface SearchParams {
   keyword?: string;
@@ -42,15 +42,7 @@ export default async function SearchShopPage({
         <BackNavbar isHome />
         <div className="flex flex-col justify-center items-center p-8">
           <SearchShop />
-          <div>
-            {shops?.length ? (
-              shops.map((shop: Shop, index: number) => (
-                <ShopItem key={shop.id || index} shop={shop} />
-              ))
-            ) : (
-              <p>検索結果に当てはまりませんでした</p>
-            )}
-          </div>
+          <ShopList shops={shops as Shop[]} />
         </div>
       </div>
     );
