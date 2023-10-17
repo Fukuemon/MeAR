@@ -33,7 +33,7 @@ const Navbar: FC<Props> = (props) => {
           // ログインしていない場合
           <div className="flex justify-items-center ">
             {/* <Link href="/login"> */}
-            <GrLogin onClick={onLogin} className="text-3xl mr-2" />
+            <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
             {/* </Link> */}
           </div>
         )}

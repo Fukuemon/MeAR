@@ -64,11 +64,11 @@ export const SearchShop: FC = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-nowrap justify-center pb-4 lg:justify-start">
+    <div className="flex flex-col justify-center pb-4 lg:flex-nowrap lg:justify-start">
       <InputWithButton {...searchProps}>検索</InputWithButton>
       {searchText === '' && location && (
         <div>
-          <p className="flex pt-4 text-5lx text-gray-500 justify-center items-center">(周辺の店舗情報)</p>
+          <p className="flex items-center justify-center pt-4 text-3xl text-gray-500">(周辺の店舗情報)</p>
         </div>
       )}
     </div>

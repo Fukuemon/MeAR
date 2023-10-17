@@ -22,12 +22,12 @@ const InputButtonCombo: FC<Props> = ({
   children
 }) => {
   return (
-    <div className="relative flex w-full max-w-sm items-center space-x-2 justify-center container">
+    <div className="container relative flex w-full max-w-sm items-center justify-center space-x-2">
       {/* インプット入力欄 */}
       <Input {...inputProps} type="text" className={`block w-full ${icon && 'pl-10'}`} onChange={handleInput} />
 
       {/* アイコンが必要なら */}
-      {icon && <div className="absolute top-3 left-1 text-xl text-gray-500 dark:text-gray-400">{icon}</div>}
+      {icon && <div className="absolute left-1 top-3 text-xl text-gray-500 dark:text-gray-400">{icon}</div>}
 
       {isButton && (
         <Button type="submit" onClick={handleClick} className="w-24" {...buttonProps}>

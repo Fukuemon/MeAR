@@ -18,7 +18,7 @@ export const CardHeader: FC<Props> = (props) => {
       </div>
 
       {/* 日付 */}
-      <h2 className="font-bold pr-4 text-xl ">{props.post.createdAt}</h2>
+      <h2 className="pr-4 text-xl font-bold ">{props.post.createdAt}</h2>
     </div>
   )
 }

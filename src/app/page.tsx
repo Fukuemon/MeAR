@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Navbar title="投稿一覧" />
-      <main className="flex py-8 justify-center">
+      <main className="flex justify-center py-8">
         <Link href="/post/">
           <PostCard {...Mockdata} />
         </Link>

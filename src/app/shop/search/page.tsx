@@ -40,7 +40,7 @@ export default async function SearchShopPage({
     return (
       <div>
         <BackNavbar isHome />
-        <div className="flex flex-col justify-center items-center p-8">
+        <div className="flex flex-col items-center justify-center p-8">
           <SearchShop />
           <ShopList shops={shops as Shop[]} />
         </div>

@@ -19,10 +19,10 @@ const NewPostPage = () => {
         {/*店舗が選択されている場合は店舗情報を表示 */}
         {selectedShop && (
           <div>
-            <h2 className="text-lg py-2 font-bold">店舗情報</h2>
+            <h2 className="py-2 text-lg font-bold">店舗情報</h2>
             {/* 店舗の住所 */}
-            <p className="text-lg py-2">住所: {selectedShop.address}</p>
-            <Link href={selectedShop.urls.pc} className="text-lg py-2 text-blue-500">
+            <p className="py-2 text-lg">住所: {selectedShop.address}</p>
+            <Link href={selectedShop.urls.pc} className="py-2 text-lg text-blue-500">
               公式サイト
             </Link>
           </div>

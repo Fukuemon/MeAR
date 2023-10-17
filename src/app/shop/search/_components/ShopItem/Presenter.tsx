@@ -12,7 +12,7 @@ type PresentationProps = {
 const ShopItemPresenter: FC<PresentationProps> = ({ shop: { id, name }, onClick }) => {
   return (
     <div key={id} onClick={onClick} className="cursor-pointer">
-      <h2 className="text-lg py-2 font-bold">{name}</h2>
+      <h2 className="py-2 text-lg font-bold">{name}</h2>
     </div>
   )
 }
