@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { ja } from "date-fns/locale"; // 日本語ロケールデータをインポート
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
-import { cn } from "@/libs/tailwind/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { ja } from "date-fns/locale"; // 日本語ロケールデータをインポート
+import { cn } from "@/libs/tailwind/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

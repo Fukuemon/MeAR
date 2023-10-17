@@ -1,6 +1,6 @@
+import { FC, ReactNode, ChangeEvent, MouseEvent } from "react";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { Input, InputProps } from "@/components/ui/input";
-import { FC, ReactNode, ChangeEvent, MouseEvent } from "react";
 
 interface Props {
   inputProps: InputProps;

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --dir src/app",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@google/model-viewer": "^3.3.0",

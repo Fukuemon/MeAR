@@ -5,8 +5,8 @@ import steak from "/public/steakcombo.jpeg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
 
-import { CardHeader } from "./Header";
 import { Author, tPostCard } from "@/types/Post/types";
+import { CardHeader } from "./Header";
 
 // Propsの型定義
 type Props = {

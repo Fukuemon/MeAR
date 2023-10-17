@@ -3,7 +3,7 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale"; // 日本語ロケールをインポート
-import { cn } from "@/libs/tailwind/utils";
+import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CalendarIcon } from "lucide-react";
+import { cn } from "@/libs/tailwind/utils";
 
 export function DatePicker() {
   const [date, setDate] = React.useState<Date>();

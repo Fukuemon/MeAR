@@ -1,8 +1,8 @@
 import { Providers } from "@/store/Provider";
 import "@/styles/globals.css";
+import BottomNavbar from "./_components/Common/BottomNavbar";
 import type { Metadata } from "next";
 import { notojp } from "@/libs/font";
-import BottomNavbar from "./_components/Common/BottomNavbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",

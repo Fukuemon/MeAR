@@ -1,5 +1,5 @@
-import { SearchShop } from "@/app/shop/search/_components/Search";
 import { BackNavbar } from "@/app/_components/Common/Navbar/Back";
+import { SearchShop } from "@/app/shop/search/_components/Search";
 import { Shop } from "@/store/features/shopSlice";
 import ShopList from "./_components/ShopList";
 

@@ -1,8 +1,8 @@
-import { tPostCard } from "@/types/Post/types";
-import Image from "next/image";
 import React, { FC } from "react";
+import Image from "next/image";
 import { AiFillHeart } from "react-icons/ai";
 import { MdComment } from "react-icons/md";
+import { tPostCard } from "@/types/Post/types";
 
 const ProfilePost: FC<tPostCard> = (post) => {
   return (

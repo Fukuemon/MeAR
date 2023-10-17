@@ -1,10 +1,10 @@
 "use client";
-import { Shop, setSelectedShop } from "@/store/features/shopSlice";
-import { useRouter } from "next/navigation";
 import { FC } from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { Shop, setSelectedShop } from "@/store/features/shopSlice";
 
 import ShopItemPresenter from "./Presenter";
-import { useDispatch } from "react-redux";
 
 // 店舗情報を表示するコンテナンポーネント
 type Props = {
