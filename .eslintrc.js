@@ -1,16 +1,41 @@
 module.exports = {
   root: true,
   extends: ["plugin:@typescript-eslint/recommended", "next/core-web-vitals"],
-  plugins: [],
+  plugins: ["unused-imports"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.json",
   },
   rules: {
-    "@typescript-eslint/no-unused-vars": "error", //宣言されてるけど使用されてない変数をエラーに
-    "@typescript-eslint/no-explicit-any": "warn", // any型の場合に警告を出す
-    "@typescript-eslint/no-unsafe-call": "error", // 型安全性が確保されてない関数を呼び出した場合にエラーに
-    "@typescript-eslint/no-unsafe-member-access": "error", //オブジェクトのメンバーへの型安全性が確保されていないアクセスを検出
-    "@typescript-eslint/no-unsafe-return": "error", // 型安全性が確保されていない値の返却を検出
+    "import/order": [
+      "error",
+      {
+        // インポートを以下のカテゴリに分類
+        groups: [
+          "builtin", // Node.jsの組み込みモジュール
+          "external", // node_modulesからのインポート
+          "internal", // 同じパッケージ内の他のモジュールからのインポート
+          "parent", // 現在のディレクトリの親ディレクトリからのインポート
+          "sibling", // 同じディレクトリ内の他のモジュールからのインポート
+          "index", // 現在のディレクトリのインデックスファイルからのインポート
+          "object", // オブジェクトのインポート
+          "type", // TypeScriptの型のインポート
+        ],
+        // 特定のインポートパターンをカスタムグループに分類
+        pathGroups: [
+          {
+            pattern: "{react,react-dom/**,react-router-dom}", // このパターンに一致するインポート
+            group: "builtin", // 上記のインポートをbuiltinグループとして扱う。
+            position: "before", // そのグループの前に配置
+          },
+        ],
+        // pathGroupsの設定から特定のインポートタイプを除外します。
+        pathGroupsExcludedImportTypes: ["builtin"], // builtinタイプのインポートを除外。
+        // インポート文のアルファベット順にソート
+        alphabetize: {
+          order: "asc", //
+        },
+      },
+    ],
   },
 };
