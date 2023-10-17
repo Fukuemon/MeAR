@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import Image from "next/image";
-import { AiFillHeart } from "react-icons/ai";
-import { MdComment } from "react-icons/md";
-import { tPostCard } from "@/types/Post/types";
+import React, { FC } from 'react'
+import Image from 'next/image'
+import { AiFillHeart } from 'react-icons/ai'
+import { MdComment } from 'react-icons/md'
+import { tPostCard } from '@/types/Post/types'
 
 const ProfilePost: FC<tPostCard> = (post) => {
   return (
@@ -29,7 +29,7 @@ const ProfilePost: FC<tPostCard> = (post) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfilePost;
+export default ProfilePost

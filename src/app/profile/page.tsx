@@ -1,16 +1,16 @@
-import React from "react";
-import { PostCardModel } from "@/model/PostCard";
-import { mockProfileData } from "@/model/Profile";
-import { BackNavbar } from "../_components/Common/Navbar/Back";
-import Profile from "./_components/Profile";
+import React from 'react'
+import { PostCardModel } from '@/model/PostCard'
+import { mockProfileData } from '@/model/Profile'
+import { BackNavbar } from '../_components/Common/Navbar/Back'
+import Profile from './_components/Profile'
 
-const profile = mockProfileData; // モックデータを取得
-const post = PostCardModel; // モックデータを取得
+const profile = mockProfileData // モックデータを取得
+const post = PostCardModel // モックデータを取得
 
 const contents = {
   profile,
-  post,
-};
+  post
+}
 
 const MyProfilePage = () => {
   return (
@@ -18,7 +18,7 @@ const MyProfilePage = () => {
       <BackNavbar name={profile.nickName} />
       <Profile {...contents} />
     </div>
-  );
-};
+  )
+}
 
-export default MyProfilePage;
+export default MyProfilePage

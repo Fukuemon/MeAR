@@ -1,28 +1,28 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import { AiFillTag, AiFillHeart } from "react-icons/ai";
-import steak from "/public/steakcombo.jpeg";
-import { GrLocation } from "react-icons/gr";
+'use client'
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { AiFillTag, AiFillHeart } from 'react-icons/ai'
+import steak from '/public/steakcombo.jpeg'
+import { GrLocation } from 'react-icons/gr'
 
-import { Button } from "@/components/ui/button";
-import { Mockdata } from "@/model/PostCard";
-import { BackNavbar } from "../../../../_components/Common/Navbar/Back";
-import { CardHeader } from "../../../_components/Card/Header";
-import { DynamicModelViewer } from "../../../_components/ModelViewer/DynamicModelViewer";
+import { Button } from '@/components/ui/button'
+import { Mockdata } from '@/model/PostCard'
+import { BackNavbar } from '../../../../_components/Common/Navbar/Back'
+import { CardHeader } from '../../../_components/Card/Header'
+import { DynamicModelViewer } from '../../../_components/ModelViewer/DynamicModelViewer'
 
-const data = Mockdata;
+const data = Mockdata
 
 const PostDetail = () => {
-  const [isLike, setIsLike] = useState(false);
-  const [isModel, setIsModel] = useState(false);
+  const [isLike, setIsLike] = useState(false)
+  const [isModel, setIsModel] = useState(false)
   // いいねボタンを押したときの処理
   const onClicklike = () => {
-    setIsLike((preveState) => !preveState);
-  };
+    setIsLike((preveState) => !preveState)
+  }
   const onClickModel = () => {
-    setIsModel((preveState) => !preveState);
-  };
+    setIsModel((preveState) => !preveState)
+  }
 
   return (
     <div>
@@ -37,24 +37,14 @@ const PostDetail = () => {
             <DynamicModelViewer src="/steakcombo.glb" />
           </div>
         ) : (
-          <Image
-            src={steak}
-            className="w-full h-full object-cover"
-            alt="ステーキコンボ"
-          />
+          <Image src={steak} className="w-full h-full object-cover" alt="ステーキコンボ" />
         )}
 
         <span className=" absolute right-4 top-2">
           {isLike ? (
-            <AiFillHeart
-              onClick={onClicklike}
-              className="text-5xl text-red-500 "
-            />
+            <AiFillHeart onClick={onClicklike} className="text-5xl text-red-500 " />
           ) : (
-            <AiFillHeart
-              onClick={onClicklike}
-              className="text-5xl text-gray-400"
-            />
+            <AiFillHeart onClick={onClicklike} className="text-5xl text-gray-400" />
           )}
         </span>
       </div>
@@ -70,16 +60,14 @@ const PostDetail = () => {
             onClick={onClickModel}
             className="text-sm font-bold border w-30 bg-main text-gray-600 shadow-md hover:bg-gray-600 hover:text-white "
           >
-            {isModel ? "画像でみる" : "3Dでみる"}
+            {isModel ? '画像でみる' : '3Dでみる'}
           </Button>
         </div>
 
         {/* 値段と評価 */}
         <div className="flex justify-between">
           {/* 値段 */}
-          <h4 className=" italic text-lg font-thin border-b w-20 pl-2">
-            ¥ 1,480
-          </h4>
+          <h4 className=" italic text-lg font-thin border-b w-20 pl-2">¥ 1,480</h4>
           {/* 評価 */}
           <div className="flex items-center gap-1">
             <span className="text-yellow-400 text-2xl">★</span>
@@ -100,13 +88,10 @@ const PostDetail = () => {
         </div>
 
         {/* コメント */}
-        <h4 className=" italic text-sm font-thin border-b w-20 text-center">
-          ✍️コメント
-        </h4>
+        <h4 className=" italic text-sm font-thin border-b w-20 text-center">✍️コメント</h4>
         <p className="text-sm border-b p-2">
           すごくうまかった！
-          <br />{" "}
-          1480円でサラダバー付き、ステーキ食べれるのはコスパ最高すぎです！！
+          <br /> 1480円でサラダバー付き、ステーキ食べれるのはコスパ最高すぎです！！
         </p>
 
         {/* 店舗情報 */}
@@ -123,7 +108,7 @@ const PostDetail = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostDetail;
+export default PostDetail

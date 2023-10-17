@@ -1,19 +1,19 @@
-import React, { FC } from "react";
-import Image from "next/legacy/image";
-import steak from "/public/steakcombo.jpeg";
+import React, { FC } from 'react'
+import Image from 'next/legacy/image'
+import steak from '/public/steakcombo.jpeg'
 
-import { AiOutlineHeart } from "react-icons/ai";
-import { BsShop } from "react-icons/bs";
+import { AiOutlineHeart } from 'react-icons/ai'
+import { BsShop } from 'react-icons/bs'
 
-import { Author, tPostCard } from "@/types/Post/types";
-import { CardHeader } from "./Header";
+import { Author, tPostCard } from '@/types/Post/types'
+import { CardHeader } from './Header'
 
 // Propsの型定義
 type Props = {
-  author: Author;
-  post: tPostCard;
-  isLike: boolean;
-};
+  author: Author
+  post: tPostCard
+  isLike: boolean
+}
 
 const PostCard: FC<Props> = (props) => {
   return (
@@ -23,11 +23,7 @@ const PostCard: FC<Props> = (props) => {
 
       {/* コンテンツ */}
       {/* 画像 */}
-      <Image
-        src={steak}
-        className="w-full h-full object-cover"
-        alt="ステーキコンボ"
-      />
+      <Image src={steak} className="w-full h-full object-cover" alt="ステーキコンボ" />
 
       <div className="flex justify-between">
         {/* 左側のコンテンツ */}
@@ -60,7 +56,7 @@ const PostCard: FC<Props> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard

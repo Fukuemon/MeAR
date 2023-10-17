@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 // 現在地を取得するカスタムフック
 const useLocation = () => {
-  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
-    null
-  );
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   useEffect(() => {
     // 位置情報の取得
@@ -15,13 +13,13 @@ const useLocation = () => {
         setLocation({
           // 現在地をstateに保存
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      });
+          lng: position.coords.longitude
+        })
+      })
     }
-  }, []); // 一度だけ実行
+  }, []) // 一度だけ実行
 
-  return location; // 現在地を返す
-};
+  return location // 現在地を返す
+}
 
-export default useLocation;
+export default useLocation

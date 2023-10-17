@@ -1,64 +1,55 @@
-"use client";
-import React, { useEffect, FC, CSSProperties } from "react";
+'use client'
+import React, { useEffect, FC, CSSProperties } from 'react'
 
 interface ModelViewerProps {
-  src: string;
+  src: string
 }
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "model-viewer": MyElementAttributes;
+      'model-viewer': MyElementAttributes
     }
     interface MyElementAttributes {
-      className?: string;
-      src: string;
-      poster?: string;
-      alt?: string;
-      ar?: boolean;
-      scale?: string;
-      style?: React.CSSProperties;
-      "auto-rotate"?: boolean;
-      "camera-controls"?: boolean;
+      className?: string
+      src: string
+      poster?: string
+      alt?: string
+      ar?: boolean
+      scale?: string
+      style?: React.CSSProperties
+      'auto-rotate'?: boolean
+      'camera-controls'?: boolean
     }
   }
 }
 
 const ModelViewer: FC<ModelViewerProps> = ({ src }) => {
-  const [style, setStyle] = React.useState<CSSProperties>({});
+  const [style, setStyle] = React.useState<CSSProperties>({})
   useEffect(() => {
-    import("@google/model-viewer").catch(console.error);
-  }, []);
+    import('@google/model-viewer').catch(console.error)
+  }, [])
 
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 600) {
-        setStyle({ width: "320px", height: "300px" });
+        setStyle({ width: '320px', height: '300px' })
       } else if (window.innerWidth < 900) {
-        setStyle({ width: "320", height: "300px" });
+        setStyle({ width: '320', height: '300px' })
       } else {
-        setStyle({ width: "100%", height: "300px" });
+        setStyle({ width: '100%', height: '300px' })
       }
     }
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  return (
-    <model-viewer
-      style={style}
-      className="w-full h-full"
-      src={src}
-      auto-rotate
-      camera-controls
-      ar
-    ></model-viewer>
-  );
-};
+  return <model-viewer style={style} className="w-full h-full" src={src} auto-rotate camera-controls ar></model-viewer>
+}
 
-export default ModelViewer;
+export default ModelViewer

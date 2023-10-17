@@ -1,6 +1,6 @@
-import React from "react";
-import { AiFillHeart } from "react-icons/ai";
-import { PiNotebookBold } from "react-icons/pi";
+import React from 'react'
+import { AiFillHeart } from 'react-icons/ai'
+import { PiNotebookBold } from 'react-icons/pi'
 
 const ProfileTabBar = () => {
   return (
@@ -19,7 +19,7 @@ const ProfileTabBar = () => {
       {/* 軸 */}
       <div className="border border-gray-400 bottom-1  mx-4" />
     </div>
-  );
-};
+  )
+}
 
-export default ProfileTabBar;
+export default ProfileTabBar

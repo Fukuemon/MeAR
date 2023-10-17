@@ -1,52 +1,52 @@
-"use client";
-import { ChangeEvent, useState } from "react";
-import { AiFillMoneyCollect } from "react-icons/ai";
-import { BiCube, BiImageAdd } from "react-icons/bi";
-import { MdRestaurant } from "react-icons/md";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { DatePicker } from "../../../../_components/Form/DatePicker";
-import InputButtonCombo from "../../../../_components/Form/InputButtonCombo";
+'use client'
+import { ChangeEvent, useState } from 'react'
+import { AiFillMoneyCollect } from 'react-icons/ai'
+import { BiCube, BiImageAdd } from 'react-icons/bi'
+import { MdRestaurant } from 'react-icons/md'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { DatePicker } from '../../../../_components/Form/DatePicker'
+import InputButtonCombo from '../../../../_components/Form/InputButtonCombo'
 
 const CreatePost = () => {
-  const [menuText, setMenuText] = useState("");
-  const [priceText, setPriceText] = useState("");
+  const [menuText, setMenuText] = useState('')
+  const [priceText, setPriceText] = useState('')
 
   const handleSMenuInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setMenuText(e.target.value);
-  };
+    setMenuText(e.target.value)
+  }
 
   const handlePriceInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setPriceText(e.target.value);
-  };
+    setPriceText(e.target.value)
+  }
 
   // メニューボックスのprops
   const MenuProps = {
     inputProps: {
       value: menuText,
-      placeholder: "食べたものを入力",
+      placeholder: '食べたものを入力'
     },
     buttonProps: {
-      className: "bg-green-700 hover:bg-green-900 text-white w-24",
+      className: 'bg-green-700 hover:bg-green-900 text-white w-24'
     },
     icon: <MdRestaurant />,
     handleInput: handleSMenuInput,
-    handleClick: () => {}, // 何もしない)
-  };
+    handleClick: () => {} // 何もしない)
+  }
 
   // 値段ボックスのprops
   const PriceProps = {
     inputProps: {
       value: priceText,
-      placeholder: "値段を入力",
+      placeholder: '値段を入力'
     },
     buttonProps: {
-      className: "bg-green-700 hover:bg-green-900 text-white w-24",
+      className: 'bg-green-700 hover:bg-green-900 text-white w-24'
     },
     icon: <AiFillMoneyCollect />,
     handleInput: handlePriceInput,
-    handleClick: () => {}, // 何もしない)
-  };
+    handleClick: () => {} // 何もしない)
+  }
 
   return (
     <div>
@@ -81,16 +81,14 @@ const CreatePost = () => {
       {/* 評価 */}
 
       {/* tag */}
-      <Button className="bg-green-500 hover:bg-green-900 text-white">
-        # タグを追加
-      </Button>
+      <Button className="bg-green-500 hover:bg-green-900 text-white"># タグを追加</Button>
 
       {/* コメント */}
       <div className="flex flex-col gap-y-6 py-4">
         <Textarea className="w-full" placeholder="レビューを入力" rows={5} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreatePost;
+export default CreatePost

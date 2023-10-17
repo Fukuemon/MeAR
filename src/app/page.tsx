@@ -1,7 +1,7 @@
-import Link from "next/link";
-import PostCard from "@/app/post/_components/Card";
-import { Mockdata } from "@/model/PostCard";
-import Navbar from "./_components/Common/Navbar";
+import Link from 'next/link'
+import PostCard from '@/app/post/_components/Card'
+import { Mockdata } from '@/model/PostCard'
+import Navbar from './_components/Common/Navbar'
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
         </Link>
       </main>
     </div>
-  );
+  )
 }

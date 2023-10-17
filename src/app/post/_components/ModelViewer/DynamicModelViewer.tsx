@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
-export const DynamicModelViewer = dynamic(() => import("./index"), {
-  ssr: false,
-});
+export const DynamicModelViewer = dynamic(() => import('./index'), {
+  ssr: false
+})

@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import Image from "next/image";
+import React, { FC } from 'react'
+import Image from 'next/image'
 
-import { Profile } from "@/types/Profile/types";
+import { Profile } from '@/types/Profile/types'
 
 const ProfileHeader: FC<Profile> = (profile) => {
   return (
@@ -40,7 +40,7 @@ const ProfileHeader: FC<Profile> = (profile) => {
         {/*  */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileHeader;
+export default ProfileHeader
