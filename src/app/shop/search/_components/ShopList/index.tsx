@@ -1,5 +1,5 @@
-import { Shop } from "@/store/features/shopSlice";
 import React, { FC } from "react";
+import { Shop } from "@/store/features/shopSlice";
 import { ShopItem } from "../ShopItem";
 
 type Props = {

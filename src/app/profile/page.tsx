@@ -1,8 +1,8 @@
 import React from "react";
+import { PostCardModel } from "@/model/PostCard";
+import { mockProfileData } from "@/model/Profile";
 import { BackNavbar } from "../_components/Common/Navbar/Back";
 import Profile from "./_components/Profile";
-import { mockProfileData } from "@/model/Profile";
-import { PostCardModel } from "@/model/PostCard";
 
 const profile = mockProfileData; // モックデータを取得
 const post = PostCardModel; // モックデータを取得

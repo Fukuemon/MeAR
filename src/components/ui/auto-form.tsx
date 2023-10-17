@@ -1,6 +1,32 @@
 "use client";
 import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Plus, Trash } from "lucide-react";
+import {
+  ControllerRenderProps,
+  DefaultValues,
+  FieldValues,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
 import { z } from "zod";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/libs/tailwind/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./accordion";
+import { Button } from "./button";
+import { Checkbox } from "./checkbox";
+import { DatePicker } from "./date-picker";
 import {
   Form,
   FormControl,
@@ -10,37 +36,11 @@ import {
   FormLabel,
   FormMessage,
 } from "./form";
-import {
-  ControllerRenderProps,
-  DefaultValues,
-  FieldValues,
-  useFieldArray,
-  useForm,
-} from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "./button";
 import { Input } from "./input";
-import { Checkbox } from "./checkbox";
-import { DatePicker } from "./date-picker";
-import { cn } from "@/libs/tailwind/utils";
-import { Switch } from "./switch";
-import { Textarea } from "./textarea";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./accordion";
 import { RadioGroup, RadioGroupItem } from "./radio-group";
 import { Separator } from "./separator";
-import { Plus, Trash } from "lucide-react";
+import { Switch } from "./switch";
+import { Textarea } from "./textarea";
 
 /**
  * Beautify a camelCase string.

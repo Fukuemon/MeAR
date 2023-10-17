@@ -1,9 +1,9 @@
 "use client";
-import { useSelector } from "react-redux";
-import { selectSelectedShop } from "@/store/features/shopSlice";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import { BackNavbar } from "@/app/_components/Common/Navbar/Back";
 import CreatePost from "@/app/post/create/_components/CreatePost";
+import { selectSelectedShop } from "@/store/features/shopSlice";
 
 const NewPostPage = () => {
   const selectedShop = useSelector(selectSelectedShop); // 選択された店舗情報を取得

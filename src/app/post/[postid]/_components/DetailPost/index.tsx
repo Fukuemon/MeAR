@@ -1,15 +1,15 @@
 "use client";
-import React, { FC, useState } from "react";
-import { AiFillTag, AiFillHeart } from "react-icons/ai";
-import { CardHeader } from "../../../_components/Card/Header";
+import React, { useState } from "react";
 import Image from "next/image";
+import { AiFillTag, AiFillHeart } from "react-icons/ai";
 import steak from "/public/steakcombo.jpeg";
 import { GrLocation } from "react-icons/gr";
-import { DynamicModelViewer } from "../../../_components/ModelViewer/DynamicModelViewer";
 
-import { Mockdata } from "@/model/PostCard";
 import { Button } from "@/components/ui/button";
+import { Mockdata } from "@/model/PostCard";
 import { BackNavbar } from "../../../../_components/Common/Navbar/Back";
+import { CardHeader } from "../../../_components/Card/Header";
+import { DynamicModelViewer } from "../../../_components/ModelViewer/DynamicModelViewer";
 
 const data = Mockdata;
 
