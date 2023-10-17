@@ -14,7 +14,7 @@ export interface Shop {
 }
 
 interface ShopState {
-  selectedShop: Shop | null;
+  selectedShop: Shop | null; // 選択された店舗情報
 }
 
 const initialState: ShopState = {
@@ -27,7 +27,7 @@ export const shopSlice = createSlice({
   initialState,
   reducers: {
     // reducerの定義(選択された店舗情報をセットする)
-    setSelectedShop: (state, action: PayloadAction<Shop | null>) => {
+    setSelectedShop: (state, action: PayloadAction<Shop>) => {
       state.selectedShop = action.payload;
     },
   },

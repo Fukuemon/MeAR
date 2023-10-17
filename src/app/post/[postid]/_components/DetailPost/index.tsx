@@ -1,15 +1,15 @@
 "use client";
 import React, { FC, useState } from "react";
 import { AiFillTag, AiFillHeart } from "react-icons/ai";
-import { CardHeader } from "../Card/Header";
+import { CardHeader } from "../../../_components/Card/Header";
 import Image from "next/image";
 import steak from "/public/steakcombo.jpeg";
 import { GrLocation } from "react-icons/gr";
-import { DynamicModelViewer } from "../../ModelViewer/DynamicModelViewer";
+import { DynamicModelViewer } from "../../../_components/ModelViewer/DynamicModelViewer";
 
 import { Mockdata } from "@/model/PostCard";
 import { Button } from "@/components/ui/button";
-import { PostNavbar } from "../../elements/Navbar/Back";
+import { BackNavbar } from "../../../../_components/Common/Navbar/Back";
 
 const data = Mockdata;
 
@@ -26,7 +26,7 @@ const PostDetail = () => {
 
   return (
     <div>
-      <PostNavbar name="8EIGHT BEEF" />
+      <BackNavbar name="8EIGHT BEEF" />
       <CardHeader {...data} />
 
       {/* 画像といいね */}

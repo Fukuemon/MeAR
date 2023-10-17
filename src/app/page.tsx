@@ -1,6 +1,6 @@
 import { Mockdata } from "@/model/PostCard";
-import PostCard from "src/app/components/Post/Card";
-import Navbar from "./components/elements/Navbar";
+import PostCard from "@/app/post/_components/Card";
+import Navbar from "./_components/Common/Navbar";
 import Link from "next/link";
 
 export default function Home() {

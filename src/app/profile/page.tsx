@@ -1,6 +1,6 @@
 import React from "react";
-import { PostNavbar } from "../components/elements/Navbar/Back";
-import Profile from "../components/Profile";
+import { BackNavbar } from "../_components/Common/Navbar/Back";
+import Profile from "./_components/Profile";
 import { mockProfileData } from "@/model/Profile";
 import { PostCardModel } from "@/model/PostCard";
 
@@ -15,7 +15,7 @@ const contents = {
 const MyProfilePage = () => {
   return (
     <div>
-      <PostNavbar name={profile.nickName} />
+      <BackNavbar name={profile.nickName} />
       <Profile {...contents} />
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import ProfileHeader from "./Header";
+import ProfileHeader from "../Header";
 import { Profile } from "@/types/Profile/types";
-import TabBar from "./TabBar";
-import ProfilePost from "./Post";
+import TabBar from "../TabBar";
+import ProfilePost from "../Post";
 import { tPostCard } from "@/types/Post/types";
 
 type Props = {
