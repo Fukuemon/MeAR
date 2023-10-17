@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { AiFillTag, AiFillHeart } from "react-icons/ai";
 import steak from "/public/steakcombo.jpeg";
