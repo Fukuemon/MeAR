@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const PostDetailPage = () => {
-  return <div>page</div>;
-};
+  return <div>page</div>
+}
 
-export default PostDetailPage;
+export default PostDetailPage

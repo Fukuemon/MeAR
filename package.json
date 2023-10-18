@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --dir src/app",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix --dir src/app",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "@google/model-viewer": "^3.3.0",
@@ -51,6 +52,9 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "eslint-plugin-unused-imports": "^3.0.0"
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "prettier": "^3.0.3"
   }
 }

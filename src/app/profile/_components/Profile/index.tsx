@@ -1,14 +1,14 @@
-import React, { FC } from "react";
-import { tPostCard } from "@/types/Post/types";
-import { Profile } from "@/types/Profile/types";
-import ProfileHeader from "../Header";
-import ProfilePost from "../Post";
-import TabBar from "../TabBar";
+import React, { FC } from 'react'
+import { tPostCard } from '@/types/Post/types'
+import { Profile } from '@/types/Profile/types'
+import ProfileHeader from '../Header'
+import ProfilePost from '../Post'
+import TabBar from '../TabBar'
 
 type Props = {
-  profile: Profile;
-  post: tPostCard; // ここにcontents(post, like, model)を追加
-};
+  profile: Profile
+  post: tPostCard // ここにcontents(post, like, model)を追加
+}
 
 const Profile: FC<Props> = (props) => {
   return (
@@ -17,7 +17,7 @@ const Profile: FC<Props> = (props) => {
       <TabBar />
       <ProfilePost {...props.post} />
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
