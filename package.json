@@ -34,6 +34,8 @@
     "date-fns": "^2.30.0",
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.1",
     "lucide-react": "^0.287.0",
     "next": "13.5.5",
     "postcss": "8.4.31",
