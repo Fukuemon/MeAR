@@ -1,0 +1,36 @@
+{
+    // ESLintの機能を有効にする
+    "eslint.enable": true,
+  
+    // Stylelintの機能を有効にする
+    "stylelint.enable": true,
+  
+    // ファイルを保存する際に、自動的にフォーマットを行う
+    "editor.formatOnSave": true,
+  
+    // 保存時に実行されるコードアクションを指定
+    "editor.codeActionsOnSave": {
+      // 保存時にESLintによる自動修正を行う
+      "source.fixAll.eslint": true,
+  
+      // 保存時に不足しているインポートを自動的に追加する
+      "source.addMissingImports": true
+    },
+  
+    // SCSSのバリデーションを無効にする（VSCodeのデフォルトのSCSSバリデーションを避けるため）
+    "scss.validate": false,
+  
+    // SCSSファイルに特有の設定
+    "[scss]": {
+      // SCSSファイルを保存する際に自動フォーマットを行わない
+      "editor.formatOnSave": false,
+  
+      // SCSSファイルを保存する際にStylelintによる自動修正を行う
+      "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true
+      }
+    },
+  
+    // Stylelintでバリデーションを行うファイルタイプを指定（この場合、SCSSファイルのみ）
+    "stylelint.validate": ["scss"]
+  }
