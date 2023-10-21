@@ -4,7 +4,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'next/core-web-vitals',
     'prettier',
-    'plugin:tailwindcss/recommended'
+    'plugin:tailwindcss/recommended',
+    'plugin:storybook/recommended'
   ],
   plugins: ['unused-imports'],
   parser: '@typescript-eslint/parser',
