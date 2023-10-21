@@ -11,4 +11,5 @@ src/components/
 src/app/post/_components/ModelViewer
 .storybook
 src/stories
+jest.config.mjs
 ```
