@@ -1,7 +1,7 @@
 import { StoryObj, Meta } from '@storybook/react'
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { PiNotePencil } from 'react-icons/pi'
-import { BottomNavbar } from './BottomNavbar'
+import { BottomNavbar } from '.'
 
 const meta: Meta<typeof BottomNavbar> = {
   component: BottomNavbar,
