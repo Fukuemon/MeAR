@@ -7,7 +7,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:storybook/recommended'
   ],
-  plugins: ['unused-imports'],
+  plugins: ['unused-imports', 'testing-library', 'jest-dom'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json'
