@@ -1,6 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react'
-import { AiOutlineHome } from 'react-icons/ai'
-import { BiUser } from 'react-icons/bi'
+import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { PiNotePencil } from 'react-icons/pi'
 import { BottomNavbar } from './BottomNavbar'
 
@@ -16,15 +15,15 @@ const meta: Meta<typeof BottomNavbar> = {
 }
 
 type Item = {
-  path: string
+  paths: string[]
   label: string
   icon: React.ReactNode
 }
 
 const items: Item[] = [
-  { path: '/', label: 'Home', icon: <AiOutlineHome /> },
-  { path: '/shop/search', label: 'Post', icon: <PiNotePencil /> },
-  { path: '/profile', label: 'Profile', icon: <BiUser /> }
+  { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
+  { paths: ['/shop/search', '/post/create'], label: 'Post', icon: <PiNotePencil /> },
+  { paths: ['/profile'], label: 'Profile', icon: <AiOutlineUser /> }
 ]
 
 export default meta
