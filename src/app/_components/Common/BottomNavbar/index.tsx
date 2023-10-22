@@ -1,59 +1,67 @@
 'use client'
-import React, { useState } from 'react'
+import React, { FC } from 'react'
 import Link from 'next/link'
-import { AiOutlineHome } from 'react-icons/ai'
-import { BiUser } from 'react-icons/bi'
+import { usePathname } from 'next/navigation'
+import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { PiNotePencil } from 'react-icons/pi'
+import { cn } from '@/libs/tailwind/utils'
 
-// ボトムナビゲーションバー：画面下に固定し、それぞれの画面に遷移する
-const BottomNavbar = () => {
-  //　メニューアイコンの定義
-  const Menus = [
-    { name: 'Home', icon: <AiOutlineHome />, dis: 'translate-x-0', link: '/' },
-    {
-      name: 'Post',
-      icon: <PiNotePencil />,
-      dis: 'translate-x-16',
-      link: '/shop/search'
-    },
-    {
-      name: 'Profile',
-      icon: <BiUser />,
-      dis: 'translate-x-32',
-      link: '/profile'
-    }
-  ]
-  const [active, setActive] = useState(0)
+type NavbarItem = {
+  paths: string[]
+  label: string
+  icon: React.ReactNode
+}
 
+type BottomNavbarProps = {
+  items: NavbarItem[]
+  path: string
+}
+
+export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
   return (
-    // ボトムナビゲーションバー
-    // メニューの数だけループして、それぞれのメニューを表示する
-    <div className="fixed bottom-0 left-0 z-50 h-16  w-full rounded-t-xl bg-orange-100 px-6">
-      <ul className="relative flex justify-between">
-        {Menus.map((menu, i) => (
-          <li key={i} className="">
-            <Link
-              href={menu.link}
-              className="flex flex-col items-center justify-center text-center "
-              onClick={() => setActive(i)}
+    <div className="md:disabled: fixed bottom-0 left-0 z-50 flex h-20 w-full items-center justify-center border bg-white">
+      <ul className="relative flex w-full justify-between px-4">
+        {items.map((item) => {
+          const isActive = item.paths.includes(path)
+          return (
+            <li
+              key={item.paths[0]}
+              className={cn('flex flex-col items-center justify-center text-center mx-4 ', {
+                'font-bold': isActive
+              })}
             >
-              <span
-                className={`cursor-pointer text-5xl text-text duration-500 ${
-                  i === active && '-mt-6 rounded-full border-t-2 border-gray-200 bg-orange-100 p-4 pb-0'
-                }`}
-              >
-                {menu.icon}
-                <span className="h-16 w-16 rounded-full bg-white"></span>
-              </span>
-              <span className={`${active === i ? ` opacity-100 duration-700 ` : `translate-y-10 opacity-0`}`}>
-                {menu.name}
-              </span>
-            </Link>
-          </li>
-        ))}
+              <Link href={item.paths[0]} className="flex flex-col items-center justify-center text-sm ">
+                {/* アイコン */}
+                <span
+                  className={cn('text-3xl text-text transition-transform transform', {
+                    'font-extrabold text-red scale-110': isActive
+                  })}
+                >
+                  {item.icon}
+                </span>
+                {/* ラベル */}
+                <span
+                  className={cn({
+                    'border-b-2': isActive // アクティブな状態の下線
+                  })}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
 }
 
-export default BottomNavbar
+export const BottomNavbarContainer = () => {
+  const path = usePathname()
+  const items: NavbarItem[] = [
+    { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
+    { paths: ['/shop/search', '/post/create'], label: 'Post', icon: <PiNotePencil /> },
+    { paths: ['/profile'], label: 'Profile', icon: <AiOutlineUser /> }
+  ]
+  return <BottomNavbar items={items} path={path} />
+}
