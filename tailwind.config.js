@@ -19,9 +19,12 @@ module.exports = {
         burtons: ['Burtons', 'cursive']
       },
       colors: {
-        back: '#fffdf8',
-        main: '#d8bd97',
-        text: '#aa774c',
+        back: 'hsl(var(--background))',
+        main: 'hsl(var(--main))',
+        text: 'hsl(var(--text))',
+        nav: 'hsl(var(--nav))',
+        red: 'hsl(var(--red))',
+
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
