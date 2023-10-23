@@ -13,4 +13,5 @@ src/app/post/_components/ModelViewer
 src/stories
 jest.config.js
 jest.setup.js
+commitlint.config.js
 ```
