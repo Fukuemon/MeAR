@@ -29,6 +29,7 @@ export const SignUpForm = () => {
   })
 
   function onSubmit(data: FormType) {
+    // ここに新規登録時の処理を書く
     console.log(data)
   }
 
@@ -71,6 +72,20 @@ export const SignUpForm = () => {
                 <FormLabel>ユーザー名</FormLabel>
                 <FormControl>
                   <Input placeholder="ユーザー名を入力してください" type="username" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* TODO:プロフィール画像はアバターアイコンのインプットコンポーネントにする */}
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>プロフィール画像</FormLabel>
+                <FormControl>
+                  <Input placeholder="プロフィール画像を入力してください" type="image" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

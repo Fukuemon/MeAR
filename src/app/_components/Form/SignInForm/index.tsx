@@ -24,6 +24,7 @@ export const SignInForm = () => {
   })
 
   function onSubmit(data: FormType) {
+    // ここにログイン時の処理を書く
     console.log(data)
   }
 
