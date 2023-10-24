@@ -29,7 +29,7 @@ fi
 # Prefixの存在チェック
 echo -en " - Prefixの存在チェック: "
 ## 必要なPrefixを定義
-readonly CORRECT_PREFIXES=('feat' 'fix' 'docs' 'style''refactor' 'perf' 'test' 'art' 'deploy' 'typo' 'fire' 'move' 'config' 'chore' 'revert' 'custom-type' 'start')
+readonly CORRECT_PREFIXES=('feat' 'fix' 'docs' 'style' 'refactor' 'perf' 'test' 'art' 'deploy' 'typo' 'fire' 'move' 'config' 'chore' 'revert' 'custom-type' 'start')
 ## 各要素に": "を追加
 for i in "${!CORRECT_PREFIXES[@]}"; do
   correct_prefixes[i]="${CORRECT_PREFIXES[i]}: "
