@@ -1,32 +1,12 @@
 'use client'
-import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
-
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-const FormSchema = z.object({
-  email: z.string().email({ message: 'メールアドレスの形式が正しくありません' }),
-  password: z.string().min(6, { message: 'パスワードは6文字以上です' })
-})
-
-export type FormType = z.infer<typeof FormSchema>
+import { useLoginForm } from './useLogin'
 
 export const SignInForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      email: '',
-      password: ''
-    }
-  })
-
-  function onSubmit(data: FormType) {
-    // ここにログイン時の処理を書く
-    console.log(data)
-  }
+  const { form, onSubmit } = useLoginForm()
 
   return (
     <Form {...form}>
