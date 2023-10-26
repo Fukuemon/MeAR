@@ -47,7 +47,7 @@ export const SignUpForm = () => {
     <Form {...form}>
       <h1 className="items-center text-center text-3xl font-bold text-main">新規登録</h1>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="flex w-auto flex-col items-center space-y-8 py-4 lg:max-w-xl">
+        <div className="flex flex-col items-center justify-center space-y-8 py-4 lg:max-w-xl">
           <FormField
             control={form.control}
             name="image"
@@ -57,42 +57,44 @@ export const SignUpForm = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="メールアドレス" type="email" className="w-64" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="パスワード" type="password" className="w-64" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="ユーザー名" type="username" className="w-64" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex w-full flex-col space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="メールアドレス" type="email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="パスワード" type="password" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="ユーザー名" type="username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <div className="flex flex-col space-y-4 ">
           <FormDescription>
