@@ -16,7 +16,7 @@ export const SignUpForm = () => {
         <div className="flex flex-col items-center justify-center space-y-8 py-4 lg:max-w-xl">
           <FormField
             control={form.control}
-            name="image"
+            name="img"
             render={() => (
               <FormItem>
                 <AvatarInput imageSrc={imageSrc} onImageChange={handleImageChange} />
