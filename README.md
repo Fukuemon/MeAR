@@ -1,97 +1,70 @@
 
 ## 開発環境
-"next": "13.4.19"    
-"typescript": "5.2.2"
+### Dependencies
+| name | description |
+| --- | --- |
+| TypeScript | - |
+| Next.js | ApRouter使用 |
+| TailwindCSS | - |
+| Shadcn ui | RemixとTailwindCSS製のカスタマイズコンポーネント |
+| ESLint | 静的解析 |
+| Prettier | コード整形 |
+| Husky | Gitフックの設定 |
+| clsx | 動的なクラスの使い分けなど |
+| Axios | api通信 |
+| Storybook | UIコンポーネントのテスト・管理 |
+| Jest | テストツール |
+| Testing library | テストツール |
 
-スタイル      
-"tailwindcss": "3.3.3"
+### npm scripts
+| name | action | command |
+| --- | --- | --- |
+| dev | 開発モード実行 | next dev |
+| build | ビルド | next build |
+| start | 本番モードの起動 | next start |
+| lint | コードチェック | next lint —dir src/app |
+| lint:fix | コード精鋭 | next lint —fix —dir src/app |
+| format | フォーマット実行 | prettier --write './**/*.{js,jsx,ts,tsx,json} |
+| story-book | Storybookの起動 | storybook dev -p 6006 |
+| test | テストの実行 | jest --watch |
+
+# Lint・Format・Commitルール
+## ESLint
+TailwindCSSのLinterにより、プロパティの自動整形
+import/orderにより、import文の自動整形
+unused-importsにより、不要なimport文の削除
+
+## Prettier
+- 行の最大幅は 120 文字
+- JSX 式は新しい行に
+- インデントは2スペース
+- 配列などの末尾のカンマは削除
+- 文末のセミコロンは削除
+- クォーテーションはシングルクォーテーションを使用
 
 
-状態管理    
-"@reduxjs/toolkit": "^1.9.5",
-
-## ディレクトリ構成
-```bash
-src
-├── app
-│   ├── components
-│   │   ├── elements
-│   │   └── features
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── template
-│       ├── hooks
-│       └── page.tsx
-├── model
-├── store
-│   ├── Provider.tsx
-│   ├── features
-│   ├── hook.ts
-│   └── store.tsx
-└── types
-│
-│
-└──tailwind.config
-(その他省略)
+## commitメッセージ制約
 ```
+<gitmoji><Prefix>：<#issue番号><内容>
+```
+### gitmojiとprefixの種類
+| 絵文字 | prefix | 内容 |
+| --- | --- | --- |
+| ✨ | feat | 新機能の実装 |
+| ⚡️ | perf | パフォーマンスの改善 |
+| 🔥 | fire | 機能・ファイルの削除 |
+| 🐛 | fix | バグの修正 |
+| 🩹 | typo | ちょっとした修正(小さなミス・誤字など) |
+| 📝 | docs | コードと関係ない部分(Readme・コメントなど) |
+| 💄 | style | スタイル関係のファイル(CSS・UIのみの変更など） |
+| ♻️ | refactor | コードのリファクタリング |
+| 🎨 | art | コードのフォーマットを整える(自動整形されたのも含む) |
+| 🔧 | config | 設定ファイルの追加・更新(linterなど) |
+| ✅ | test | テストファイル関連(追加・更新など) |
+| 🚚 | move | ファイルやディレクトリの移動 |
+| 🎉 | start | プロジェクトの開始 |
+| 🚀 | deploy | デプロイする |
 
-
-layout.tsx：全体の共通となるレイアウトを指定
-
-globals.css：tailwindの設定ファイル
-
-### /template：各機能
-
----
-
-機能ごとにロジック→hooks
-
-ページ：page.tsx
-
-ページのUIは極力コンポーネントで管理
-
-### /components：UI部分
-
----
-
-UIのパーツをまとめる
-
----
-
-### -/elements：パーツ
-
-共通となる粒度が小さいパーツの元はここで管理する
-
----
-
-### -/features：機能別のコンポーネント
-
----
-
-機能ごとのパーツをまとめたもの(UI)
-
-### model：モックデータ
-
----
-
-各コンポーネントで受け取るpropsの仮データを格納
-
-### store：グローバルステートを管理
-
----
-
-グローバルステートを管理
-
-/features：各機能ごとのSliceを配置
-
-### types：型定義
-
----
-
-型を管理する
-各コンポーネントで受け取る型は、データ取得ができてない場合はmodelに定義しておく
 
 
 
