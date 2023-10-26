@@ -1,47 +1,13 @@
 'use client'
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import AvatarInput from '../AvatarInput'
-
-const FormSchema = z.object({
-  email: z.string().email({ message: 'メールアドレスの形式が正しくありません' }),
-  password: z.string().min(6, { message: 'パスワードは6文字以上です' }),
-  username: z.string().optional(),
-  image: z.string().url().optional()
-})
-
-export type SignUpFormType = z.infer<typeof FormSchema>
+import { useSignUp } from './useSignUp'
 
 export const SignUpForm = () => {
-  const form = useForm<SignUpFormType>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      username: '',
-      image: ''
-    }
-  })
-
-  const [imageSrc, setImageSrc] = useState<string>('')
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target
-    if (files && files[0]) {
-      setImageSrc(window.URL.createObjectURL(files[0]))
-      form.setValue('image', window.URL.createObjectURL(files[0]))
-    }
-  }
-
-  function onSubmit(data: SignUpFormType) {
-    console.log(data)
-  }
+  const { form, onSubmit, imageSrc, handleImageChange } = useSignUp()
 
   return (
     <Form {...form}>
