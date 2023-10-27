@@ -3,12 +3,14 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Loading } from '../../Common/Loading'
 import AvatarInput from '../AvatarInput'
 import { useSignUp } from './useSignUp'
 
 export const SignUpForm = () => {
-  const { form, onSubmit, imageSrc, handleImageChange } = useSignUp()
+  const { form, onSubmit, imageSrc, handleImageChange, loading } = useSignUp()
 
+  if (loading) return <Loading />
   return (
     <Form {...form}>
       <h1 className="items-center text-center text-3xl font-bold text-main">新規登録</h1>
