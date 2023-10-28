@@ -1,4 +1,6 @@
 import { ChangeEvent, FC } from 'react'
+import Image from 'next/image'
+import user from 'public/user.png'
 
 interface AvatarInputProps {
   imageSrc: string
@@ -12,9 +14,7 @@ const AvatarInput: FC<AvatarInputProps> = ({ imageSrc, onImageChange }) => {
         {imageSrc ? (
           <img src={imageSrc} alt="Uploaded avatar" className="h-full w-full object-cover" />
         ) : (
-          <div className="flex h-full items-center justify-center">
-            <div className="text-gray-500">アイコン</div>
-          </div>
+          <Image src={user} alt="User avatar" width={128} height={128} />
         )}
       </div>
       <input
