@@ -11,5 +11,15 @@ export default meta
 type Story = StoryObj<typeof SignUpForm>
 
 export const Default: Story = {
-  args: {}
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: '/',
+        query: {
+          user: 'santa'
+        }
+      }
+    }
+  }
 }
