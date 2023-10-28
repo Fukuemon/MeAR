@@ -7,6 +7,7 @@ import * as z from 'zod'
 import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
 import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
+import { useImageChange } from '../AvatarInput/useImageChange'
 import { handleSuccessfulLogin } from './../SignInForm/useLogin'
 
 const FormSchema = z.object({
@@ -30,28 +31,9 @@ export const useSignUp = () => {
     }
   })
 
-  const [imageSrc, setImageSrc] = useState<string>('/user.png')
+  const { imageSrc, handleImageChange, getDefaultImageBlob } = useImageChange()
+
   const [loading, setLoading] = useState<boolean>(false)
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target
-    if (files && files[0]) {
-      const imageURL = window.URL.createObjectURL(files[0])
-      setImageSrc(imageURL)
-      form.setValue('img', imageURL)
-    }
-  }
-
-  const getDefaultImageBlob = async (): Promise<Blob | null> => {
-    try {
-      const response = await fetch('/user.png')
-      if (!response.ok) throw new Error('Network response was not ok')
-      return await response.blob()
-    } catch (error) {
-      console.error('Failed to fetch the default user.png', error)
-      return null
-    }
-  }
 
   const appendSignUpFormData = async (formData: FormData, data: SignUpFormType, file: File | null) => {
     formData.append('email', data.email)
