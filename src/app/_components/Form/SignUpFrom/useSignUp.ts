@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
 import { api } from '@/libs/axios/instance'
+import { handleApiError, handleSuccessfulLogin } from './../SignInForm/useLogin'
 
 const FormSchema = z.object({
   email: z.string().email({ message: 'メールアドレスの形式が正しくありません' }),
@@ -69,17 +72,15 @@ export const useSignUp = () => {
       const imageInput = document.querySelector('input[type="file"]') as HTMLInputElement
       await appendSignUpFormData(formData, data, imageInput.files?.[0] || null)
 
-      const res = await api.post('account/', formData, {
+      await api.post('account/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
-      const login = await api.post('login/', { email: data.email, password: data.password })
 
-      localStorage.setItem('refresh', login.data.refresh)
-      localStorage.setItem('access', login.data.access)
-      router.push('/')
-      console.log(res.data)
+      const login = await api.post<LoginResponseType>('login/', { email: data.email, password: data.password })
+
+      handleSuccessfulLogin(login.data, router)
     } catch (error) {
-      console.error(error)
+      handleApiError(error as AxiosError, 'Login error:')
     } finally {
       setLoading(false)
     }
