@@ -1,16 +1,13 @@
 import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
 
 export const useImageChange = () => {
   const [imageSrc, setImageSrc] = useState<string>('/user.png')
-  const { setValue } = useFormContext()
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
     if (files && files[0]) {
       const imageURL = window.URL.createObjectURL(files[0])
       setImageSrc(imageURL)
-      setValue('img', imageURL)
     }
   }
 
