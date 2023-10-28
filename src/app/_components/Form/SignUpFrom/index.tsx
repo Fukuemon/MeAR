@@ -1,108 +1,82 @@
 'use client'
-import { zodResolver } from '@hookform/resolvers/zod'
-
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
-
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-const FormSchema = z.object({
-  email: z.string().email({ message: 'メールアドレスの形式が正しくありません' }),
-  password: z.string().min(6, { message: 'パスワードは6文字以上です' }),
-  username: z.string().optional(),
-  image: z.string().url().optional()
-})
-
-export type FormType = z.infer<typeof FormSchema>
+import { Loading } from '../../Common/Loading'
+import AvatarInput from '../AvatarInput'
+import { useSignUp } from './useSignUp'
 
 export const SignUpForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-      username: '',
-      image: ''
-    }
-  })
+  const { form, onSubmit, imageSrc, handleImageChange, loading } = useSignUp()
 
-  function onSubmit(data: FormType) {
-    // ここに新規登録時の処理を書く
-    console.log(data)
-  }
-
+  if (loading) return <Loading />
   return (
     <Form {...form}>
-      <h1 className="items-center text-3xl font-bold text-main">新規登録</h1>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="space-y-2 py-4">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="メールアドレスを入力してください" type="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="パスワードを入力してください" type="password" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>ユーザー名</FormLabel>
-                <FormControl>
-                  <Input placeholder="ユーザー名を入力してください" type="username" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* TODO:プロフィール画像はアバターアイコンのインプットコンポーネントにする */}
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>プロフィール画像</FormLabel>
-                <FormControl>
-                  <Input placeholder="プロフィール画像を入力してください" type="image" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex flex-col space-y-4">
-          <FormDescription>
-            <Link className="text-blue-500 hover:underline" href="/login">
-              ログインの方はこちら
-            </Link>
-          </FormDescription>
-          <Button type="submit" className="w-full">
-            新規登録
-          </Button>
-        </div>
-      </form>
+      <div className="flex max-w-md flex-col items-center">
+        <h1 className="mb-4 text-center text-3xl font-bold text-main">新規登録</h1>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+          <div className="flex flex-col items-center space-y-4">
+            <FormField
+              control={form.control}
+              name="img"
+              render={() => (
+                <FormItem>
+                  <AvatarInput imageSrc={imageSrc} onImageChange={handleImageChange} />
+                </FormItem>
+              )}
+            />
+            <div className="flex w-full flex-col items-center space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input placeholder="メールアドレス" type="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input placeholder="パスワード" type="password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input placeholder="ユーザー名" type="username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full flex-col items-center space-y-4">
+              <FormDescription>
+                <Link className="text-blue-500 hover:underline" href="/login">
+                  ログインの方はこちら
+                </Link>
+              </FormDescription>
+              <Button type="submit" className="w-full">
+                新規登録
+              </Button>
+            </div>
+          </div>
+        </form>
+      </div>
     </Form>
   )
 }
