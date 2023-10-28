@@ -16,7 +16,6 @@ export type SignUpFormType = z.infer<typeof FormSchema>
 
 export const useSignUp = () => {
   const router = useRouter()
-
   const form = useForm<SignUpFormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -33,8 +32,33 @@ export const useSignUp = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
     if (files && files[0]) {
-      setImageSrc(window.URL.createObjectURL(files[0]))
-      form.setValue('img', window.URL.createObjectURL(files[0]))
+      const imageURL = window.URL.createObjectURL(files[0])
+      setImageSrc(imageURL)
+      form.setValue('img', imageURL)
+    }
+  }
+
+  const getDefaultImageBlob = async (): Promise<Blob | null> => {
+    try {
+      const response = await fetch('/user.png')
+      if (!response.ok) throw new Error('Network response was not ok')
+      return await response.blob()
+    } catch (error) {
+      console.error('Failed to fetch the default user.png', error)
+      return null
+    }
+  }
+
+  const appendSignUpFormData = async (formData: FormData, data: SignUpFormType, file: File | null) => {
+    formData.append('email', data.email)
+    formData.append('password', data.password)
+    formData.append('username', data.username || 'anonymous')
+
+    if (file) {
+      formData.append('img', file)
+    } else {
+      const blob = await getDefaultImageBlob()
+      if (blob) formData.append('img', blob, 'user.png')
     }
   }
 
@@ -42,38 +66,14 @@ export const useSignUp = () => {
     setLoading(true)
     try {
       const formData = new FormData()
-      formData.append('email', data.email)
-      formData.append('password', data.password)
-      if (data.username) {
-        formData.append('username', data.username)
-      } else {
-        formData.append('username', 'anonymous')
-      }
       const imageInput = document.querySelector('input[type="file"]') as HTMLInputElement
-      console.log(imageInput.files)
-
-      if (imageInput.files && imageInput.files[0]) {
-        formData.append('img', imageInput.files[0])
-      } else {
-        try {
-          const response = await fetch('/undefinedUser.png')
-          if (!response.ok) {
-            throw new Error('Network response was not ok')
-          }
-          const blob = await response.blob()
-
-          formData.append('img', blob, 'user.png')
-        } catch (error) {
-          console.error('Failed to fetch the default user.png', error)
-        }
-      }
+      await appendSignUpFormData(formData, data, imageInput.files?.[0] || null)
 
       const res = await api.post('account/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+        headers: { 'Content-Type': 'multipart/form-data' }
       })
       const login = await api.post('login/', { email: data.email, password: data.password })
+
       localStorage.setItem('refresh', login.data.refresh)
       localStorage.setItem('access', login.data.access)
       router.push('/')
