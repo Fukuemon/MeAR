@@ -12,13 +12,13 @@ code=0
 
 # gitmojiの存在チェック
 echo -en " - gitmojiの存在チェック: "
-readonly GITMOJI="✨|🐛|📝|💄|♻️|⚡️|✅|🎨|🚀|🩹|🔥|🚚|🔧|🎉"
+readonly GITMOJI="✨|🐛|📝|💄|♻️|⚡️|✅|🎨|🚀|🩹|🔥|🚚|🔧|🎉|🏷️"
 if ! echo "$MSG" | grep -Eq "^(${GITMOJI}).*"; then
     echo -e "\033[31;22mNG"
     echo -e "================================================================"
     echo -e "コミットメッセージに有効なgitmojiが含まれていません。"
     echo -e ""
-    echo -e "Valid gitmojis: ✨ 🐛 📝 💄 ♻️ ⚡️ ✅ 🎨 🚀 🩹 🔥 🚚 🔧 🎉"
+    echo -e "Valid gitmojis: ✨ 🐛 📝 💄 ♻️ ⚡️ ✅ 🎨 🚀 🩹 🔥 🚚 🔧 🎉 🏷️"
     echo -e "================================================================\033[0m\n"
     code=1
 else
@@ -29,7 +29,7 @@ fi
 # Prefixの存在チェック
 echo -en " - Prefixの存在チェック: "
 ## 必要なPrefixを定義
-readonly CORRECT_PREFIXES=('feat' 'fix' 'docs' 'style' 'refactor' 'perf' 'test' 'art' 'deploy' 'typo' 'fire' 'move' 'config' 'chore' 'revert' 'custom-type' 'start')
+readonly CORRECT_PREFIXES=('feat' 'fix' 'docs' 'style' 'refactor' 'perf' 'test' 'art' 'deploy' 'typo' 'fire' 'move' 'config' 'chore' 'revert' 'custom-type' 'start' 'type')
 ## 各要素に": "を追加
 for i in "${!CORRECT_PREFIXES[@]}"; do
   correct_prefixes[i]="${CORRECT_PREFIXES[i]}: "
