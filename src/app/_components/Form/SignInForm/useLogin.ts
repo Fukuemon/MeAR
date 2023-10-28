@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
+import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
 
 export const handleSuccessfulLogin = (data: LoginResponseType, router: ReturnType<typeof useRouter>) => {
@@ -11,10 +12,6 @@ export const handleSuccessfulLogin = (data: LoginResponseType, router: ReturnTyp
   localStorage.setItem('refresh', data.refresh)
   console.log(data.access)
   router.push('/')
-}
-
-export const handleApiError = (error: AxiosError, errorMessage: string) => {
-  console.error(errorMessage, error)
 }
 
 const LoginFormSchema = z.object({

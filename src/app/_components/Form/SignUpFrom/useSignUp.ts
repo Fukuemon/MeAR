@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
+import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
-import { handleApiError, handleSuccessfulLogin } from './../SignInForm/useLogin'
+import { handleSuccessfulLogin } from './../SignInForm/useLogin'
 
 const FormSchema = z.object({
   email: z.string().email({ message: 'メールアドレスの形式が正しくありません' }),
