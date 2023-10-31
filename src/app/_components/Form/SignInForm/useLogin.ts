@@ -11,8 +11,8 @@ import { api } from '@/libs/axios/instance'
 export const handleSuccessfulLogin = (data: LoginResponseType, router: ReturnType<typeof useRouter>) => {
   // accesstokenとrefleshtoken, profile情報が帰ってくる
   const { access, refresh } = data
-  setCookie('accessToken', access, { maxAge: 60 * 45 })
-  setCookie('refreshToken', refresh, { maxAge: 60 * 60 * 24 * 6 })
+  setCookie('access', access, { maxAge: 60 * 45 })
+  setCookie('refresh', refresh, { maxAge: 60 * 60 * 24 * 6 })
   router.push('/')
 }
 
