@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${notojp.variable}`}>
-      <body className="h-screen  bg-background font-notojp md:flex md:justify-center">
+      <body className="h-screen  bg-background font-notojp ">
         <Providers>
           {children}
           <BottomNavbarContainer />
