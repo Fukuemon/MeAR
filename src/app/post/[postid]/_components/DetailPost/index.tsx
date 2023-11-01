@@ -42,7 +42,7 @@ const PostDetail = () => {
 
         <span className=" absolute right-4 top-2">
           {isLike ? (
-            <AiFillHeart onClick={onClicklike} className="text-5xl text-red-500 " />
+            <AiFillHeart onClick={onClicklike} className="text-5xl text-primary " />
           ) : (
             <AiFillHeart onClick={onClicklike} className="text-5xl text-gray-400" />
           )}

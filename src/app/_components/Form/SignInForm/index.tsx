@@ -11,7 +11,7 @@ export const SignInForm = () => {
   return (
     <Form {...form}>
       <div className="flex max-w-md flex-col items-center">
-        <h1 className="mb-4 text-center text-3xl font-bold text-main">ログイン</h1>
+        <h1 className="mb-4 text-center text-3xl font-bold text-primary">ログイン</h1>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <div className="mt-8 flex w-full flex-col space-y-4">
             <FormField
