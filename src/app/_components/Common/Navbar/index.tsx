@@ -1,40 +1,46 @@
 'use client'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import user from '/public/penguin.jpeg'
+import { deleteCookie } from 'cookies-next'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
 
 type Props = {
-  title: string
+  isLogin: boolean
 }
 
-const Navbar: FC<Props> = (props) => {
-  //ログイン状態の管理
-  const [isLogin, setIsLogin] = useState(false)
+const Navbar: FC<Props> = ({ isLogin }) => {
+  const router = useRouter()
 
-  // ログインボタンを押したときの処理(ログイン画面に遷移する)
   const onLogin = () => {
-    setIsLogin((preveState) => !preveState)
+    router.push('/login')
+  }
+
+  const onLogout = () => {
+    deleteCookie('access')
+    deleteCookie('refresh')
+    // setIsLogin(false)
+    router.push('/login')
   }
 
   return (
     // ナビゲーションバー
-    <nav className="navbar justify-between">
-      <h2 className="font-bold">{props.title}</h2>
+    <nav className="navbar">
       <div className="flex justify-center">
         {/*右側のコンテンツ*/}
-
         {isLogin ? (
           // ログインしている場合：Avatar画像
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={onLogout}>
             <Image src={user} alt="username" width={40} height={40} className="rounded-full" />
           </div>
         ) : (
           // ログインしていない場合
           <div className="flex justify-items-center ">
-            {/* <Link href="/login"> */}
-            <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
-            {/* </Link> */}
+            <Link href="/login">
+              <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
+            </Link>
           </div>
         )}
       </div>
