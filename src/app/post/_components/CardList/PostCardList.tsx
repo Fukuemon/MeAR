@@ -1,5 +1,5 @@
 import { PostList, PostListItem } from '@/types/Post/types'
-import PostCard from '../Card'
+import PostCardItem from '../CardItem'
 
 // PostCardList component
 type PostListProps = {
@@ -8,9 +8,9 @@ type PostListProps = {
 
 export function PostCardList({ postList }: PostListProps) {
   return (
-    <div className="flex w-screen flex-col gap-4">
+    <div className="flex max-w-2xl flex-col  md:items-center md:justify-center">
       {postList.map((post: PostListItem) => {
-        return <PostCard key={post.id} id="1" props={post} />
+        return <PostCardItem key={post.id} id="1" post={post} />
       })}
     </div>
   )
