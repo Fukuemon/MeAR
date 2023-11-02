@@ -1,5 +1,5 @@
 import { FC, ReactNode, ChangeEvent, MouseEvent } from 'react'
-import { Button, ButtonProps } from '@/components/ui/button'
+import { ButtonProps } from '@/components/ui/button'
 import { Input, InputProps } from '@/components/ui/input'
 
 interface Props {
@@ -12,15 +12,7 @@ interface Props {
   children?: ReactNode // children プロパティを追加
 }
 
-const InputButtonCombo: FC<Props> = ({
-  inputProps,
-  buttonProps,
-  isButton = false,
-  icon,
-  handleInput,
-  handleClick,
-  children
-}) => {
+const InputButtonCombo: FC<Props> = ({ inputProps, icon, handleInput }) => {
   return (
     <div className="container relative flex w-full max-w-sm items-center justify-center space-x-2">
       {/* インプット入力欄 */}
@@ -28,12 +20,6 @@ const InputButtonCombo: FC<Props> = ({
 
       {/* アイコンが必要なら */}
       {icon && <div className="absolute left-1 top-3 text-xl text-gray-500 dark:text-gray-400">{icon}</div>}
-
-      {isButton && (
-        <Button type="submit" onClick={handleClick} className="w-24" {...buttonProps}>
-          {children}
-        </Button>
-      )}
     </div>
   )
 }
