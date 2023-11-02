@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import { notojp } from '@/libs/font'
 import { Providers } from '@/store/Provider'
 import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
+
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -12,13 +13,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${notojp.variable}`}>
-      <body className="h-screen  bg-background font-notojp ">
+      <body className="h-screen bg-background font-notojp ">
         <Providers>
           {children}
           <BottomNavbarContainer />
         </Providers>
-
-        <div className="h-20"></div>
       </body>
     </html>
   )
