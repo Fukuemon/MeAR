@@ -6,14 +6,12 @@ import steak from '/public/steakcombo.jpeg'
 import { GrLocation } from 'react-icons/gr'
 
 import { Button } from '@/components/ui/button'
-import { Mockdata } from '@/model/PostCard'
-import { BackNavbar } from '../../../../_components/Common/Navbar/Back'
-import { CardHeader } from '../../../_components/Card/Header'
+import { PostDetailType } from '@/types/Post/types'
+import { BackNavbar } from '../../../../_components/Common/Navbar/BackNavigationBar'
+import { PostHeader } from '../../../_components/CardItem/Header'
 import { DynamicModelViewer } from '../../../_components/ModelViewer/DynamicModelViewer'
 
-const data = Mockdata
-
-const PostDetail = () => {
+export default function PostDetail({ props }: { props: PostDetailType }) {
   const [isLike, setIsLike] = useState(false)
   const [isModel, setIsModel] = useState(false)
   // いいねボタンを押したときの処理
@@ -26,8 +24,8 @@ const PostDetail = () => {
 
   return (
     <div>
-      <BackNavbar name="8EIGHT BEEF" />
-      <CardHeader {...data} />
+      <BackNavbar name={props.restaurant.name} />
+      <PostHeader visited_date={props.visited_date} author={props.author} />
 
       {/* 画像といいね */}
       <div className="relative z-0">
@@ -53,7 +51,7 @@ const PostDetail = () => {
         {/* メニューとボタン*/}
         <div className="flex justify-between">
           <h2 className="card-subtitle" title="ステーキコンボ">
-            ステーキコンボ
+            {props.menu_name}
           </h2>
           {/* 3Dボタン　：　モデルがあるかないかで表示を変える */}
           <Button
@@ -67,14 +65,17 @@ const PostDetail = () => {
         {/* 値段と評価 */}
         <div className="flex justify-between">
           {/* 値段 */}
-          <h4 className=" w-20 border-b pl-2 text-lg font-thin italic">¥ 1,480</h4>
+          <h4 className=" w-20 border-b pl-2 text-lg font-thin italic">¥{props.price}</h4>
           {/* 評価 */}
           <div className="flex items-center gap-1">
-            <span className="text-2xl text-yellow-400">★</span>
-            <span className="text-2xl text-yellow-400">★</span>
-            <span className="text-2xl text-yellow-400">★</span>
-            <span className="text-2xl text-yellow-400">★</span>
-            <span className="text-2xl text-yellow-400">★</span>
+            {
+              // 5つの星を表示するためのArrayを作成し、それぞれの星がscoreに応じて黄色か灰色かを決定する
+              [...Array(5)].map((_, i) => (
+                <span key={i} className={`text-2xl ${i < props.score ? 'text-yellow-400' : 'text-gray-400'}`}>
+                  ★
+                </span>
+              ))
+            }
           </div>
         </div>
 
@@ -83,16 +84,16 @@ const PostDetail = () => {
           <span>
             <AiFillTag />
           </span>
-          <span className="tag"># 洋食</span>
-          <span className="tag">#ランチ</span>
+          {props.tags.map((tag) => (
+            <span key={tag.id} className="tag">
+              #{tag.tag}
+            </span>
+          ))}
         </div>
 
         {/* コメント */}
         <h4 className=" w-20 border-b text-center text-sm font-thin italic">✍️コメント</h4>
-        <p className="border-b p-2 text-sm">
-          すごくうまかった！
-          <br /> 1480円でサラダバー付き、ステーキ食べれるのはコスパ最高すぎです！！
-        </p>
+        <p className="border-b p-2 text-sm">{props.review_text}</p>
 
         {/* 店舗情報 */}
         <div className="flex flex-col gap-2 py-4">
@@ -100,15 +101,10 @@ const PostDetail = () => {
           {/* 住所 */}
           <div className="flex items-center gap-2">
             <GrLocation className="text-3xl" />
-            <p className="p-2  text-sm">
-              〒650-0044 兵庫県神戸市中央区東川崎町1丁目6-1
-              <br /> 神戸ハーバーランドumie モザイク 1F
-            </p>
+            <p className="p-2  text-sm">{props.restaurant.address}</p>
           </div>
         </div>
       </div>
     </div>
   )
 }
-
-export default PostDetail
