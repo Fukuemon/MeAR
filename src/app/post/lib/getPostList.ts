@@ -1,7 +1,7 @@
 import { PostList } from '@/types/Post/types'
 
 export const getPostList = async (): Promise<PostList> => {
-  const url = `http://localhost:8000/post/`
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/post/'
   const res = await fetch(url, {
     method: 'GET',
     headers: {

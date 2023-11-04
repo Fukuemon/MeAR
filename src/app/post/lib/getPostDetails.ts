@@ -1,7 +1,7 @@
 import { PostDetailType } from '@/types/Post/types'
 
 export const getPostDetail = async (id: string): Promise<PostDetailType> => {
-  const url = `http://localhost:8000/post/${id}/`
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL + `/post/${id}/`
   const res = await fetch(url, {
     method: 'GET',
     headers: {
