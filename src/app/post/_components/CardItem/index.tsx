@@ -7,7 +7,7 @@ import { BsShop } from 'react-icons/bs'
 import stake from '/public/steakcombo.jpeg'
 
 import { PostListItem } from '@/types/Post/types'
-import { CardHeader } from './Header'
+import { PostHeader } from './Header'
 
 type Props = {
   id: string
@@ -22,7 +22,7 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
   return (
     <div className="m-2  w-screen overflow-hidden  rounded-lg  border bg-white text-gray-700 md:max-w-md">
       {/* ヘッダー */}
-      <CardHeader author={post.author} visited_date={post.visited_date} />
+      <PostHeader author={post.author} visited_date={post.visited_date} />
 
       {/* コンテンツ */}
       {/* 画像 */}

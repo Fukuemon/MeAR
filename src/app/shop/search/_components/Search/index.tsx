@@ -2,7 +2,7 @@
 import { FC, useState, ChangeEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { AiOutlineSearch } from 'react-icons/ai'
-import InputWithButton from '../../../../_components/Form/InputButtonCombo'
+import InputWithButton from '../../../../_components/Form/InputWithIcon'
 import useLocation from './hooks/useLocation'
 import useQueryString from './hooks/useQueryString'
 

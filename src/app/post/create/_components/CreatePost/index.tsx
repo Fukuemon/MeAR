@@ -6,7 +6,7 @@ import { MdRestaurant } from 'react-icons/md'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { DatePicker } from '../../../../_components/Form/DatePicker'
-import InputButtonCombo from '../../../../_components/Form/InputButtonCombo'
+import InputButtonCombo from '../../../../_components/Form/InputWithIcon'
 
 const CreatePost = () => {
   const [menuText, setMenuText] = useState('')

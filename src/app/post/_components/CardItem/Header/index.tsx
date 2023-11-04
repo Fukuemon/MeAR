@@ -7,7 +7,7 @@ type Props = {
   visited_date: string
 }
 
-export const CardHeader: FC<Props> = ({ author, visited_date }) => {
+export const PostHeader: FC<Props> = ({ author, visited_date }) => {
   return (
     <div className="card-header">
       {/* 左側：ユーザー紹鴎*/}

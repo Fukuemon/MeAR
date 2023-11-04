@@ -1,4 +1,4 @@
-import { BackNavbar } from '@/app/_components/Common/Navbar/Back'
+import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import { SearchShop } from '@/app/shop/search/_components/Search'
 import { Shop } from '@/store/features/shopSlice'
 import ShopList from './_components/ShopList'
@@ -39,11 +39,11 @@ export default async function SearchShopPage({
 
     return (
       <div>
-        <BackNavbar isHome />
-        <div className="flex flex-col items-center justify-center p-8">
+        <BackNavbar name="店舗検索" />
+        <main className="flex flex-col items-center justify-center p-8">
           <SearchShop />
           <ShopList shops={shops as Shop[]} />
-        </div>
+        </main>
       </div>
     )
   } catch (error: unknown) {
