@@ -9,14 +9,14 @@ export const generateStaticParams = async () => {
   const posts = await getPostList()
 
   return posts.map((post) => ({
-    postId: post.id.toString()
+    postid: post.id.toString()
   }))
 }
 
-export default async function PostDetailPage({ params }: { params: { postId: string } }) {
-  const { postId } = params
-  console.log(postId)
-  const post: PostDetailType = await getPostDetail(postId)
+export default async function PostDetailPage({ params }: { params: { postid: string } }) {
+  const { postid } = params
+  console.log(postid)
+  const post: PostDetailType = await getPostDetail(postid)
 
   if (!post) {
     notFound()
