@@ -22,7 +22,7 @@ type Tag = {
   tag: string
 }
 
-type Restaurant = {
+export type Restaurant = {
   id: number
   name: string
   address: string
@@ -44,7 +44,7 @@ export type PostListItem = {
   updated_on: string
 }
 
-export type PostDetail = {
+export type PostDetailType = {
   id: number
   author: string
   author_id: number
