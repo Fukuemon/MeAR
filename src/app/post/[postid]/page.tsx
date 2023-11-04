@@ -1,9 +1,9 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
-import PostDetail from '@/app/post/[postId]/_components/DetailPost'
 import { PostDetailType } from '@/types/Post/types'
 import { getPostDetail } from '../lib/getPostDetails'
 import { getPostList } from '../lib/getPostList'
+import PostDetail from './_components/DetailPost'
 
 export const generateStaticParams = async () => {
   const posts = await getPostList()
