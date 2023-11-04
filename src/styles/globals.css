@@ -5,7 +5,7 @@
 @layer components {
   /* カード  */
   .card {
-    @apply bg-white text-gray-700 w-full mx-4  md:max-w-md rounded-lg overflow-hidden border;
+    @apply bg-white text-gray-700  mx-4  md:max-w-md rounded-lg overflow-hidden border;
   }
   .card-header {
     @apply flex justify-between items-center border px-2 py-2;
@@ -29,7 +29,7 @@
 
   /* ナブバー */
   .navbar {
-    @apply fixed flex text-text justify-end  w-full h-16 md:h-20 bg-white items-center p-4 border-2 text-base sm:text-3xl;
+    @apply fixed z-50 flex  text-text justify-end  w-full h-14 md:h-14 bg-white items-center p-4 border-2 text-base sm:text-3xl;
   }
 }
 
