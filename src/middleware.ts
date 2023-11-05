@@ -6,15 +6,14 @@ import { getRefreshAccessToken } from './app/(auth)/lib/getRefreshAccessToken'
 
 export async function middleware(request: NextRequest) {
   const cookieStore = cookies()
-  const accessToken = cookieStore.get('access')?.value
-  const refreshToken = cookieStore.get('refresh')?.value
+  const refreshToken = await cookieStore.get('refresh')?.value
 
   if (request.nextUrl.pathname.startsWith('/login')) {
     request.cookies.delete('access')
     request.cookies.delete('refresh')
   }
 
-  if (accessToken) {
+  if (request.cookies.has('access')) {
     // Token is valid
     return NextResponse.next()
   } else {

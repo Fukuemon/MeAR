@@ -14,7 +14,7 @@ export const SignUpForm = () => {
   return (
     <Form {...form}>
       <div className="flex max-w-md flex-col items-center">
-        <h1 className="mb-4 text-center text-3xl font-bold text-main">新規登録</h1>
+        <h1 className="mb-4 text-center text-3xl font-bold text-primary">新規登録</h1>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <div className="flex flex-col items-center space-y-4">
             <FormField

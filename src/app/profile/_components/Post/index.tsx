@@ -19,7 +19,7 @@ const ProfilePost: FC<tPostCard> = (post) => {
         {/* いいね、コメント */}
         <div className="absolute left-1 top-1 z-10 h-full w-full items-center justify-evenly  bg-gray-200 ">
           <p className="flex items-center text-xs font-bold text-white">
-            <AiFillHeart className="text-sm text-red-400" />
+            <AiFillHeart className="text-sm text-primary" />
             <span>100</span>
           </p>
           <p className=" flex items-center text-xs font-bold text-white">

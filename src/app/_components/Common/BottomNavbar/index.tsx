@@ -11,15 +11,17 @@ type NavbarItem = {
   label: string
   icon: React.ReactNode
 }
-
 type BottomNavbarProps = {
   items: NavbarItem[]
   path: string
 }
 
+const excludedPaths = ['/login', '/sign-up']
+
 export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
+  if (excludedPaths.includes(path)) return null
   return (
-    <div className="md:disabled: fixed bottom-0 left-0 z-50 flex h-20 w-full items-center justify-center border bg-white">
+    <div className="md:disabled: fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-center border bg-white">
       <ul className="relative flex w-full justify-between px-4">
         {items.map((item) => {
           const isActive = item.paths.includes(path)
@@ -33,8 +35,8 @@ export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
               <Link href={item.paths[0]} className="flex flex-col items-center justify-center text-sm ">
                 {/* アイコン */}
                 <span
-                  className={cn('text-3xl text-text transition-transform transform', {
-                    'font-extrabold text-red scale-110': isActive
+                  className={cn('text-3xl text-primary transition-transform transform', {
+                    'font-extrabold text-primary scale-110': isActive
                   })}
                 >
                   {item.icon}

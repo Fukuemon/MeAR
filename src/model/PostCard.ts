@@ -13,7 +13,7 @@ export const RestaurantModel: Restaurant = {
   id: 1,
   name: '8EIGHT BEEF',
   address: '',
-  location: ''
+  area: '東京都'
 }
 
 export const PostCardModel: tPostCard = {

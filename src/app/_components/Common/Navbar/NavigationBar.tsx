@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
-
 type Props = {
   isLogin: boolean
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { PostCardModel } from '@/model/PostCard'
 import { mockProfileData } from '@/model/Profile'
-import { BackNavbar } from '../_components/Common/Navbar/Back'
+import { BackNavbar } from '../_components/Common/Navbar/BackNavigationBar'
 import Profile from './_components/Profile'
 
 const profile = mockProfileData // モックデータを取得
