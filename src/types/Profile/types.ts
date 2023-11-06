@@ -1,18 +1,22 @@
 // Profileの型定義
 
-import { StaticImageData } from 'next/image'
+import Profile from '@/app/profile/_components/Profile'
 
-export interface Profile {
-  nickName: string
-  userProfile: number
-  created_on?: string
-  img: StaticImageData
+interface Follow {
+  username: string
+  created_on: string
+  img: string
+}
+
+export type Profile = {
+  id: number
+  username: string
+  account: string
+  created_on: string
+  updated_on: string
+  img: string
   followings: Follow[]
   followers: Follow[]
 }
 
-export interface Follow {
-  nickName: string
-  created_on: string
-  img: string
-}
+export type ProfileList = Profile[]
