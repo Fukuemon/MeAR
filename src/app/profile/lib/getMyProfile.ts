@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios'
 import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
-import { Profile } from '@/types/Profile/types'
+import { ProfileType } from '@/types/Profile/types'
 
-export const getMyProfile = async (accessToken: string): Promise<Profile> => {
+export const getMyProfile = async (accessToken: string): Promise<ProfileType> => {
   try {
-    const res = await api.get<Profile>('profile/me/', {
+    const res = await api.get<ProfileType>('profile/me/', {
       headers: {
         Authorization: `JWT ${accessToken}`
       }
