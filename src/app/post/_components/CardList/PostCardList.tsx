@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import { PostList, PostListItem } from '@/types/Post/types'
+import { getPostList } from '../../lib/getPostList'
 import PostCardItem from '../CardItem'
 
-// PostCardList component
-type PostListProps = {
-  postList: PostList
-}
+export async function PostCardList() {
+  const postList: PostList = await getPostList()
 
-export function PostCardList({ postList }: PostListProps) {
   return (
     <div className="flex max-w-2xl flex-col  md:items-center md:justify-center">
       {postList.map((post: PostListItem) => {
