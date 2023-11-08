@@ -6,6 +6,6 @@ dns.setDefaultResultOrder('ipv4first')
 module.exports = {
   nextConfig,
   images: {
-    domains: ['localhost:8000']
+    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN]
   }
 }
