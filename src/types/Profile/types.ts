@@ -1,14 +1,12 @@
 // Profileの型定義
 
-import Profile from '@/app/profile/_components/Profile'
-
 interface Follow {
   username: string
   created_on: string
   img: string
 }
 
-export type Profile = {
+export type ProfileType = {
   id: number
   username: string
   account: string
@@ -19,4 +17,4 @@ export type Profile = {
   followers: Follow[]
 }
 
-export type ProfileList = Profile[]
+export type ProfileList = ProfileType[]
