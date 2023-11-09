@@ -1,21 +1,23 @@
-import React, { FC } from 'react'
-import { tPostCard } from '@/types/Post/types'
-import { Profile } from '@/types/Profile/types'
+import { FC } from 'react'
+import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import { PostList } from '@/types/Post/types'
+import { ProfileType } from '@/types/Profile/types'
 import ProfileHeader from '../Header'
-import ProfilePost from '../Post'
-import TabBar from '../TabBar'
+import PostTabs from '../PostTabs'
 
-type Props = {
-  profile: Profile
-  post: tPostCard // ここにcontents(post, like, model)を追加
+type ProfileProps = {
+  profile: ProfileType
+  posts?: PostList
+  liked_posts?: PostList
+  posts_count?: number
 }
 
-const Profile: FC<Props> = (props) => {
+const Profile: FC<ProfileProps> = ({ profile, posts, posts_count, liked_posts }) => {
   return (
     <div>
-      <ProfileHeader {...props.profile} />
-      <TabBar />
-      <ProfilePost {...props.post} />
+      <BackNavbar name={profile?.username} />
+      <ProfileHeader post_count={posts_count} profile={profile} />
+      <PostTabs posts={posts} liked_posts={liked_posts} />
     </div>
   )
 }
