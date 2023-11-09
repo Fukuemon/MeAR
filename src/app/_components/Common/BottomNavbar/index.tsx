@@ -1,9 +1,11 @@
 'use client'
 import React, { FC } from 'react'
+import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { PiNotePencil } from 'react-icons/pi'
+import { LoginUserAtom } from '@/app/(auth)/atom'
 import { cn } from '@/libs/tailwind/utils'
 
 type NavbarItem = {
@@ -59,11 +61,14 @@ export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
 }
 
 export const BottomNavbarContainer = () => {
+  const myProfile = useAtomValue(LoginUserAtom)
+  const myProfileId = myProfile?.account
+  const myProfilePath = myProfileId ? `/profile/${myProfileId}` : '/login'
   const path = usePathname()
   const items: NavbarItem[] = [
     { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
     { paths: ['/shop/search', '/post/create'], label: 'Post', icon: <PiNotePencil /> },
-    { paths: ['/profile'], label: 'Profile', icon: <AiOutlineUser /> }
+    { paths: [myProfilePath], label: 'Profile', icon: <AiOutlineUser /> }
   ]
   return <BottomNavbar items={items} path={path} />
 }
