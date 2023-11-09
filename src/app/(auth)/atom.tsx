@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 
 // Shopの型定義をそのまま使用
 export type LoginUserType = {
-  account: number
+  id: number
   username: string
   img?: string | null
 }
