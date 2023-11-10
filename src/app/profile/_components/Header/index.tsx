@@ -40,8 +40,6 @@ const ProfileHeader: FC<ProfileProps> = ({ profile, post_count }) => {
             <h2 className=" text-xs font-thin text-gray-500">フォロワー</h2>
           </div>
         </div>
-
-        {/*  */}
       </div>
     </div>
   )

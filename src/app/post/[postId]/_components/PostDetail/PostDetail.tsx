@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { AiFillTag, AiFillHeart } from 'react-icons/ai'
-import steak from '/public/steakcombo.jpeg'
 import { GrLocation } from 'react-icons/gr'
 
 import { Button } from '@/components/ui/button'
@@ -30,12 +29,18 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
       {/* 画像といいね */}
       <div className="relative z-0">
         {/* 3Dタグ　：　モデルがあるかないかで表示を変える */}
-        {isModel ? (
+        {isModel && props.menu_model ? (
           <div className="flex items-center justify-center">
-            <DynamicModelViewer src="/steakcombo.glb" />
+            <DynamicModelViewer src={props.menu_model} />
           </div>
         ) : (
-          <Image src={steak} className="h-full w-full object-cover" alt="ステーキコンボ" />
+          <Image
+            src={props.menu_photo}
+            width={500}
+            height={400}
+            className="h-full w-full object-cover"
+            alt="ステーキコンボ"
+          />
         )}
 
         <span className=" absolute right-4 top-2">
