@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
 // Shopの型定義をそのまま使用
 export type LoginUserType = {
@@ -8,4 +8,4 @@ export type LoginUserType = {
 }
 
 // 選択された店舗情報を保持するatom
-export const LoginUserAtom = atom<LoginUserType | null>(null)
+export const LoginUserAtom = atomWithStorage<LoginUserType | null>('profile', null)

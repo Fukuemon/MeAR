@@ -5,20 +5,15 @@ import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { LoginUserType, LoginUserAtom } from '@/app/(auth)/atom'
+import { LoginUserAtom } from '@/app/(auth)/atom'
 import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
 import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
 
-export const handleSuccessfulLogin = (
-  data: LoginResponseType,
-  router: ReturnType<typeof useRouter>,
-  setUser: (user: LoginUserType) => void
-) => {
-  const { access, refresh, profile } = data
+export const handleSuccessfulLogin = (data: LoginResponseType, router: ReturnType<typeof useRouter>) => {
+  const { access, refresh } = data
   setCookie('access', access, { maxAge: 60 * 45 })
   setCookie('refresh', refresh, { maxAge: 60 * 60 * 24 * 6 })
-  setUser(profile)
 
   router.push('/')
 }
@@ -45,7 +40,8 @@ export const useLoginForm = () => {
   const onSubmit = async (data: LoginFormType) => {
     try {
       const res = await api.post<LoginResponseType>('login/', data)
-      handleSuccessfulLogin(res.data, router, setUser)
+      handleSuccessfulLogin(res.data, router)
+      setUser(res.data.profile)
     } catch (error) {
       handleApiError(error as AxiosError, 'Login error:')
     }

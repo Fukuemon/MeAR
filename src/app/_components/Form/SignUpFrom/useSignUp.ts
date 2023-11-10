@@ -63,8 +63,8 @@ export const useSignUp = () => {
       })
 
       const login = await api.post<LoginResponseType>('login/', { email: data.email, password: data.password })
-
-      handleSuccessfulLogin(login.data, router, setUser)
+      handleSuccessfulLogin(login.data, router)
+      setUser(login.data.profile)
     } catch (error) {
       handleApiError(error as AxiosError, 'Login error:')
     } finally {
