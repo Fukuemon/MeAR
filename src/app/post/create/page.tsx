@@ -1,12 +1,11 @@
 'use client'
-import Link from 'next/link'
-import { useSelector } from 'react-redux'
+import { useAtom } from 'jotai'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import CreatePost from '@/app/post/create/_components/CreatePost'
-import { selectSelectedShop } from '@/store/features/shopSlice'
+import { selectedShopAtom } from '@/app/shop/atom'
 
 const NewPostPage = () => {
-  const selectedShop = useSelector(selectSelectedShop) // 選択された店舗情報を取得
+  const [selectedShop] = useAtom(selectedShopAtom) // 選択された店舗情報を取得
 
   return (
     <div>
@@ -22,9 +21,6 @@ const NewPostPage = () => {
             <h2 className="py-2 text-lg font-bold">店舗情報</h2>
             {/* 店舗の住所 */}
             <p className="py-2 text-lg">住所: {selectedShop.address}</p>
-            <Link href={selectedShop.urls.pc} className="py-2 text-lg text-blue-500">
-              公式サイト
-            </Link>
           </div>
         )}
       </div>

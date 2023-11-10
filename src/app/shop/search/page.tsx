@@ -1,6 +1,6 @@
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import { SearchShop } from '@/app/shop/search/_components/Search'
-import { Shop } from '@/store/features/shopSlice'
+import { Shop } from '../atom'
 import ShopList from './_components/ShopList'
 
 interface SearchParams {

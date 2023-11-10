@@ -32,22 +32,25 @@ export type Restaurant = {
 export type PostListItem = {
   id: number
   author: string
-  author_id: number
+  author_id: string
+  author_img?: string | null
   restaurant: Pick<Restaurant, 'name'>
   tags: Pick<Tag, 'tag'>[]
   menu_name: string
-  menu_photo: string | null
+  menu_photo: string
   menu_model: string | null
   likes: string[] | null
   visited_date: string
   created_on: string
   updated_on: string
+  model_exists_flg: boolean
 }
 
 export type PostDetailType = {
   id: number
   author: string
   author_id: number
+  author_img?: string | null
   likes: string[] | null
   tags: Tag[]
   restaurant: Restaurant
@@ -60,6 +63,7 @@ export type PostDetailType = {
   menu_photo: string
   menu_model: string | null
   review_text: string | null
+  model_exists_flg: boolean
 }
 
 // そして、全てのポストを含む配列の型は以下のようになります：

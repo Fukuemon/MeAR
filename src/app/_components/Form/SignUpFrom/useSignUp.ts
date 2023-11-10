@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
+import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { LoginUserAtom } from '@/app/(auth)/atom'
 import { LoginResponseType } from '@/app/(auth)/types/AuthTypes'
 import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
@@ -20,6 +22,7 @@ const FormSchema = z.object({
 export type SignUpFormType = z.infer<typeof FormSchema>
 
 export const useSignUp = () => {
+  const [, setUser] = useAtom(LoginUserAtom)
   const router = useRouter()
   const form = useForm<SignUpFormType>({
     resolver: zodResolver(FormSchema),
@@ -60,8 +63,8 @@ export const useSignUp = () => {
       })
 
       const login = await api.post<LoginResponseType>('login/', { email: data.email, password: data.password })
-
       handleSuccessfulLogin(login.data, router)
+      setUser(login.data.profile)
     } catch (error) {
       handleApiError(error as AxiosError, 'Login error:')
     } finally {

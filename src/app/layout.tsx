@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import { notojp } from '@/libs/font'
-import { Providers } from '@/store/Provider'
+import Providers from '@/store/Provider'
 import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
 
 import type { Metadata } from 'next'
