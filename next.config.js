@@ -28,6 +28,6 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN, 'localhost']
+    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN, 'localhost', 'imgfp.hotp.jp']
   }
 }
