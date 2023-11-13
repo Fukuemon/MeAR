@@ -47,11 +47,16 @@ export default function ShopSearchInput() {
   }
 
   return (
-    <div className="relative rounded-md shadow-sm">
+    <div className="relative w-[95%] max-w-[500px] rounded-md  shadow-sm">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
         <Search className="z-50 h-5 w-5 text-gray-400" />
       </div>
-      <Input value={searchText} onChange={handleSearchInput} placeholder="キーワード" className="block ps-10" />
+      <Input
+        value={searchText}
+        onChange={handleSearchInput}
+        placeholder="キーワードを入力してください"
+        className="block bg-gray-50 ps-10"
+      />
     </div>
   )
 }
