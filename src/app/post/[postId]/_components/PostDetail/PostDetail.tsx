@@ -29,10 +29,7 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
 
       <div className="flex-col space-y-4 px-5 py-3 ">
         {/* メニューとボタン*/}
-        <div className="flex justify-between">
-          <h2 className="text-lg font-semibold" title="ステーキコンボ">
-            {props.menu_name}
-          </h2>
+        <div className="flex">
           {/* 3Dボタン　：　モデルがあるかないかで表示を変える */}
           {props.menu_model && (
             <Button
