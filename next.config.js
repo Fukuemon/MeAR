@@ -1,11 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
+    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN],
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: process.env.NEXT_PUBLIC_BACKEND_URL
+        protocol: 'https',
+        hostname: process.env.NEXT_IMAGE_DOMAIN,
+        port: '443',
+        pathname: '/avatars/**'
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_IMAGE_DOMAIN,
+        port: '443',
+        pathname: '/posts/**'
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_IMAGE_DOMAIN,
+        port: '443',
+        pathname: '/models/**'
       }
     ]
   }
@@ -14,7 +28,6 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN]
-  },
-  domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN]
+    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN, 'localhost']
+  }
 }
