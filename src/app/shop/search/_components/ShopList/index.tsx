@@ -8,7 +8,7 @@ type Props = {
 
 const ShopList: FC<Props> = ({ shops }) => {
   return (
-    <div>
+    <div className="flex flex-col  space-y-5 py-4">
       {shops?.length ? (
         shops.map((shop: Shop, index: number) => <ShopItem key={shop.id | index} shop={shop} />)
       ) : (

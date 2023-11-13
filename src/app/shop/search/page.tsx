@@ -12,11 +12,17 @@ export default async function SearchShopPage({ searchParams }: { searchParams: S
   return (
     <div>
       <BackNavbar name="店舗検索" />
-      <main className="flex flex-col items-center justify-center p-8">
-        <ShopSearchInput />
-        <Suspense fallback={<div>loading...</div>}>
-          <ShopList shops={shops} />
-        </Suspense>
+      <main className="flex flex-col  px-2 py-8">
+        <div className="flex items-center justify-center">
+          <ShopSearchInput />
+        </div>
+
+        <div className="px-4 pt-4 md:flex md:flex-col md:items-center md:justify-center">
+          {searchParams.lat && searchParams.lng && <p className="w-24 border-b text-lg font-bold">周辺の店舗</p>}
+          <Suspense fallback={<div>loading...</div>}>
+            <ShopList shops={shops} />
+          </Suspense>
+        </div>
       </main>
     </div>
   )
