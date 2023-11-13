@@ -27,6 +27,7 @@ export type Restaurant = {
   name: string
   address: string
   area: string
+  url: string
 }
 
 export type PostListItem = {
@@ -34,8 +35,8 @@ export type PostListItem = {
   author: string
   author_id: string
   author_img?: string | null
-  restaurant: Pick<Restaurant, 'name'>
-  tags: Pick<Tag, 'tag'>[]
+  restaurant: Restaurant
+  tags: Tag[]
   menu_name: string
   menu_photo: string
   menu_model: string | null
