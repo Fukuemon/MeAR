@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
 // Shopの型定義をそのまま使用
 export interface Shop {
@@ -8,7 +8,9 @@ export interface Shop {
   lat: number
   lng: number
   area: string
+  url: string
+  logo_image: string
 }
 
 // 選択された店舗情報を保持するatom
-export const selectedShopAtom = atom<Shop | null>(null)
+export const selectedShopAtom = atomWithStorage<Shop | null>('shop', null)
