@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <div>
       <Navbar isLogin={isLogin} />
-      <main className="flex min-h-screen items-center justify-center p-16">
+      <main className="flex min-h-screen items-center justify-center">
         <PostCardList />
       </main>
     </div>
