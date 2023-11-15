@@ -1,6 +1,7 @@
 // SearchShopPage.tsx
 import { Suspense } from 'react'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import Loading from '@/app/loading'
 import ShopSearchInput from './_components/Search/ShopSearchInput'
 import ShopList from './_components/ShopList'
 import { SearchParams, getShopList } from './lib/getSearchShopList'
@@ -19,7 +20,7 @@ export default async function SearchShopPage({ searchParams }: { searchParams: S
 
         <div className="px-4 pt-4 md:flex md:flex-col md:items-center md:justify-center">
           {searchParams.lat && searchParams.lng && <p className="w-24 border-b text-lg font-bold">周辺の店舗</p>}
-          <Suspense fallback={<div>loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <ShopList shops={shops} />
           </Suspense>
         </div>

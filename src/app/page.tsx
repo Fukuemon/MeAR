@@ -1,5 +1,7 @@
+import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import Navbar from './_components/Common/Navbar/NavigationBar'
+import Loading from './loading'
 import { PostCardList } from './post/_components/CardList/PostCardList'
 
 export default async function Home() {
@@ -10,7 +12,9 @@ export default async function Home() {
     <div>
       <Navbar isLogin={isLogin} />
       <main className="flex min-h-screen items-center justify-center">
-        <PostCardList />
+        <Suspense fallback={<Loading />}>
+          <PostCardList />
+        </Suspense>
       </main>
     </div>
   )

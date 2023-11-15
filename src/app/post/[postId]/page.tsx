@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { notFound } from 'next/navigation'
+import Loading from '@/app/loading'
 import { getPostDetail } from '../lib/getPostDetail'
 import { getPostList } from '../lib/getPostList'
 import PostDetail from './_components/PostDetail/PostDetail'
@@ -22,5 +23,9 @@ export default async function PostDetailPage({ params }: { params: { postId: str
     notFound()
   }
 
-  return <PostDetail props={post} />
+  return (
+    <Suspense fallback={<Loading />}>
+      <PostDetail props={post} />
+    </Suspense>
+  )
 }
