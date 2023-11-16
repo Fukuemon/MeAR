@@ -27,6 +27,8 @@ export type Restaurant = {
   name: string
   address: string
   area: string
+  lat: number
+  lng: number
   url: string
 }
 
@@ -65,6 +67,18 @@ export type PostDetailType = {
   menu_model: string | null
   review_text: string | null
   model_exists_flg: boolean
+}
+
+export type PostCreateType = {
+  restaurant: Restaurant
+  tags: Tag[]
+  menu_name: string
+  score: number
+  price: number
+  menu_photo: string | null
+  menu_model?: string | null
+  review_text: string
+  visited_date: string
 }
 
 // そして、全てのポストを含む配列の型は以下のようになります：
