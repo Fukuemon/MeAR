@@ -10,10 +10,8 @@ import { cn } from '@/libs/tailwind/utils'
 
 // onChangeとvalueのプロパティを追加
 export function DatePicker({ onChange }: { onChange: (date: Date | undefined) => void }) {
-  // 内部のstateではなく、propsから初期値を受け取る
   const [date, setDate] = React.useState<Date | undefined>(new Date())
 
-  // 日付が選択された時の処理を変更
   const handleDateChange = (date: Date | undefined) => {
     setDate(date)
     onChange(date)

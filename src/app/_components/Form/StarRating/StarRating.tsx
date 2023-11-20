@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Star } from 'lucide-react'
+import { Input } from '@/components/ui/input'
 
 type Props = {
   value: number
   onChange: (value: number) => void
   totalStars?: number
 }
-export default function StarRating({ value, onChange, totalStars = 5 }: Props) {
+export const StarRating = React.forwardRef<HTMLInputElement, Props>(({ value, onChange, totalStars = 5 }, ref) => {
   const [hover, setHover] = useState(0)
 
   return (
@@ -18,7 +19,8 @@ export default function StarRating({ value, onChange, totalStars = 5 }: Props) {
 
         return (
           <label key={index}>
-            <input
+            <Input
+              ref={ref}
               type="radio"
               name="rating"
               className="hidden"
@@ -40,4 +42,6 @@ export default function StarRating({ value, onChange, totalStars = 5 }: Props) {
       })}
     </div>
   )
-}
+})
+
+StarRating.displayName = 'StarRating'
