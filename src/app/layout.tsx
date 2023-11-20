@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import { Toaster } from '@/components/ui/toaster'
 import { notojp } from '@/libs/font'
 import Providers from '@/store/Provider'
 import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
@@ -17,6 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Providers>
           {children}
           <BottomNavbarContainer />
+          <Toaster />
         </Providers>
       </body>
     </html>
