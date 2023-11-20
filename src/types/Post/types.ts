@@ -17,13 +17,13 @@ export type tPostCard = {
   author: Author
 }
 
-type Tag = {
+export type TagType = {
   id: number
   tag: string
 }
 
 export type Restaurant = {
-  id: number
+  id?: number
   name: string
   address: string
   area: string
@@ -38,7 +38,7 @@ export type PostListItem = {
   author_id: string
   author_img?: string | null
   restaurant: Restaurant
-  tags: Tag[]
+  tags: TagType[]
   menu_name: string
   menu_photo: string
   menu_model: string | null
@@ -55,7 +55,7 @@ export type PostDetailType = {
   author_id: number
   author_img?: string | null
   likes: string[] | null
-  tags: Tag[]
+  tags: TagType[]
   restaurant: Restaurant
   created_on: string
   updated_on: string
@@ -71,7 +71,7 @@ export type PostDetailType = {
 
 export type PostCreateType = {
   restaurant: Restaurant
-  tags: Tag[]
+  tags: TagType[]
   menu_name: string
   score: number
   price: number
