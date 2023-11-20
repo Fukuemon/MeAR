@@ -7,8 +7,13 @@ export interface Shop {
   address: string
   lat: number
   lng: number
-  area: string
-  url: string
+  large_area: {
+    code: string
+    name: string
+  }
+  urls: {
+    pc: string
+  }
   logo_image: string
 }
 
