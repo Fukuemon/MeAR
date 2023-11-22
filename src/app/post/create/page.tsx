@@ -1,18 +1,21 @@
 'use client'
-import { Suspense } from 'react'
-import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import CreatePost from '@/app/post/create/_components/CreatePost'
-import { selectedShopAtom } from '@/app/shop/atom'
+
+import { useShop } from '@/app/shop/search/hooks/useShop'
 import ShopInfo from '../_components/CardItem/ShopInfo/ShopInfo'
 
-const NewPostPage = () => {
+export default function NewPostPage() {
+  const { shop, isReady } = useShop() // 選択された店舗情報を取得]
+
   const router = useRouter()
-  const [selectedShop] = useAtom(selectedShopAtom) // 選択された店舗情報を取得
-  if (!selectedShop) return router.back()
-  const { name, address, lat, lng, large_area, urls } = selectedShop
+
+  if (!isReady) return <Loading />
+  if (!shop) return router.back()
+
+  const { name, address, lat, lng, large_area, urls } = shop
   const url = urls.pc
   const restaurant = { name, address, lat, lng, area: large_area.name, url }
 
@@ -22,15 +25,11 @@ const NewPostPage = () => {
       <BackNavbar name="投稿作成" />
       {/* 日付選択 */}
       <div className="p-8">
-        <Suspense fallback={<Loading />}>
-          <CreatePost />
-        </Suspense>
+        <CreatePost />
 
         {/*店舗が選択されている場合は店舗情報を表示 */}
-        {selectedShop && <ShopInfo restaurant={restaurant} isDetail />}
+        {shop && <ShopInfo restaurant={restaurant} isDetail />}
       </div>
     </div>
   )
 }
-
-export default NewPostPage
