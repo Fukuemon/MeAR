@@ -1,4 +1,4 @@
-import { Shop } from '../../atom'
+import { SelectedShop } from '../../atom'
 
 export type SearchParams = {
   keyword?: string
@@ -9,7 +9,7 @@ export type SearchParams = {
 
 const defaultEndpoint = `${process.env.NEXT_PUBLIC_HOTPEPPER_API}?key=${process.env.NEXT_PUBLIC_HOTPEPPER_API_KEY}&format=json&count=10`
 // getShopList.ts
-export async function getShopList(searchParams: SearchParams): Promise<Shop[]> {
+export async function getShopList(searchParams: SearchParams): Promise<SelectedShop[]> {
   const apiParams = new URLSearchParams()
   Object.entries(searchParams).forEach(([key, value]) => {
     if (value !== undefined) apiParams.append(key, value.toString())
