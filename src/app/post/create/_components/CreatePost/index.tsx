@@ -20,10 +20,8 @@ const CreatePost = () => {
   const [imagePreview, setImagePreview] = useState<string>('') // 画像プレビュー
 
   const { tags } = useGetTags() // タグ一覧取得
-  const { form, onSubmit, loading, setImageSrc, setModelSrc } = useCreatePostForm()
+  const { form, onSubmit, loading, imageSrc, modelSrc, setImageSrc, setModelSrc } = useCreatePostForm()
 
-  const watchImage = form.watch('menu_photo')
-  const watchModel = form.watch('menu_model')
   const selectTag = (tag: TagType[]) => {
     setSelectedTags(tag)
     // タグのidのみを取り出してセットする
@@ -63,7 +61,7 @@ const CreatePost = () => {
               <FormField
                 control={form.control}
                 name="menu_photo"
-                render={({}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <MediaUpload
@@ -75,6 +73,7 @@ const CreatePost = () => {
                           if (file) {
                             setImageSrc(file)
                             setImagePreview(URL.createObjectURL(file))
+                            field.onChange(e.target.files)
                           }
                         }}
                       />
@@ -84,7 +83,7 @@ const CreatePost = () => {
                 )}
               />
               {/* 写真が入力されているかで表示を変える */}
-              <FormDescription>{watchImage ? '挿入済み' : '画像を追加'}</FormDescription>
+              <FormDescription>{imageSrc ? '挿入済み' : '画像を追加'}</FormDescription>
             </div>
 
             {/* 3Dファイル */}
@@ -92,16 +91,18 @@ const CreatePost = () => {
               <FormField
                 control={form.control}
                 name="menu_model"
-                render={({}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <MediaUpload
+                        model={modelSrc}
                         fileType=".glb"
                         icon="FileBox"
                         onChange={(e) => {
                           const file: File | undefined = e.target.files ? e.target.files[0] : undefined
                           if (file) {
                             setModelSrc(file)
+                            field.onChange(e.target.files)
                           }
                         }}
                       />
@@ -111,7 +112,7 @@ const CreatePost = () => {
                 )}
               />
               {/* 3Dファイルが入力されているかで表示を変える */}
-              <FormDescription>{watchModel ? '挿入済み' : '3Dファイルを追加'}</FormDescription>
+              <FormDescription>{modelSrc ? '挿入済み' : '3Dファイルを追加'}</FormDescription>
             </div>
           </div>
 
