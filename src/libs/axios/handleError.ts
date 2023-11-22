@@ -15,20 +15,17 @@ export const handleApiError = (error: AxiosError, errorMessage: string) => {
     toast({
       title: errorMessage,
       variant: 'destructive'
-      // action: <ToastAction altText="Try again">Try again</ToastAction>
     })
     console.error(errorMessage, error.request)
   } else {
     toast({
       title: errorMessage,
       variant: 'destructive'
-      // action: <ToastAction altText="Try again">Try again</ToastAction>
     })
     console.error('Error message:', error.message)
     toast({
       title: errorMessage,
       variant: 'destructive'
-      // action: <ToastAction altText="Try again">Try again</ToastAction>
     })
   }
 }
