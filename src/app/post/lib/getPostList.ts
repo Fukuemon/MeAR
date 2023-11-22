@@ -7,7 +7,7 @@ export const getPostList = async (): Promise<PostList> => {
     headers: {
       'Content-Type': 'application/json'
     },
-    next: { revalidate: 10 }
+    cache: 'no-cache'
   })
 
   if (!res.ok) {
