@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <div>
       <Navbar isLogin={isLogin} />
-      <main className="flex min-h-screen items-center justify-center">
+      <main className="flex items-center justify-center py-20">
         <Suspense fallback={<Loading />}>
           <PostCardList />
         </Suspense>

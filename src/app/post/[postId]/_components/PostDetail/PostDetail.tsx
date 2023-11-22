@@ -27,7 +27,7 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
       {/* 画像といいね */}
       <ImageOrModelViewer menuPhoto={props.menu_photo} menuModel={props.menu_model} isModel={isModel} />
 
-      <div className="flex-col space-y-4 px-5 py-3 ">
+      <div className="flex-col space-y-4 px-5 py-3 pb-20">
         {/* メニューとボタン*/}
         <div className="flex">
           {/* 3Dボタン　：　モデルがあるかないかで表示を変える */}
@@ -63,7 +63,7 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
 
         {/* コメント */}
         <div>
-          <h4 className="flex w-24 text-center text-sm font-thin italic">
+          <h4 className="flex w-24 items-center text-center text-sm  font-bold italic">
             <PencilLine className="mr-2 text-primary" />
             コメント
           </h4>
@@ -72,7 +72,7 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
 
         {/* 店舗情報 */}
         <div className="flex flex-col ">
-          <h4 className=" flex w-24 text-left text-sm font-thin">
+          <h4 className=" flex w-24 items-center justify-start text-left text-sm font-bold ">
             <Utensils className="mr-2 text-primary" />
             店舗情報
           </h4>

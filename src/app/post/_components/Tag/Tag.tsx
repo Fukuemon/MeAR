@@ -13,7 +13,7 @@ export default function Tag({ name, onClick, className, isSelect }: Props) {
     <span
       onClick={onClick}
       className={cn(
-        'flex items-center justify-center gap-2 rounded-full bg-primary/20 px-4 py-1 font-bold text-primary',
+        'flex items-center justify-center gap-1 rounded-md bg-primary/20 px-3 py-1 font-bold text-primary',
         className,
         isSelect && 'bg-primary text-white'
       )}
