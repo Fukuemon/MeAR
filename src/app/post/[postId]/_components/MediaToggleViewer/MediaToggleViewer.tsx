@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Heart } from 'lucide-react'
-import Image from 'next/image'
-import { DynamicModelViewer } from '@/app/post/_components/ModelViewer/DynamicModelViewer'
+import ModelViewer from '@/app/post/_components/ModelViewer'
 
 type Props = {
   menuPhoto: string
@@ -19,10 +18,10 @@ export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel }: Pr
     <div className="relative z-0">
       {isModel && menuModel ? (
         <div className="flex items-center justify-center">
-          <DynamicModelViewer src={menuModel} />
+          <ModelViewer src={menuModel} image={menuPhoto} />
         </div>
       ) : (
-        <Image src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt="" />
+        <img src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt="" />
       )}
 
       <span className="absolute right-4 top-2">

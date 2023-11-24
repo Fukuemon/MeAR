@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import clsx from 'clsx'
 import { Heart } from 'lucide-react'
-import Image from 'next/legacy/image'
 
 import { PostListItem } from '@/types/Post/types'
 import Tag from '../Tag/Tag'
@@ -25,7 +24,7 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
       {/* コンテンツ */}
       {/* 画像 */}
       {post.menu_photo && (
-        <Image src={post.menu_photo} className="object-cover" alt="ステーキコンボ" width={500} height={420} />
+        <img src={post.menu_photo} className="object-cover" alt="ステーキコンボ" width={500} height={420} />
       )}
       {/* 店舗情報 */}
       <div className="mx-2">

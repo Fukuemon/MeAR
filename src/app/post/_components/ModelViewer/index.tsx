@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect, FC, CSSProperties } from 'react'
-
+import React, { useEffect, FC, CSSProperties, useState } from 'react'
 interface ModelViewerProps {
   src: string
+  image: string
 }
 
 declare global {
@@ -24,18 +24,13 @@ declare global {
   }
 }
 
-const ModelViewer: FC<ModelViewerProps> = ({ src }) => {
-  const [style, setStyle] = React.useState<CSSProperties>({})
-  useEffect(() => {
-    import('@google/model-viewer').catch(console.error)
-  }, [])
+const useResponsiveStyle = () => {
+  const [style, setStyle] = useState<CSSProperties>({})
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth < 600) {
-        setStyle({ width: '320px', height: '300px' })
-      } else if (window.innerWidth < 900) {
-        setStyle({ width: '320', height: '300px' })
+      if (window.innerWidth < 900) {
+        setStyle({ width: '375px', height: '300px' })
       } else {
         setStyle({ width: '100%', height: '300px' })
       }
@@ -43,10 +38,17 @@ const ModelViewer: FC<ModelViewerProps> = ({ src }) => {
 
     handleResize()
     window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
+  return style
+}
+
+const ModelViewer: FC<ModelViewerProps> = ({ src }) => {
+  const style = useResponsiveStyle()
+
+  useEffect(() => {
+    import('@google/model-viewer').catch(console.error)
   }, [])
 
   return <model-viewer style={style} className="w-full h-full" src={src} auto-rotate camera-controls ar></model-viewer>
