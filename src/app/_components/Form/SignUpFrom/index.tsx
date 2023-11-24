@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link'
+import Loading from '@/app/loading'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Loading } from '../../Common/Loading'
 import AvatarInput from '../AvatarInput'
 import { useSignUp } from './useSignUp'
 

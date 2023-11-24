@@ -1,5 +1,4 @@
 'use client'
-
 import * as React from 'react'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale' // 日本語ロケールをインポート
@@ -9,8 +8,14 @@ import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/libs/tailwind/utils'
 
-export function DatePicker() {
-  const [date, setDate] = React.useState<Date>()
+// onChangeとvalueのプロパティを追加
+export function DatePicker({ onChange }: { onChange: (date: Date | undefined) => void }) {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+  const handleDateChange = (date: Date | undefined) => {
+    setDate(date)
+    onChange(date)
+  }
 
   return (
     <Popover>
@@ -24,7 +29,7 @@ export function DatePicker() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+        <Calendar mode="single" selected={date} onSelect={handleDateChange} initialFocus />
       </PopoverContent>
     </Popover>
   )

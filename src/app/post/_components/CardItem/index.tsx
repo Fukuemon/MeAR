@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import clsx from 'clsx'
-import { Heart, Tag } from 'lucide-react'
-import Image from 'next/legacy/image'
+import { Heart } from 'lucide-react'
 
 import { PostListItem } from '@/types/Post/types'
+import Tag from '../Tag/Tag'
 import { PostHeader } from './Header'
 import ShopInfo from './ShopInfo/ShopInfo'
 
@@ -24,25 +24,22 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
       {/* コンテンツ */}
       {/* 画像 */}
       {post.menu_photo && (
-        <Image src={post.menu_photo} className="object-cover" alt="ステーキコンボ" width={500} height={420} />
+        <img src={post.menu_photo} className="object-cover" alt="ステーキコンボ" width={500} height={420} />
       )}
       {/* 店舗情報 */}
       <div className="mx-2">
         <ShopInfo restaurant={post.restaurant} />
       </div>
 
-      <div className="flex justify-between">
+      <div className="relative flex justify-between">
         {/* 左側のコンテンツ */}
         <div className="mx-4 mb-4 flex flex-col space-y-4">
           {/* メニュー */}
-          <h2 className="truncate text-lg font-semibold">{post.menu_name}</h2>
+          <h2 className="line-clamp-1 truncate text-lg font-semibold">{post.menu_name}</h2>
           {/* タグ一覧 */}
           <div className="flex flex-wrap items-center gap-2 pl-2">
             {post.tags.map((tag) => (
-              <span key={tag.id} className="rounded-md border bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
-                <Tag className="mr-1 inline-block h-3 w-3" />
-                {tag.tag}
-              </span>
+              <Tag key={tag.id} name={tag.tag} className="text-sm" />
             ))}
           </div>
           {/* いいねボタン：いいねの状態によって表示を変える */}
@@ -54,11 +51,11 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
         </div>
 
         {/* 右側のコンテンツ */}
-        <div className="flex flex-col items-center px-5">
+        <div className="absolute bottom-3 right-5 flex flex-col justify-end">
           {/* 3Dタグ　：　モデルがあるかないかで表示を変える */}
           {post.model_exists_flg && (
             <span className="w-16 rounded-full border bg-cyan-100 px-3 py-1 font-mono text-xs text-blue-800">
-              3Dあり
+              3Dつき
             </span>
           )}
         </div>

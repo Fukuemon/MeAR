@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import { Toaster } from '@/components/ui/toaster'
 import { notojp } from '@/libs/font'
 import Providers from '@/store/Provider'
 import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
@@ -12,11 +13,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${notojp.variable}`}>
+    <html lang="ja" className={`${notojp.variable}`}>
       <body className="h-screen bg-background font-notojp ">
         <Providers>
           {children}
           <BottomNavbarContainer />
+          <Toaster />
         </Providers>
       </body>
     </html>

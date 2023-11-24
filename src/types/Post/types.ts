@@ -17,16 +17,18 @@ export type tPostCard = {
   author: Author
 }
 
-type Tag = {
+export type TagType = {
   id: number
   tag: string
 }
 
 export type Restaurant = {
-  id: number
+  id?: number
   name: string
   address: string
   area: string
+  lat: number
+  lng: number
   url: string
 }
 
@@ -36,7 +38,7 @@ export type PostListItem = {
   author_id: string
   author_img?: string | null
   restaurant: Restaurant
-  tags: Tag[]
+  tags: TagType[]
   menu_name: string
   menu_photo: string
   menu_model: string | null
@@ -53,7 +55,7 @@ export type PostDetailType = {
   author_id: number
   author_img?: string | null
   likes: string[] | null
-  tags: Tag[]
+  tags: TagType[]
   restaurant: Restaurant
   created_on: string
   updated_on: string
@@ -65,6 +67,18 @@ export type PostDetailType = {
   menu_model: string | null
   review_text: string | null
   model_exists_flg: boolean
+}
+
+export type PostCreateType = {
+  restaurant: Restaurant
+  tags: TagType[]
+  menu_name: string
+  score: number
+  price: number
+  menu_photo: string | null
+  menu_model?: string | null
+  review_text: string
+  visited_date: string
 }
 
 // そして、全てのポストを含む配列の型は以下のようになります：

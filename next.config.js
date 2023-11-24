@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN],
+    domains: [
+      process.env.NEXT_PUBLIC_IMAGE_DOMAIN,
+      process.env.NEXT_PUBLIC_IMAGE_DOMAIN_DETAIL,
+      'localhost',
+      'imgfp.hotp.jp'
+    ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -28,6 +33,11 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_DOMAIN, 'localhost']
+    domains: [
+      process.env.NEXT_PUBLIC_IMAGE_DOMAIN,
+      process.env.NEXT_PUBLIC_IMAGE_DOMAIN_DETAIL,
+      'localhost',
+      'imgfp.hotp.jp'
+    ]
   }
 }

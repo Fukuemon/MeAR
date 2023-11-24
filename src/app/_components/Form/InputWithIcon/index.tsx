@@ -1,27 +1,35 @@
-import { FC, ReactNode, ChangeEvent, MouseEvent } from 'react'
-import { ButtonProps } from '@/components/ui/button'
-import { Input, InputProps } from '@/components/ui/input'
+import React, { ChangeEvent } from 'react'
+import { icons } from 'lucide-react'
+import { Input } from '@/components/ui/input'
 
 interface Props {
-  inputProps: InputProps
-  buttonProps: ButtonProps
-  isButton?: boolean
-  icon?: ReactNode
-  handleInput: (e: ChangeEvent<HTMLInputElement>) => void
-  handleClick?: (e: MouseEvent<HTMLButtonElement>) => void
-  children?: ReactNode // children プロパティを追加
+  icon: keyof typeof icons
+  type: string
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder: string
+  className?: string
 }
 
-const InputButtonCombo: FC<Props> = ({ inputProps, icon, handleInput }) => {
-  return (
-    <div className="container relative flex w-full max-w-sm items-center justify-center space-x-2">
-      {/* インプット入力欄 */}
-      <Input {...inputProps} type="text" className={`block w-full ${icon && 'pl-10'}`} onChange={handleInput} />
+const InputWithIcon = React.forwardRef<HTMLInputElement, Props>(
+  ({ icon, onChange, placeholder, className, type }, ref) => {
+    const LucideIcon = icons[icon]
+    return (
+      <div className={`relative w-[95%] max-w-[500px] rounded-md shadow-sm ${className}`}>
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <LucideIcon className="z-50 h-5 w-5 text-primary" />
+        </div>
+        <Input
+          type={type}
+          onChange={onChange}
+          placeholder={placeholder}
+          ref={ref}
+          className="block w-full bg-gray-50 ps-10"
+        />
+      </div>
+    )
+  }
+)
 
-      {/* アイコンが必要なら */}
-      {icon && <div className="absolute left-1 top-3 text-xl text-gray-500 dark:text-gray-400">{icon}</div>}
-    </div>
-  )
-}
+InputWithIcon.displayName = 'InputWithIcon'
 
-export default InputButtonCombo
+export default InputWithIcon
