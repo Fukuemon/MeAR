@@ -8,6 +8,9 @@ export const getRefreshAccessToken = async (refreshToken: string) => {
     },
     body: JSON.stringify({ refresh: refreshToken })
   })
+  if (!res.ok) {
+    throw new Error('Failed to refresh access token')
+  }
   const data = await res.json()
   return data.access
 }
