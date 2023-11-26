@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import Image from 'next/image'
 import { ProfileType } from '@/types/Profile/types'
 
 type ProfileProps = {
@@ -13,7 +12,7 @@ const ProfileHeader: FC<ProfileProps> = ({ profile, post_count }) => {
       <div className="flex">
         {/* avatar画像 */}
         <div className="">
-          <Image
+          <img
             src={profile.img ? profile.img : '/user.png'}
             alt="steak"
             width={200}
