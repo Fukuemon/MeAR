@@ -19,8 +19,7 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
   return (
     <div className="w-screen overflow-hidden rounded-lg border  bg-white text-gray-700 md:max-w-md">
       {/* ヘッダー */}
-      <PostHeader author={post.author} visited_date={post.visited_date} author_img={post.author_img} />
-
+      <PostHeader author={post.author} visited_date={post.visited_date} author_img={post.author_image} />
       {/* コンテンツ */}
       {/* 画像 */}
       {post.menu_photo && (

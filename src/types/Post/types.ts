@@ -36,7 +36,7 @@ export type PostListItem = {
   id: number
   author: string
   author_id: string
-  author_img?: string | null
+  author_image?: string | null
   restaurant: Restaurant
   tags: TagType[]
   menu_name: string
@@ -53,7 +53,7 @@ export type PostDetailType = {
   id: number
   author: string
   author_id: number
-  author_img?: string | null
+  author_image?: string | null
   likes: string[] | null
   tags: TagType[]
   restaurant: Restaurant
