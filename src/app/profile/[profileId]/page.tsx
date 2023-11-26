@@ -5,15 +5,6 @@ import PostTabs from '../_components/PostTabs'
 import { getPostByLiked } from '../lib/getPostByLiked'
 import { getPostByProfileId } from '../lib/getPostByProfileId'
 import { getProfileById } from '../lib/getProfileById'
-import { getProfileList } from '../lib/getProfileList'
-
-export const generateStaticParams = async () => {
-  const profile = await getProfileList()
-
-  return profile.map((profile) => ({
-    profileId: profile.id.toString()
-  }))
-}
 
 export default async function ProfileDetail({ params }: { params: { profileId: string } }) {
   const { profileId } = params
