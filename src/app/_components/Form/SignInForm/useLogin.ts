@@ -11,9 +11,11 @@ import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
 
 export const handleSuccessfulLogin = (data: LoginResponseType, router: ReturnType<typeof useRouter>) => {
-  const { access, refresh } = data
+  const { access, refresh, profile } = data
+  const profileId = profile.id
   setCookie('access', access, { maxAge: 60 * 45 })
   setCookie('refresh', refresh, { maxAge: 60 * 60 * 24 * 6 })
+  setCookie('loginUserId', profileId, { maxAge: 60 * 45 })
 
   router.push('/')
 }

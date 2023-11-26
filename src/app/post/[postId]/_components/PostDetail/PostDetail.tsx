@@ -22,7 +22,7 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
   return (
     <div>
       <BackNavbar name={props.menu_name} />
-      <PostHeader visited_date={props.visited_date} author={props.author} />
+      <PostHeader visited_date={props.visited_date} author={props.author} author_img={props.author_image} />
 
       {/* 画像といいね */}
       <ImageOrModelViewer menuPhoto={props.menu_photo} menuModel={props.menu_model} isModel={isModel} />
