@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import Image from 'next/image'
 
 type Props = {
   author: string
@@ -12,13 +11,7 @@ export const PostHeader: FC<Props> = ({ author, visited_date, author_img }) => {
     <div className="card-header">
       {/* 左側：ユーザー紹鴎*/}
       <div className="flex items-center">
-        <Image
-          src={author_img ?? '/user.png'}
-          className="rounded-full "
-          alt="ユーザーアイコン"
-          width={40}
-          height={40}
-        />
+        <img src={author_img ?? '/user.png'} className="rounded-full " alt="ユーザーアイコン" width={40} height={40} />
         <h2 className="font-bold">{author}</h2>
       </div>
 

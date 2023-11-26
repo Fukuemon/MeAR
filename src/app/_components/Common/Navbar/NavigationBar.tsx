@@ -3,7 +3,6 @@ import React, { FC } from 'react'
 import { deleteCookie } from 'cookies-next'
 import { useAtom } from 'jotai'
 import { RESET } from 'jotai/utils'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
@@ -36,7 +35,7 @@ const Navbar: FC<Props> = ({ isLogin }) => {
         {isLogin ? (
           // ログインしている場合：Avatar画像
           <div className="flex items-center" onClick={onLogout}>
-            <Image src={user?.img ?? '/user.png'} alt="username" width={40} height={40} className="rounded-full" />
+            <img src={user?.img ?? '/user.png'} alt="username" width={40} height={40} className="rounded-full" />
           </div>
         ) : (
           // ログインしていない場合
