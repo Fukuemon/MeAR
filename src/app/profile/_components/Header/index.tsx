@@ -8,21 +8,20 @@ type ProfileProps = {
 
 const ProfileHeader: FC<ProfileProps> = ({ profile, post_count }) => {
   return (
-    <div className="max-w-6xl py-8 pl-4">
-      <div className="flex">
+    <div className="w-96 py-8 pl-4">
+      <div className="flex items-center">
         {/* avatar画像 */}
-        <div className="">
-          <img
-            src={profile.img ? profile.img : '/user.png'}
-            alt="steak"
-            width={200}
-            height={200}
-            className="h-28 w-28 rounded-full sm:w-40 md:h-40"
-          />
-        </div>
+
+        <img
+          src={profile.img ? profile.img : '/user.png'}
+          alt="steak"
+          width={200}
+          height={200}
+          className="h-28 w-28 rounded-full sm:w-40 md:h-40"
+        />
 
         {/* 投稿数・フォローフォロワー*/}
-        <div className="flex justify-center px-4  pt-6">
+        <div className="flex justify-center   pt-6">
           {/* 投稿数 */}
           <div className="flex flex-col items-center px-4">
             <h2 className="text-lg font-bold">{post_count}</h2>
