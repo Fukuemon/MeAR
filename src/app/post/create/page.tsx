@@ -24,11 +24,15 @@ export default function NewPostPage() {
       {/*店舗が選択されている場合はNavbarに店舗名を表示*/}
       <BackNavbar name="投稿作成" />
       {/* 日付選択 */}
-      <div className="p-8">
-        <CreatePost />
+      <div className="flex flex-col items-center justify-center p-8">
+        <div className="max-w-[640px]">
+          <div className="p-8">
+            <CreatePost />
+          </div>
 
-        {/*店舗が選択されている場合は店舗情報を表示 */}
-        {shop && <ShopInfo restaurant={restaurant} isDetail />}
+          {/*店舗が選択されている場合は店舗情報を表示 */}
+          {shop && <ShopInfo restaurant={restaurant} isDetail />}
+        </div>
       </div>
     </div>
   )

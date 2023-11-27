@@ -96,13 +96,16 @@ export const useCreatePostForm = () => {
     console.log(data)
     const formData = new FormData() as CustomFormData
     Object.entries(data).forEach(([key, value]) => {
+      if (key === 'menu_model' && (value === null || value === undefined)) {
+        return // menu_model が null または undefined の場合は追加しない
+      }
       appendFormData(formData, key as keyof PostCreate, value)
     })
 
     validateFormData(formData, 'menu_photo')
-    validateFormData(formData, 'menu_model')
-    formData.append('menu_photo', imageSrc as Blob)
-    formData.append('menu_model', modelSrc as Blob)
+    if (imageSrc) {
+      formData.append('menu_photo', imageSrc as Blob)
+    }
 
     return formData
   }
@@ -121,6 +124,8 @@ export const useCreatePostForm = () => {
     }
     if (Array.isArray(value)) {
       value.forEach((v) => formData.append(`${key}[]`, v))
+    } else if (value instanceof File) {
+      formData.append(key, value)
     } else if (typeof value === 'object' && value !== null) {
       formData.append(key, JSON.stringify(value))
     } else {

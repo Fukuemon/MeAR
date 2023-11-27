@@ -1,5 +1,7 @@
+import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import Loading from '@/app/loading'
 import ProfileHeader from '../_components/Header'
 import PostTabs from '../_components/PostTabs'
 import { getPostByLiked } from '../lib/getPostByLiked'
@@ -20,9 +22,15 @@ export default async function ProfileDetail({ params }: { params: { profileId: s
 
   return (
     <div>
-      <BackNavbar name={profile?.username} />
-      <ProfileHeader post_count={posts_count} profile={profile} />
-      <PostTabs posts={posts} liked_posts={liked_posts} />
+      <Suspense fallback={<Loading />}>
+        <BackNavbar name={profile?.username} />
+        <div className="flex flex-col items-center justify-center p-8">
+          <div className="max-w-[640px]">
+            <ProfileHeader post_count={posts_count} profile={profile} />
+            <PostTabs posts={posts} liked_posts={liked_posts} />
+          </div>
+        </div>
+      </Suspense>
     </div>
   )
 }
