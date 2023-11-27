@@ -2,7 +2,7 @@
 import React, { useEffect, FC, CSSProperties, useState } from 'react'
 interface ModelViewerProps {
   src: string
-  image: string
+  poster?: string
 }
 
 declare global {
@@ -44,14 +44,27 @@ const useResponsiveStyle = () => {
   return style
 }
 
-const ModelViewer: FC<ModelViewerProps> = ({ src }) => {
+const ModelViewer: FC<ModelViewerProps> = ({ src, poster }) => {
   const style = useResponsiveStyle()
 
   useEffect(() => {
     import('@google/model-viewer').catch(console.error)
   }, [])
 
-  return <model-viewer style={style} className="w-full h-full" src={src} auto-rotate camera-controls ar></model-viewer>
+  return (
+    <model-viewer
+      style={style}
+      className="w-full h-full"
+      src={src}
+      poster={poster}
+      auto-rotate
+      camera-orbit="0deg 45deg 90%"
+      min-camera-orbit="0deg 0deg 100%"
+      max-camera-orbit="720deg 90deg 200%"
+      camera-controls
+      ar
+    ></model-viewer>
+  )
 }
 
 export default ModelViewer
