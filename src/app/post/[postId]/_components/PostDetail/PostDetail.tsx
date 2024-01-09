@@ -17,8 +17,6 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
     setIsModel((prevState) => !prevState)
   }
 
-  console.log(props)
-
   return (
     <div className="relative">
       <BackNavbar name={props.menu_name} />

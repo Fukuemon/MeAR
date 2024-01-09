@@ -12,7 +12,6 @@ export const fetcher = async (url: string, token: string): Promise<ProfileType> 
         Authorization: `JWT ${token}`
       }
     })
-    console.log(res.data)
     return res.data
   } catch (error) {
     handleApiError(error as AxiosError, 'Failed to fetch my profile')
@@ -27,8 +26,6 @@ export const useGetMyProfile = (token: string) => {
     error,
     isValidating
   } = useSWR(['profile/me/', token], ([url, token]) => fetcher(url, token), { revalidateOnMount: true })
-
-  console.log(profile)
 
   return {
     profile,

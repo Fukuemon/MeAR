@@ -7,9 +7,7 @@ import ShopList from './_components/ShopList'
 import { SearchParams, getShopList } from './lib/getSearchShopList'
 
 export default async function SearchShopPage({ searchParams }: { searchParams: SearchParams }) {
-  console.log(searchParams)
   const shops = await getShopList(searchParams)
-  console.log(shops)
   return (
     <div>
       <BackNavbar name="店舗検索" />
