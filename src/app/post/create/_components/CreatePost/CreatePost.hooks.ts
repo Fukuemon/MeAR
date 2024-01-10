@@ -6,6 +6,7 @@ import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useCompressImage } from '@/app/post/lib/compressImage'
 import { SelectedShop, selectedShopAtom } from '@/app/shop/atom'
 import { toast } from '@/components/ui/use-toast'
 import { handleApiError } from '@/libs/axios/handleError'
@@ -44,21 +45,22 @@ type PostCreate = z.infer<typeof PostCreateSchema>
 export const useCreatePostForm = () => {
   const [imageSrc, setImageSrc] = useState<File>()
   const [modelSrc, setModelSrc] = useState<File>()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [selectedShop] = useAtom(selectedShopAtom)
+  const { compressImage } = useCompressImage()
   const accessToken = getCookie('access')
   const router = useRouter()
 
-  const [loading, setLoading] = useState<boolean>(false)
-  const [selectedShop] = useAtom(selectedShopAtom)
   if (!selectedShop) {
     router.back()
     toast({ title: '店舗が選択されていません' })
     throw new Error('店舗が選択されていません')
   }
+
   const { name, address, lat, lng }: SelectedShop = selectedShop
   const area = selectedShop.large_area.name
   const url = selectedShop.urls.pc
   const restaurant = { name, address, area, lat, lng, url }
-  console.log(restaurant)
   const form = useForm<PostCreate>({
     resolver: zodResolver(PostCreateSchema),
     defaultValues: {
@@ -75,10 +77,10 @@ export const useCreatePostForm = () => {
   })
 
   const onSubmit = async (data: PostCreate) => {
+    console.log(data)
     setLoading(true)
     try {
-      console.log(data)
-      const formData = createFormData(data)
+      const formData = await createFormData(data)
       await postFormData(formData)
       onSuccess()
     } catch (error) {
@@ -92,20 +94,26 @@ export const useCreatePostForm = () => {
     append<T extends string | Blob | number>(name: `${string}[]` | keyof PostCreate, value: T, fileName?: string): void
   }
 
-  const createFormData = (data: PostCreate): FormData => {
-    console.log(data)
+  const createFormData = async (data: PostCreate): Promise<FormData> => {
     const formData = new FormData() as CustomFormData
     Object.entries(data).forEach(([key, value]) => {
       if (key === 'menu_model' && (value === null || value === undefined)) {
         return // menu_model が null または undefined の場合は追加しない
       }
+      if (key === 'menu_photo' && (value === null || value === undefined)) {
+        return // menu_photo が null または undefined の場合は追加しない
+      }
       appendFormData(formData, key as keyof PostCreate, value)
     })
+    console.log(formData.get('menu_photo'))
 
     validateFormData(formData, 'menu_photo')
-    if (imageSrc) {
-      formData.append('menu_photo', imageSrc as Blob)
+
+    if (imageSrc && data.menu_photo) {
+      const compressedImage = await compressImage(data.menu_photo as File, data.menu_photo.name)
+      formData.append('menu_photo', compressedImage)
     }
+    console.log(...formData)
 
     return formData
   }
@@ -120,6 +128,9 @@ export const useCreatePostForm = () => {
 
   const appendFormData = (formData: CustomFormData, key: keyof PostCreate, value: FormDataValue) => {
     if (value === null) {
+      return
+    }
+    if (key === 'menu_photo') {
       return
     }
     if (Array.isArray(value)) {
