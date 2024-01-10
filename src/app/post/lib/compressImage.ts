@@ -7,9 +7,8 @@ type LoadImage = (
 ) => void
 
 // 画像圧縮処理
-
 export const useCompressImage = () => {
-  const compressImage = (file: File): Promise<Blob> => {
+  const compressImage = (file: File, newFileName: string): Promise<File> => {
     return new Promise((resolve, reject) => {
       ;(loadImage as LoadImage)(
         file,
@@ -22,7 +21,11 @@ export const useCompressImage = () => {
           canvas.toBlob(
             (blob) => {
               if (blob) {
-                resolve(blob)
+                const newFile = new File([blob], newFileName, {
+                  type: 'image/jpeg',
+                  lastModified: Date.now()
+                })
+                resolve(newFile)
               } else {
                 reject(new Error('Image compression resulted in null Blob'))
               }
