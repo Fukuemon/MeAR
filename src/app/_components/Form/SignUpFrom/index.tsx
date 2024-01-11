@@ -8,7 +8,7 @@ import AvatarInput from '../AvatarInput'
 import { useSignUp } from './useSignUp'
 
 export const SignUpForm = () => {
-  const { form, onSubmit, imageSrc, handleImageChange, loading } = useSignUp()
+  const { form, onSubmit, imagePreview, handleImageChange, loading } = useSignUp()
 
   if (loading) return <Loading />
   return (
@@ -20,9 +20,18 @@ export const SignUpForm = () => {
             <FormField
               control={form.control}
               name="img"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
-                  <AvatarInput imageSrc={imageSrc} onImageChange={handleImageChange} />
+                  <AvatarInput
+                    preview={imagePreview}
+                    onImageChange={(e) => {
+                      const file: File | undefined = e.target.files ? e.target.files[0] : undefined
+                      if (!file) return
+                      handleImageChange(e)
+                      field.onChange(e.target.files)
+                    }}
+                    {...{ ...field }}
+                  />
                 </FormItem>
               )}
             />
