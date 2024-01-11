@@ -10,11 +10,8 @@
 
   // 保存時に実行されるコードアクションを指定
   "editor.codeActionsOnSave": {
-    // 保存時にESLintによる自動修正を行う
-    "source.fixAll.eslint": true,
-
-    // 保存時に不足しているインポートを自動的に追加する
-    "source.addMissingImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
   },
 
   // SCSSのバリデーションを無効にする（VSCodeのデフォルトのSCSSバリデーションを避けるため）
@@ -27,7 +24,7 @@
 
     // SCSSファイルを保存する際にStylelintによる自動修正を行う
     "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": true
+      "source.fixAll.stylelint": "explicit"
     }
   },
 
