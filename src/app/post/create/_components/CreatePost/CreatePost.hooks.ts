@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useCompressImage } from '@/app/_components/Form/hooks/useCompressImage'
+import { useFileInput } from '@/app/_components/Form/hooks/useFileInput'
 import { SelectedShop, selectedShopAtom } from '@/app/shop/atom'
 import { toast } from '@/components/ui/use-toast'
 import { handleApiError } from '@/libs/axios/handleError'
@@ -43,8 +44,18 @@ const PostCreateSchema = z.object({
 type PostCreate = z.infer<typeof PostCreateSchema>
 
 export const useCreatePostForm = () => {
-  const [imageSrc, setImageSrc] = useState<File>()
-  const [modelSrc, setModelSrc] = useState<File>()
+  const {
+    file: imageFile,
+    preview: imagePreview,
+    handleChangeFile: handleImageChange,
+    resetFile: resetImage
+  } = useFileInput()
+  const {
+    file: modelFile,
+    preview: modelPreview,
+    handleChangeFile: handleModelChange,
+    resetFile: resetModel
+  } = useFileInput()
   const [loading, setLoading] = useState<boolean>(false)
   const [selectedShop] = useAtom(selectedShopAtom)
   const { compressImage } = useCompressImage()
@@ -108,10 +119,22 @@ export const useCreatePostForm = () => {
     console.log(formData.get('menu_photo'))
 
     validateFormData(formData, 'menu_photo')
+    validateFormData(formData, 'menu_model')
+    console.log(imageFile)
+    console.log(data.menu_photo)
+    console.log(modelFile)
+    console.log(data.menu_model)
 
-    if (imageSrc && data.menu_photo) {
+    // 画像圧縮処理
+    if (imageFile && data.menu_photo) {
       const compressedImage = await compressImage(data.menu_photo as File, data.menu_photo.name)
       formData.append('menu_photo', compressedImage)
+    }
+
+    // 3Dモデル処理
+    // TODO: 3Dモデルの圧縮
+    if (modelFile && data.menu_model) {
+      formData.append('menu_model', data.menu_model)
     }
     console.log(...formData)
 
@@ -131,6 +154,9 @@ export const useCreatePostForm = () => {
       return
     }
     if (key === 'menu_photo') {
+      return
+    }
+    if (key === 'menu_model') {
       return
     }
     if (Array.isArray(value)) {
@@ -163,13 +189,23 @@ export const useCreatePostForm = () => {
   const onSuccess = () => {
     router.push('/')
     toast({ title: '投稿しました' })
-    setImageSrc(undefined)
-    setModelSrc(undefined)
+    resetModel()
+    resetImage()
   }
 
   const onError = (error: AxiosError) => {
     handleApiError(error, '投稿に失敗しました')
   }
 
-  return { form, onSubmit, loading, imageSrc, setImageSrc, modelSrc, setModelSrc }
+  return {
+    form,
+    onSubmit,
+    loading,
+    handleImageChange,
+    handleModelChange,
+    imageFile,
+    imagePreview,
+    modelFile,
+    modelPreview
+  }
 }

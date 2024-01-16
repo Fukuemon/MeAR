@@ -7,17 +7,23 @@ export const useFileInput = () => {
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) {
-      setFile(null)
-      setPreview('')
+      resetFile()
       return
     }
+    setFile(file)
     setPreview(window.URL.createObjectURL(file))
   }
+  const resetFile = () => {
+    setFile(null)
+    setPreview('')
+  }
+
   return {
     file,
     setFile,
     preview,
     setPreview,
-    handleChangeFile
+    handleChangeFile,
+    resetFile
   }
 }

@@ -17,10 +17,20 @@ import { useCreatePostForm } from './CreatePost.hooks'
 
 const CreatePost = () => {
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]) // 選択されたタグ
-  const [imagePreview, setImagePreview] = useState<string>('') // 画像プレビュー
+  // const [imagePreview, setImagePreview] = useState<string>('') // 画像プレビュー
 
   const { tags } = useGetTags() // タグ一覧取得
-  const { form, onSubmit, loading, imageSrc, modelSrc, setImageSrc, setModelSrc } = useCreatePostForm()
+  const {
+    form,
+    onSubmit,
+    loading,
+    handleImageChange,
+    handleModelChange,
+    // imageFile,
+    imagePreview,
+    // modelFile,
+    modelPreview
+  } = useCreatePostForm()
 
   const selectTag = (tag: TagType[]) => {
     setSelectedTags(tag)
@@ -65,16 +75,14 @@ const CreatePost = () => {
                   <FormItem>
                     <FormControl>
                       <MediaUpload
-                        image={imagePreview}
+                        preview={imagePreview}
                         fileType="image/*"
                         icon="Image"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => {
                           const file: File | undefined = e.target.files ? e.target.files[0] : undefined
-                          if (file) {
-                            setImageSrc(file)
-                            setImagePreview(URL.createObjectURL(file))
-                            field.onChange(e.target.files)
-                          }
+                          if (!file) return
+                          handleImageChange(e)
+                          field.onChange(e.target.files)
                         }}
                       />
                     </FormControl>
@@ -83,7 +91,7 @@ const CreatePost = () => {
                 )}
               />
               {/* 写真が入力されているかで表示を変える */}
-              <FormDescription>{imageSrc ? '挿入済み' : '画像を追加'}</FormDescription>
+              <FormDescription>{imagePreview ? '挿入済み' : '画像を追加'}</FormDescription>
             </div>
 
             {/* 3Dファイル */}
@@ -95,15 +103,14 @@ const CreatePost = () => {
                   <FormItem>
                     <FormControl>
                       <MediaUpload
-                        model={modelSrc}
+                        preview={modelPreview}
                         fileType=".glb"
                         icon="FileBox"
                         onChange={(e) => {
                           const file: File | undefined = e.target.files ? e.target.files[0] : undefined
-                          if (file) {
-                            setModelSrc(file)
-                            field.onChange(e.target.files)
-                          }
+                          if (!file) return
+                          handleModelChange(e)
+                          field.onChange(e.target.files)
                         }}
                       />
                     </FormControl>
@@ -112,7 +119,7 @@ const CreatePost = () => {
                 )}
               />
               {/* 3Dファイルが入力されているかで表示を変える */}
-              <FormDescription>{modelSrc ? '挿入済み' : '3Dファイルを追加'}</FormDescription>
+              <FormDescription>{modelPreview ? '挿入済み' : '3Dファイルを追加'}</FormDescription>
             </div>
           </div>
 

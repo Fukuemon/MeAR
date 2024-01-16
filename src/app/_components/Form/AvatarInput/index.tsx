@@ -3,16 +3,16 @@ import Image from 'next/image'
 import user from 'public/user.png'
 
 interface AvatarInputProps {
-  imageSrc: string
+  preview: string
   onImageChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const AvatarInput: FC<AvatarInputProps> = ({ imageSrc, onImageChange }) => {
+const AvatarInput: FC<AvatarInputProps> = ({ preview, onImageChange }) => {
   return (
     <div className="relative">
       <div className="h-32 w-32 overflow-hidden rounded-full bg-blue-200">
-        {imageSrc ? (
-          <img src={imageSrc} alt="Uploaded avatar" className="h-full w-full object-cover" />
+        {preview ? (
+          <img src={preview} alt="Uploaded avatar" className="h-full w-full object-cover" />
         ) : (
           <Image src={user} alt="User avatar" width={128} height={128} />
         )}
