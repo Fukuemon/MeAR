@@ -14,7 +14,6 @@ const checkLocalStorageShop = (shop: SelectedShopType): boolean => {
 
 export const useShop = () => {
   const shop = useAtomValue(selectedShopAtom)
-  console.log(shop)
   const [isReady, setIsReady] = useState<boolean>(false)
   useEffect(() => {
     setIsReady(checkLocalStorageShop(shop))
