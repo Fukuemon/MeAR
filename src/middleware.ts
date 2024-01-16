@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import { getRefreshAccessToken } from './app/(auth)/lib/getRefreshAccessToken'
 import { verifyAccessToken } from './app/(auth)/lib/verifyAccessToken'
+import { getMyProfile } from './app/profile/lib/getMyProfile'
 
 async function handleToken(request: NextRequest, accessToken: string | undefined, refreshToken: string | undefined) {
   try {
@@ -20,7 +21,7 @@ async function handleToken(request: NextRequest, accessToken: string | undefined
       return NextResponse.redirect(new URL('/login', request.url))
     }
   } catch (err) {
-    console.error(err)
+    console.log(err)
     request.cookies.delete('access')
     request.cookies.delete('refresh')
   }
@@ -30,13 +31,24 @@ export async function middleware(request: NextRequest) {
   const refreshToken = await request.cookies.get('refresh')?.value
   const accessToken = await request.cookies.get('access')?.value
   const loginUserId = await request.cookies.get('loginUserId')?.value
+  const response = await NextResponse.next()
 
   if (request.nextUrl.pathname.startsWith('/login')) {
     request.cookies.delete('access')
     request.cookies.delete('refresh')
   }
 
+  if (!loginUserId) {
+    const profile = await getMyProfile(accessToken!)
+    const loginUserId = profile.id
+    response.cookies.set('loginUserId', loginUserId.toString(), { maxAge: 60 * 45 })
+  }
+
   if (loginUserId && request.nextUrl.pathname.startsWith(`/profile/${loginUserId}`)) {
+    return handleToken(request, accessToken, refreshToken)
+  }
+
+  if (loginUserId && request.nextUrl.pathname.startsWith('/shop/search')) {
     return handleToken(request, accessToken, refreshToken)
   }
 
