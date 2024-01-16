@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import Loading from '@/app/loading'
@@ -20,10 +21,15 @@ export default async function ProfileDetail({ params }: { params: { profileId: s
     notFound()
   }
 
+  // ログインユーザーかの確認
+  const cookiesStore = cookies()
+  const loginUserId = cookiesStore.get('loginUserId')
+  const isLoginUser = loginUserId?.value === profileId
+
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <BackNavbar name={profile?.username} />
+        <BackNavbar name={profile?.username} isLoginUser={isLoginUser} />
         <div className="flex flex-col items-center justify-center p-8">
           <div className="max-w-[640px]">
             <ProfileHeader post_count={posts_count} profile={profile} />
