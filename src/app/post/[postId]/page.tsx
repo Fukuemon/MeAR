@@ -6,7 +6,6 @@ import PostDetail from './_components/PostDetail/PostDetail'
 
 export default async function PostDetailPage({ params }: { params: { postId: string } }) {
   const { postId } = params
-  console.log(postId)
 
   const post = await getPostDetail(postId)
 

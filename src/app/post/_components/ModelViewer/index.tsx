@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, FC, CSSProperties, useState } from 'react'
+import React, { useEffect, FC } from 'react'
 interface ModelViewerProps {
   src: string
   poster?: string
@@ -24,37 +24,14 @@ declare global {
   }
 }
 
-const useResponsiveStyle = () => {
-  const [style, setStyle] = useState<CSSProperties>({})
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 900) {
-        setStyle({ width: '375px', height: '300px' })
-      } else {
-        setStyle({ width: '100%', height: '300px' })
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  return style
-}
-
 const ModelViewer: FC<ModelViewerProps> = ({ src, poster }) => {
-  const style = useResponsiveStyle()
-
   useEffect(() => {
     import('@google/model-viewer').catch(console.error)
   }, [])
 
   return (
     <model-viewer
-      style={style}
-      className="w-full h-full"
+      style={{ width: '100%', height: '100%' }}
       src={src}
       poster={poster}
       auto-rotate

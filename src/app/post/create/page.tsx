@@ -23,7 +23,6 @@ export default function NewPostPage() {
     <div className="pb-20">
       {/*店舗が選択されている場合はNavbarに店舗名を表示*/}
       <BackNavbar name="投稿作成" />
-      {/* 日付選択 */}
       <div className="flex flex-col items-center justify-center p-8">
         <div className="max-w-[640px]">
           <div className="p-8">

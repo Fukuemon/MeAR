@@ -17,13 +17,11 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
     setIsModel((prevState) => !prevState)
   }
 
-  console.log(props)
-
   return (
     <div className="relative">
       <BackNavbar name={props.menu_name} />
       <div className="flex flex-col items-center justify-center">
-        <div className="max-w-[580px] md:border md:shadow-lg">
+        <div className="w-screen max-w-[580px] md:border md:shadow-lg">
           <PostHeader visited_date={props.visited_date} author={props.author} author_img={props.author_image} />
 
           {/* 画像といいね */}

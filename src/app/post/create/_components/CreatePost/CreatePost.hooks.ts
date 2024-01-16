@@ -6,6 +6,8 @@ import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useCompressImage } from '@/app/_components/Form/hooks/useCompressImage'
+import { useFileInput } from '@/app/_components/Form/hooks/useFileInput'
 import { SelectedShop, selectedShopAtom } from '@/app/shop/atom'
 import { toast } from '@/components/ui/use-toast'
 import { handleApiError } from '@/libs/axios/handleError'
@@ -42,23 +44,34 @@ const PostCreateSchema = z.object({
 type PostCreate = z.infer<typeof PostCreateSchema>
 
 export const useCreatePostForm = () => {
-  const [imageSrc, setImageSrc] = useState<File>()
-  const [modelSrc, setModelSrc] = useState<File>()
+  const {
+    file: imageFile,
+    preview: imagePreview,
+    handleChangeFile: handleImageChange,
+    resetFile: resetImage
+  } = useFileInput()
+  const {
+    file: modelFile,
+    preview: modelPreview,
+    handleChangeFile: handleModelChange,
+    resetFile: resetModel
+  } = useFileInput()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [selectedShop] = useAtom(selectedShopAtom)
+  const { compressImage } = useCompressImage()
   const accessToken = getCookie('access')
   const router = useRouter()
 
-  const [loading, setLoading] = useState<boolean>(false)
-  const [selectedShop] = useAtom(selectedShopAtom)
   if (!selectedShop) {
     router.back()
     toast({ title: '店舗が選択されていません' })
     throw new Error('店舗が選択されていません')
   }
+
   const { name, address, lat, lng }: SelectedShop = selectedShop
   const area = selectedShop.large_area.name
   const url = selectedShop.urls.pc
   const restaurant = { name, address, area, lat, lng, url }
-  console.log(restaurant)
   const form = useForm<PostCreate>({
     resolver: zodResolver(PostCreateSchema),
     defaultValues: {
@@ -75,10 +88,10 @@ export const useCreatePostForm = () => {
   })
 
   const onSubmit = async (data: PostCreate) => {
+    console.log(data)
     setLoading(true)
     try {
-      console.log(data)
-      const formData = createFormData(data)
+      const formData = await createFormData(data)
       await postFormData(formData)
       onSuccess()
     } catch (error) {
@@ -92,20 +105,38 @@ export const useCreatePostForm = () => {
     append<T extends string | Blob | number>(name: `${string}[]` | keyof PostCreate, value: T, fileName?: string): void
   }
 
-  const createFormData = (data: PostCreate): FormData => {
-    console.log(data)
+  const createFormData = async (data: PostCreate): Promise<FormData> => {
     const formData = new FormData() as CustomFormData
     Object.entries(data).forEach(([key, value]) => {
       if (key === 'menu_model' && (value === null || value === undefined)) {
         return // menu_model が null または undefined の場合は追加しない
       }
+      if (key === 'menu_photo' && (value === null || value === undefined)) {
+        return // menu_photo が null または undefined の場合は追加しない
+      }
       appendFormData(formData, key as keyof PostCreate, value)
     })
+    console.log(formData.get('menu_photo'))
 
     validateFormData(formData, 'menu_photo')
-    if (imageSrc) {
-      formData.append('menu_photo', imageSrc as Blob)
+    validateFormData(formData, 'menu_model')
+    console.log(imageFile)
+    console.log(data.menu_photo)
+    console.log(modelFile)
+    console.log(data.menu_model)
+
+    // 画像圧縮処理
+    if (imageFile && data.menu_photo) {
+      const compressedImage = await compressImage(data.menu_photo as File, data.menu_photo.name)
+      formData.append('menu_photo', compressedImage)
     }
+
+    // 3Dモデル処理
+    // TODO: 3Dモデルの圧縮
+    if (modelFile && data.menu_model) {
+      formData.append('menu_model', data.menu_model)
+    }
+    console.log(...formData)
 
     return formData
   }
@@ -120,6 +151,12 @@ export const useCreatePostForm = () => {
 
   const appendFormData = (formData: CustomFormData, key: keyof PostCreate, value: FormDataValue) => {
     if (value === null) {
+      return
+    }
+    if (key === 'menu_photo') {
+      return
+    }
+    if (key === 'menu_model') {
       return
     }
     if (Array.isArray(value)) {
@@ -152,13 +189,23 @@ export const useCreatePostForm = () => {
   const onSuccess = () => {
     router.push('/')
     toast({ title: '投稿しました' })
-    setImageSrc(undefined)
-    setModelSrc(undefined)
+    resetModel()
+    resetImage()
   }
 
   const onError = (error: AxiosError) => {
     handleApiError(error, '投稿に失敗しました')
   }
 
-  return { form, onSubmit, loading, imageSrc, setImageSrc, modelSrc, setModelSrc }
+  return {
+    form,
+    onSubmit,
+    loading,
+    handleImageChange,
+    handleModelChange,
+    imageFile,
+    imagePreview,
+    modelFile,
+    modelPreview
+  }
 }

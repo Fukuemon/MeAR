@@ -18,10 +18,12 @@ export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel }: Pr
     <div className="relative z-0">
       {isModel && menuModel ? (
         <div className="flex items-center justify-center">
-          <ModelViewer src={menuModel} />
+          <div className=" h-80 w-full">
+            <ModelViewer src={menuModel} />
+          </div>
         </div>
       ) : (
-        <img src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt="" />
+        <img src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt={menuPhoto} />
       )}
 
       <span className="absolute right-4 top-2">

@@ -14,7 +14,6 @@ export async function getShopList(searchParams: SearchParams): Promise<SelectedS
   Object.entries(searchParams).forEach(([key, value]) => {
     if (value !== undefined) apiParams.append(key, value.toString())
   })
-  console.log(`${defaultEndpoint}&${apiParams.toString()}`)
   const response = await fetch(`${defaultEndpoint}&${apiParams.toString()}`)
   const data = await response.json()
   return data.results.shop
