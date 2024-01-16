@@ -29,7 +29,7 @@ export default async function ProfileDetail({ params }: { params: { profileId: s
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <BackNavbar name={profile?.username} isLoginUser={isLoginUser} />
+        <BackNavbar name={profile?.username} isLoginUser={isLoginUser} profile_id={profile.id} />
         <div className="flex flex-col items-center justify-center p-8">
           <div className="max-w-[640px]">
             <ProfileHeader post_count={posts_count} profile={profile} />
