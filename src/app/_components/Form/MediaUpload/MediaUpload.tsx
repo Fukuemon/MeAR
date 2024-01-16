@@ -2,7 +2,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { icons } from 'lucide-react'
-import ModelViewer from '@/app/post/_components/ModelViewer/ModelViewer2'
+import ModelViewer from '@/app/post/_components/ModelViewer'
 import { Input } from '@/components/ui/input'
 
 type Props = {
