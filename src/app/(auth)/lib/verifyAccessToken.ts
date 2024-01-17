@@ -6,11 +6,12 @@ export const verifyAccessToken = async (accessToken: string) => {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ access: accessToken })
+    body: JSON.stringify({ token: accessToken })
   })
-  if (!res.ok) {
-    throw new Error('Failed to verify access token')
+  // responseが{}だったら、tureを返す
+  if (res.status === 200) {
+    return true
+  } else {
+    return false
   }
-  const data = await res.json()
-  return data.access
 }
