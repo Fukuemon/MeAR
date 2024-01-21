@@ -1,10 +1,13 @@
 import { Suspense } from 'react'
+import { setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { verifyAccessToken } from '@/app/(auth)/lib/verifyAccessToken'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import ProfileHeader from '../_components/Header'
 import PostTabs from '../_components/PostTabs'
+import { getMyProfile } from '../lib/getMyProfile'
 import { getPostByLiked } from '../lib/getPostByLiked'
 import { getPostByProfileId } from '../lib/getPostByProfileId'
 import { getProfileById } from '../lib/getProfileById'
@@ -23,8 +26,19 @@ export default async function ProfileDetail({ params }: { params: { profileId: s
 
   // ログインユーザーかの確認
   const cookiesStore = cookies()
-  const loginUserId = cookiesStore.get('loginUserId')
-  const isLoginUser = loginUserId?.value === profileId
+  const accessToken = cookiesStore.get('access')?.value
+  let loginUserId = cookiesStore.get('loginUserId')?.value
+  if (!loginUserId && accessToken) {
+    const isLogin = await verifyAccessToken(accessToken)
+    if (isLogin) {
+      const loginProfile = await getMyProfile(accessToken)
+      console.log(loginProfile)
+      loginUserId = loginProfile.id.toString() // 既存の変数を更新
+      console.log(loginUserId)
+      await setCookie('loginUserId', loginUserId.toString())
+    }
+  }
+  const isLoginUser = loginUserId == profileId
 
   return (
     <div>
