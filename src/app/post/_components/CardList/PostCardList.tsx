@@ -1,9 +1,14 @@
-import { PostList, PostListItem } from '@/types/Post/types'
-import { getPostList } from '../../lib/getPostList'
+'use client'
+import Loading from '@/app/loading'
+import { PostListItem } from '@/types/Post/types'
+import { useGetPostList } from '../../hooks/useGetPostList'
 import PostCardItem from '../CardItem'
 
 export async function PostCardList() {
-  const postList: PostList = await getPostList()
+  const { postList } = useGetPostList()
+  if (!postList) {
+    return <Loading />
+  }
 
   return (
     <div className="flex max-w-2xl flex-col  md:items-center md:justify-center">
