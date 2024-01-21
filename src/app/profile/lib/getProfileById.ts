@@ -4,7 +4,7 @@ import { ProfileType } from '@/types/Profile/types'
 
 export const getProfileById = async (id: string) => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/${id}/`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}profile/${id}/`
     const profile = await fetch(url, {
       method: 'GET',
       headers: {
