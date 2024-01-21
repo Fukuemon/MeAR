@@ -1,12 +1,18 @@
 import { AxiosError } from 'axios'
 import { handleApiError } from '@/libs/axios/handleError'
-import { api } from '@/libs/axios/instance'
 import { PostList } from '@/types/Post/types'
 
 export const getPostByProfileId = async (profileId: string) => {
   try {
-    const profile = await api.get<PostList>(`profile/${profileId}/posts/`)
-    return profile.data
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + 'profile/' + profileId + '/posts/'
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      cache: 'no-cache'
+    })
+    return res.json() as Promise<PostList>
   } catch (error) {
     handleApiError(error as AxiosError, 'Failed to fetch profile detail')
   }
