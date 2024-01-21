@@ -7,7 +7,7 @@ export const getProfileList = async (): Promise<ProfileList> => {
     headers: {
       'Content-Type': 'application/json'
     },
-    cache: 'no-cache'
+    next: { revalidate: 30 }
   })
 
   if (!res.ok) {

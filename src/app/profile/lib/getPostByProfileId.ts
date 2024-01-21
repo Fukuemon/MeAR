@@ -10,7 +10,7 @@ export const getPostByProfileId = async (profileId: string) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      cache: 'no-cache'
+      next: { revalidate: 10 }
     })
     return res.json() as Promise<PostList>
   } catch (error) {
