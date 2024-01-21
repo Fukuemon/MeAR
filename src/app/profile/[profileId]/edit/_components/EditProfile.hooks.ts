@@ -8,6 +8,7 @@ import * as z from 'zod'
 import { LoginUserAtom } from '@/app/(auth)/atom'
 import { useAvatarInput } from '@/app/_components/Form/AvatarInput/useAvatarInput'
 import { useCompressImage } from '@/app/_components/Form/hooks/useCompressImage'
+import { useGetProfileById } from '@/app/profile/hooks/useGetProfileById'
 import { toast } from '@/components/ui/use-toast'
 import { handleApiError } from '@/libs/axios/handleError'
 import { api } from '@/libs/axios/instance'
@@ -24,7 +25,7 @@ const EditProfileSchema = z.object({
 export type EditProfileFormType = z.infer<typeof EditProfileSchema>
 
 export const useEditProfile = (profile: EditProfileType, accessToken?: string) => {
-  console.log(accessToken)
+  const { mutateProfile } = useGetProfileById(profile.id)
   const router = useRouter()
   const [, setUser] = useAtom(LoginUserAtom)
   const { imageSrc, imagePreview, handleImageChange, setPreview } = useAvatarInput()
@@ -69,6 +70,7 @@ export const useEditProfile = (profile: EditProfileType, accessToken?: string) =
       const imgURL = img ? URL.createObjectURL(img) : null
       setUser((prev) => ({ ...prev, username: data.username, img: imgURL, id: profile.id })) // Convert 'img' to string
       toast({ title: 'プロフィールを更新しました' })
+      mutateProfile()
       router.push(`/profile/${profile.id}`)
     } catch (error) {
       handleApiError(error as AxiosError, 'Failed to edit profile')

@@ -7,7 +7,7 @@ interface Follow {
 }
 
 export type ProfileType = {
-  id: number
+  id: string
   username: string
   account: string
   created_on: string
