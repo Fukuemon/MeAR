@@ -12,5 +12,5 @@ export const getRefreshAccessToken = async (refreshToken: string) => {
     throw new Error('Failed to refresh access token')
   }
   const data = await res.json()
-  return data.access
+  return data
 }

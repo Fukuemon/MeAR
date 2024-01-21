@@ -52,7 +52,7 @@ export type PostListItem = {
 export type PostDetailType = {
   id: number
   author: string
-  author_id: number
+  author_id: string
   author_image?: string | null
   likes: string[] | null
   tags: TagType[]

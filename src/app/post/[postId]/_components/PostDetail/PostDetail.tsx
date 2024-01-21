@@ -10,8 +10,9 @@ import { PostHeader } from '../../../_components/CardItem/Header'
 import ImageOrModelViewer from '../MediaToggleViewer/MediaToggleViewer'
 import Rating from '../Rating/Rating'
 
-export default function PostDetail({ props }: { props: PostDetailType }) {
+export default function PostDetail({ props, loginUserId }: { props: PostDetailType } & { loginUserId: string }) {
   const [isModel, setIsModel] = useState(false)
+  const isLoginUser = props.author_id == loginUserId
 
   const onClickModel = () => {
     setIsModel((prevState) => !prevState)
@@ -19,10 +20,15 @@ export default function PostDetail({ props }: { props: PostDetailType }) {
 
   return (
     <div className="relative">
-      <BackNavbar name={props.menu_name} />
+      <BackNavbar name={props.menu_name} post_id={props.id} isLoginUser={isLoginUser} />
       <div className="flex flex-col items-center justify-center">
         <div className="w-screen max-w-[580px] md:border md:shadow-lg">
-          <PostHeader visited_date={props.visited_date} author={props.author} author_img={props.author_image} />
+          <PostHeader
+            visited_date={props.visited_date}
+            author={props.author}
+            author_img={props.author_image}
+            author_id={props.author_id}
+          />
 
           {/* 画像といいね */}
           <ImageOrModelViewer menuPhoto={props.menu_photo} menuModel={props.menu_model} isModel={isModel} />

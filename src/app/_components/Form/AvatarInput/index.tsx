@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react'
+import { ChangeEvent, forwardRef } from 'react'
 import Image from 'next/image'
 import user from 'public/user.png'
 
@@ -7,7 +7,7 @@ interface AvatarInputProps {
   onImageChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const AvatarInput: FC<AvatarInputProps> = ({ preview, onImageChange }) => {
+const AvatarInput = forwardRef<HTMLInputElement, AvatarInputProps>(({ preview, onImageChange }, ref) => {
   return (
     <div className="relative">
       <div className="h-32 w-32 overflow-hidden rounded-full bg-blue-200">
@@ -22,9 +22,12 @@ const AvatarInput: FC<AvatarInputProps> = ({ preview, onImageChange }) => {
         accept="image/*"
         onChange={onImageChange}
         className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        ref={ref}
       />
     </div>
   )
-}
+})
+
+AvatarInput.displayName = 'AvatarInput'
 
 export default AvatarInput

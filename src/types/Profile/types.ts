@@ -17,4 +17,6 @@ export type ProfileType = {
   followers: Follow[]
 }
 
+export type EditProfileType = Pick<ProfileType, 'id' | 'username' | 'img'>
+
 export type ProfileList = ProfileType[]

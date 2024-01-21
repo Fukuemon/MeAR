@@ -35,7 +35,7 @@ const Navbar: FC<Props> = ({ isLogin }) => {
         {isLogin ? (
           // ログインしている場合：Avatar画像
           <div className="flex items-center" onClick={onLogout}>
-            <img src={user?.img ?? '/user.png'} alt="username" width={40} height={40} className="rounded-full" />
+            <img src={user?.img ?? '/user.png'} alt="username" className="h-[40px] w-[40px] rounded-full" />
           </div>
         ) : (
           // ログインしていない場合

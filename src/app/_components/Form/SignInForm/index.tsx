@@ -1,12 +1,17 @@
 'use client'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useLoginForm } from './useLogin'
 
 export const SignInForm = () => {
+  const router = useRouter()
   const { form, onSubmit } = useLoginForm()
+  const pushGuestLogin = () => {
+    router.push('/')
+  }
 
   return (
     <Form {...form}>
@@ -47,6 +52,9 @@ export const SignInForm = () => {
             </FormDescription>
             <Button type="submit" className="w-full">
               ログイン
+            </Button>
+            <Button onClick={pushGuestLogin} className="w-full bg-yellow-400 hover:bg-yellow-300">
+              ゲストログイン
             </Button>
           </div>
         </form>
