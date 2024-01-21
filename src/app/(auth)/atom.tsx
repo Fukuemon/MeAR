@@ -4,7 +4,7 @@ import { atomWithStorage } from 'jotai/utils'
 export type LoginUserType = {
   id: number
   username: string
-  img?: string | null
+  img?: File | null
 }
 
 // 選択された店舗情報を保持するatom
