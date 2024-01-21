@@ -65,7 +65,9 @@ export const useEditProfile = (profile: EditProfileType, accessToken?: string) =
           Authorization: `JWT ${accessToken}`
         }
       })
-      setUser((prev) => ({ ...prev, username: data.username, img: data.img, id: profile.id }))
+      const img = formData.get('img') as File
+      const imgURL = img ? URL.createObjectURL(img) : null
+      setUser((prev) => ({ ...prev, username: data.username, img: imgURL, id: profile.id })) // Convert 'img' to string
       toast({ title: 'プロフィールを更新しました' })
       router.push(`/profile/${profile.id}`)
     } catch (error) {

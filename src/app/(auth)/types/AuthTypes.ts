@@ -7,16 +7,16 @@ export type LoginResponseType = {
     account: number
     created_on: string
     updated_on: string
-    img?: File | null
+    img?: string | null
     followings: Array<{
       username: string
       created_on: string
-      img?: File | null
+      img?: string | null
     }>
     followers: Array<{
       username: string
       created_on?: string
-      img?: File | null
+      img?: string | null
     }>
   }
   message: string
