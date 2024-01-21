@@ -14,8 +14,8 @@ export const PostHeader: FC<Props> = ({ author, visited_date, author_img, author
     <div className="card-header">
       {/* 左側：ユーザー紹鴎*/}
       <Link href={link}>
-        <div className="flex items-center">
-          <img src={author_img ?? '/user.png'} className="ounded-full h-[40px] w-[40px] " alt="ユーザーアイコン" />
+        <div className="flex items-center space-x-3">
+          <img src={author_img ?? '/user.png'} className="h-[40px] w-[40px] rounded-full " alt="ユーザーアイコン" />
           <h2 className="font-bold">{author}</h2>
         </div>
       </Link>
