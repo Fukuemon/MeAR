@@ -10,6 +10,7 @@ export const useAvatarInput = () => {
   return {
     imageSrc,
     imagePreview,
-    handleImageChange
+    handleImageChange,
+    setPreview
   }
 }
