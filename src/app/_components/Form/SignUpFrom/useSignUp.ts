@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -71,8 +71,11 @@ export const useSignUp = () => {
       const login = await api.post<LoginResponseType>('login/', { email: data.email, password: data.password })
       handleSuccessfulLogin(login.data, router)
       setUser(login.data.profile)
-    } catch (error) {
-      handleApiError(error as AxiosError, 'Login error:')
+    } catch (error: unknown) {
+      // eslint-disable-next-line
+      if (axios.isAxiosError(error) && error.response) {
+        handleApiError(error as AxiosError, error.response.data.email[0] as string)
+      }
     } finally {
       setLoading(false)
     }
