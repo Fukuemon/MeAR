@@ -6,7 +6,7 @@ type Props = {
   menuPhoto: string
   menuModel?: string | null
   isModel: boolean
-  postId: number
+  postId: string
   isLike: boolean
   isAuthor?: boolean
   onClickLike: () => void

@@ -56,7 +56,7 @@ export type PostListItem = {
 }
 
 export type PostDetailType = {
-  id: number
+  id: string
   author: string
   author_id: string
   author_image?: string | null
@@ -77,7 +77,7 @@ export type PostDetailType = {
   price: number
   menu_photo: string
   menu_model: string | null
-  review_text: string | null
+  review_text: string
   model_exists_flg: boolean
 }
 

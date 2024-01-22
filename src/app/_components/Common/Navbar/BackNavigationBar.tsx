@@ -9,7 +9,7 @@ type Props = {
   name?: string
   isHome?: boolean
   isLoginUser?: boolean
-  post_id?: number
+  post_id?: string
   profile_id?: number
 }
 
@@ -21,7 +21,7 @@ export const BackNavbar: FC<Props> = (props) => {
     <nav className="navbar relative items-center justify-center">
       {/* 戻るボタン */}
       <div className="absolute left-2 top-3 z-10">
-        {props.isHome ? ( // isLoginUserがtrueの場合は何も表示しない // isLoginUserがfalseかつisHomeがtrueの場合、ホーム画面に戻る
+        {props.isLoginUser || props.isHome ? ( // isLoginUserがtrueの場合は何も表示しない // isLoginUserがfalseかつisHomeがtrueの場合、ホーム画面に戻る
           <Link href="/">
             <MdOutlineArrowBackIosNew className="text-3xl text-black" />
           </Link>

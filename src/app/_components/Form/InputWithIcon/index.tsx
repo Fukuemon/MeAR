@@ -6,7 +6,7 @@ interface Props {
   icon: keyof typeof icons
   type: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  placeholder: string
+  placeholder: string | undefined
   className?: string
 }
 
