@@ -2,7 +2,7 @@ export type LoginResponseType = {
   access: string
   refresh: string
   profile: {
-    id: number
+    id: string
     username: string
     account: number
     created_on: string

@@ -8,6 +8,7 @@ import Loading from '@/app/loading'
 import ShopInfo from '@/app/post/_components/CardItem/ShopInfo/ShopInfo'
 import { useGetPostDetail } from '@/app/post/hooks/useGetPostDetail'
 import { Button } from '@/components/ui/button'
+import { toast } from '@/components/ui/use-toast'
 import { BackNavbar } from '../../../../_components/Common/Navbar/BackNavigationBar'
 import { PostHeader } from '../../../_components/CardItem/Header'
 import ImageOrModelViewer from '../MediaToggleViewer/MediaToggleViewer'
@@ -55,6 +56,8 @@ export default function PostDetail({ postId }: PostDetailProps) {
 
   // いいねボタンを押したときの処理
   const onClickLike = async () => {
+    const massage = isLiked ? 'いいねを取り消しました' : 'いいねしました'
+    toast({ title: massage })
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post/${postId}/like/`
     await fetch(url, {
       method: method,
@@ -62,6 +65,7 @@ export default function PostDetail({ postId }: PostDetailProps) {
         Authorization: `JWT ${accessToken}`
       }
     })
+
     mutate()
   }
 

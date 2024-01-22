@@ -42,7 +42,13 @@ export type PostListItem = {
   menu_name: string
   menu_photo: string
   menu_model: string | null
-  likes: string[] | null
+  likes: [
+    {
+      id: number
+      username: string
+      avatar_image: string | null
+    }
+  ]
   visited_date: string
   created_on: string
   updated_on: string
