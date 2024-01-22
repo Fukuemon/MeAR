@@ -3,7 +3,6 @@ import React, { FC } from 'react'
 import { deleteCookie } from 'cookies-next'
 import { useAtom } from 'jotai'
 import { RESET } from 'jotai/utils'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
 import { LoginUserAtom } from '@/app/(auth)/atom'
@@ -16,7 +15,10 @@ const Navbar: FC<Props> = ({ isLogin }) => {
   const [user, setUser] = useAtom(LoginUserAtom)
 
   const onLogin = () => {
+    deleteCookie('access')
+    deleteCookie('refresh')
     router.push('/login')
+    setUser(RESET)
   }
 
   const onLogout = () => {
@@ -40,9 +42,7 @@ const Navbar: FC<Props> = ({ isLogin }) => {
         ) : (
           // ログインしていない場合
           <div className="flex justify-items-center ">
-            <Link href="/login">
-              <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
-            </Link>
+            <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
           </div>
         )}
       </div>
