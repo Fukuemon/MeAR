@@ -42,8 +42,8 @@ export const useLoginForm = () => {
   const onSubmit = async (data: LoginFormType) => {
     try {
       const res = await api.post<LoginResponseType>('login/', data)
-      handleSuccessfulLogin(res.data, router)
       setUser(res.data.profile)
+      handleSuccessfulLogin(res.data, router)
     } catch (error) {
       handleApiError(error as AxiosError, 'Login error:')
     }

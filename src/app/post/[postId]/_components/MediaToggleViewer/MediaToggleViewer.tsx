@@ -6,13 +6,22 @@ type Props = {
   menuPhoto: string
   menuModel?: string | null
   isModel: boolean
-  postId: number
+  postId: string
   isLike: boolean
   isAuthor?: boolean
   onClickLike: () => void
+  isLogin?: boolean
 }
 
-export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel, isLike, isAuthor, onClickLike }: Props) {
+export default function ImageOrModelViewer({
+  menuPhoto,
+  menuModel,
+  isModel,
+  isLike,
+  isAuthor,
+  onClickLike,
+  isLogin
+}: Props) {
   return (
     <div className="relative z-0">
       {isModel && menuModel ? (
@@ -24,7 +33,7 @@ export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel, isLi
       ) : (
         <img src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt={menuPhoto} />
       )}
-      {!isAuthor && (
+      {!isAuthor && isLogin && (
         <span className="absolute right-4 top-2 z-10">
           <Heart
             onClick={onClickLike}

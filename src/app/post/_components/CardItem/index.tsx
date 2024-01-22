@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import clsx from 'clsx'
+import { getCookie } from 'cookies-next'
 import { Heart } from 'lucide-react'
-
 import Link from 'next/link'
 import Loading from '@/app/loading'
 import { PostListItem } from '@/types/Post/types'
@@ -10,12 +10,11 @@ import { PostHeader } from './Header'
 import ShopInfo from './ShopInfo/ShopInfo'
 
 type Props = {
-  id: string
   post: PostListItem
 }
 
-const PostCardItem: FC<Props> = ({ id, post }) => {
-  const loginUserId = id
+const PostCardItem: FC<Props> = ({ post }) => {
+  const loginUserId = getCookie('loginUserId')?.toString()
   if (!post) return <Loading />
   let isLiked = false
 

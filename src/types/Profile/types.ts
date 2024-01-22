@@ -1,6 +1,7 @@
 // Profileの型定義
 
 interface Follow {
+  id: string
   username: string
   created_on: string
   img: string

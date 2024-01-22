@@ -88,7 +88,6 @@ export const useCreatePostForm = () => {
   })
 
   const onSubmit = async (data: PostCreate) => {
-    console.log(data)
     setLoading(true)
     try {
       const formData = await createFormData(data)
@@ -116,14 +115,9 @@ export const useCreatePostForm = () => {
       }
       appendFormData(formData, key as keyof PostCreate, value)
     })
-    console.log(formData.get('menu_photo'))
 
     validateFormData(formData, 'menu_photo')
     validateFormData(formData, 'menu_model')
-    console.log(imageFile)
-    console.log(data.menu_photo)
-    console.log(modelFile)
-    console.log(data.menu_model)
 
     // 画像圧縮処理
     if (imageFile && data.menu_photo) {
@@ -136,7 +130,6 @@ export const useCreatePostForm = () => {
     if (modelFile && data.menu_model) {
       formData.append('menu_model', data.menu_model)
     }
-    console.log(...formData)
 
     return formData
   }
