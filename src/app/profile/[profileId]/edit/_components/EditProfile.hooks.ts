@@ -45,7 +45,6 @@ export const useEditProfile = (profile: EditProfileType, accessToken?: string) =
 
   const appendEditProfileFormData = async (formData: FormData, data: EditProfileFormType) => {
     formData.append('username', data.username)
-    console.log(data.img)
 
     if (data.img) {
       // 画像圧縮処理
@@ -59,7 +58,6 @@ export const useEditProfile = (profile: EditProfileType, accessToken?: string) =
     try {
       const formData = new FormData()
       await appendEditProfileFormData(formData, data)
-      console.log(formData.get('img'))
       await api.patch(`profile/${profile.id}/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

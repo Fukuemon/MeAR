@@ -13,7 +13,6 @@ export type EditPostType = Pick<
 export default function PostEditPage({ params }: { params: { postId: string } }) {
   const { postId } = params
   const { post } = useGetPostDetail(postId)
-  console.log(post)
   if (!post) return <Loading />
 
   const editPost: EditPostType = {

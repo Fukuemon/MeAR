@@ -34,7 +34,6 @@ const EditPostSchema = z.object({
 type EditPostFormType = z.infer<typeof EditPostSchema>
 
 export const useEditPostForm = (post: EditPostType) => {
-  console.log(post)
   const router = useRouter()
   const { mutate } = useGetPostDetail(post.id)
   const accessToken = getCookie('access')

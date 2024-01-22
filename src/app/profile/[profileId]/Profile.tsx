@@ -36,7 +36,6 @@ export const Profile: FC<ProfileProps> = ({ profileId }) => {
     checkLogin()
   }, [profile])
 
-  console.log(loginUserId)
   // フォローしているかどうか
 
   if (!profile) return <Loading />
@@ -45,7 +44,9 @@ export const Profile: FC<ProfileProps> = ({ profileId }) => {
   if (loginUserId && profile.followers.map((follower) => follower.id.toString()).includes(loginUserId)) {
     isFollow = true
   }
-  console.log(isFollow)
+
+  // ユーザーがログインしているかどうか
+  const isLogin = getCookie('access') ? true : false
 
   // フォロー機能
   const method = isFollow ? 'DELETE' : 'POST'
@@ -91,6 +92,7 @@ export const Profile: FC<ProfileProps> = ({ profileId }) => {
               isFollow={isFollow}
               isLoginUser={isLoginUser}
               onClickFollow={onClickFollow}
+              isLogin={isLogin}
             />
             <PostTabs posts={posts} liked_posts={likedPosts} />
           </div>

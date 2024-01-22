@@ -58,11 +58,8 @@ export const useSignUp = () => {
   const onSubmit = async (data: SignUpFormType) => {
     setLoading(true)
     try {
-      console.log(data)
       const formData = new FormData()
       await appendSignUpFormData(formData, data)
-
-      console.log(...formData)
 
       await api.post('account/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
