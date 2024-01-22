@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Heart } from 'lucide-react'
 import ModelViewer from '@/app/post/_components/ModelViewer'
 
@@ -6,14 +6,13 @@ type Props = {
   menuPhoto: string
   menuModel?: string | null
   isModel: boolean
+  postId: number
+  isLike: boolean
+  isAuthor?: boolean
+  onClickLike: () => void
 }
 
-export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel }: Props) {
-  const [isLike, setIsLike] = useState(false)
-  // いいねボタンを押したときの処理
-  const onClickLike = () => {
-    setIsLike((preveState) => !preveState)
-  }
+export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel, isLike, isAuthor, onClickLike }: Props) {
   return (
     <div className="relative z-0">
       {isModel && menuModel ? (
@@ -25,13 +24,16 @@ export default function ImageOrModelViewer({ menuPhoto, menuModel, isModel }: Pr
       ) : (
         <img src={menuPhoto} width={500} height={400} className="h-full w-full object-cover" alt={menuPhoto} />
       )}
-
-      <span className="absolute right-4 top-2">
-        <Heart
-          onClick={onClickLike}
-          className={`h-10 w-10 fill-current ${isLike ? 'text-primary' : 'text-gray-400'}`}
-        />
-      </span>
+      {!isAuthor && (
+        <span className="absolute right-4 top-2 z-10">
+          <Heart
+            onClick={onClickLike}
+            className={`h-10 w-10 fill-current  ${
+              isLike ? 'text-primary hover:text-primary/50' : 'text-gray-400 hover:text-gray-400/50'
+            }`}
+          />
+        </span>
+      )}
     </div>
   )
 }

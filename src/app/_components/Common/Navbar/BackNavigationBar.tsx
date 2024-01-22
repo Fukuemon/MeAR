@@ -21,7 +21,7 @@ export const BackNavbar: FC<Props> = (props) => {
     <nav className="navbar relative items-center justify-center">
       {/* 戻るボタン */}
       <div className="absolute left-2 top-3 z-10">
-        {props.isLoginUser ? null : props.isHome ? ( // isLoginUserがtrueの場合は何も表示しない // isLoginUserがfalseかつisHomeがtrueの場合、ホーム画面に戻る
+        {props.isHome ? ( // isLoginUserがtrueの場合は何も表示しない // isLoginUserがfalseかつisHomeがtrueの場合、ホーム画面に戻る
           <Link href="/">
             <MdOutlineArrowBackIosNew className="text-3xl text-black" />
           </Link>

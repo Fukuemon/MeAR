@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { Heart } from 'lucide-react'
 
 import Link from 'next/link'
+import Loading from '@/app/loading'
 import { PostListItem } from '@/types/Post/types'
 import Tag from '../Tag/Tag'
 import { PostHeader } from './Header'
@@ -14,8 +15,13 @@ type Props = {
 }
 
 const PostCardItem: FC<Props> = ({ id, post }) => {
-  const loggedInUserId = id
-  const isLikedByLoggedInUser = post.likes?.includes(loggedInUserId)
+  const loginUserId = id
+  if (!post) return <Loading />
+  let isLiked = false
+
+  if (post.likes.map((like) => like.id).includes(Number(loginUserId))) {
+    isLiked = true
+  }
   const author_id = post.author_id
 
   return (
@@ -52,7 +58,7 @@ const PostCardItem: FC<Props> = ({ id, post }) => {
             {/* いいねボタン：いいねの状態によって表示を変える */}
             <Heart
               className={clsx('text-4xl text-gray-500 ', {
-                'text-pink-600 fill-current': isLikedByLoggedInUser
+                ' text-primary fill-current': isLiked
               })}
             />
           </div>

@@ -42,7 +42,13 @@ export type PostListItem = {
   menu_name: string
   menu_photo: string
   menu_model: string | null
-  likes: string[] | null
+  likes: [
+    {
+      id: number
+      username: string
+      avatar_image: string | null
+    }
+  ]
   visited_date: string
   created_on: string
   updated_on: string
@@ -54,7 +60,13 @@ export type PostDetailType = {
   author: string
   author_id: string
   author_image?: string | null
-  likes: string[] | null
+  likes: [
+    {
+      id: number
+      username: string
+      avatar_image: string | null
+    }
+  ]
   tags: TagType[]
   restaurant: Restaurant
   created_on: string
