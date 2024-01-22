@@ -1,21 +1,21 @@
-import { notFound } from 'next/navigation'
+'use client'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import Loading from '@/app/loading'
 import { EditProfileType } from '@/types/Profile/types'
-import { getProfileById } from '../../lib/getProfileById'
+import { useGetProfileById } from '../../hooks/useGetProfileById'
 import { EditProfile } from './_components/EditProfile'
 
-export default async function ProfileEditPage({ params }: { params: { profileId: string } }) {
+export default function ProfileEditPage({ params }: { params: { profileId: string } }) {
   const { profileId } = params
   // const cookiesStore = cookies()
   // const accessToken = cookiesStore.get('accessToken')?.value
-  if (!profileId) return notFound()
-  const profiles = await getProfileById(profileId)
-  if (!profiles) return notFound()
+  const { profile } = useGetProfileById(profileId)
+  if (!profile) return <Loading />
 
   const editProfiles: EditProfileType = {
-    id: profiles.id,
-    username: profiles.username,
-    img: profiles.img
+    id: profile.id,
+    username: profile.username,
+    img: profile.img
   }
 
   return (
