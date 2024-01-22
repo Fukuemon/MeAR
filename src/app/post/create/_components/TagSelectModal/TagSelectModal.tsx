@@ -29,13 +29,13 @@ export function TagSelectModal({ tags, onSelect }: Props) {
         <DialogTrigger asChild>
           <Button className="bg-green-500 text-white hover:bg-green-900"># タグを追加</Button>
         </DialogTrigger>
-        <DialogContent className="absolute mt-56 w-full py-40">
-          <DialogHeader className="absolute left-44 top-10">
+        <DialogContent className="w-full rounded-xl">
+          <DialogHeader className="my-2 text-center">
             <DialogTitle>タグを追加</DialogTitle>
           </DialogHeader>
           <DialogHeader>
             {/* タグ一覧表示 */}
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap space-x-3 pb-6">
               {tags &&
                 tags.map((tag) => (
                   <Tag
@@ -49,7 +49,7 @@ export function TagSelectModal({ tags, onSelect }: Props) {
           </DialogHeader>
           <DialogClose
             onClick={handleSubmit}
-            className="absolute bottom-8 left-4 h-10 w-36 rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            className="w-28 rounded-xl bg-green-500 px-4 py-2 text-left font-bold text-white hover:bg-green-900"
           >
             タグを追加
           </DialogClose>
