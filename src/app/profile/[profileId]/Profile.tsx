@@ -19,6 +19,12 @@ export const Profile: FC<ProfileProps> = ({ profileId, isLoginUser }) => {
   const { likedPosts, errorLikedPost } = useGetPostByLiked(profileId)
   const posts_count = posts?.length
 
+  // フォローしているかどうか
+  let isFollow = false
+  if (profile?.followers.map((follower) => follower.id).includes(profileId)) {
+    isFollow = true
+  }
+
   if (!profile) {
     return <Loading />
   }
@@ -32,7 +38,7 @@ export const Profile: FC<ProfileProps> = ({ profileId, isLoginUser }) => {
         <BackNavbar name={profile?.username} isLoginUser={isLoginUser} profile_id={profile.id} />
         <div className="flex flex-col items-center justify-center p-8">
           <div className="max-w-[640px]">
-            <ProfileHeader post_count={posts_count} profile={profile} />
+            <ProfileHeader post_count={posts_count} profile={profile} isFollow={isFollow} isLoginUser={isLoginUser} />
             <PostTabs posts={posts} liked_posts={likedPosts} />
           </div>
         </div>
