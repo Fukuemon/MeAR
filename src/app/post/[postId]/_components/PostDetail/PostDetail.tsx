@@ -65,9 +65,11 @@ export default function PostDetail({ postId }: PostDetailProps) {
         Authorization: `JWT ${accessToken}`
       }
     })
-
     mutate()
   }
+
+  // ログインしているかどうか
+  const isLogin = getCookie('access') ? true : false
 
   return (
     <div className="relative">
@@ -90,6 +92,7 @@ export default function PostDetail({ postId }: PostDetailProps) {
             isAuthor={isLoginUser}
             onClickLike={onClickLike}
             isLike={isLiked}
+            isLogin={isLogin}
           />
 
           <div className="flex-col space-y-4 px-5 py-3 pb-20">

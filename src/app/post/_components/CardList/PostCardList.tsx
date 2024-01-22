@@ -13,7 +13,7 @@ export async function PostCardList() {
   return (
     <div className="flex max-w-2xl flex-col  md:items-center md:justify-center">
       {postList.map((post: PostListItem) => {
-        return <PostCardItem key={post.id} id="1" post={post} />
+        return <PostCardItem key={post.id} post={post} />
       })}
     </div>
   )

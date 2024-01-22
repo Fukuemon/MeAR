@@ -8,9 +8,10 @@ type ProfileProps = {
   isFollow?: boolean
   isLoginUser?: boolean
   onClickFollow?: () => void
+  isLogin?: boolean
 }
 
-const ProfileHeader: FC<ProfileProps> = ({ profile, post_count, isFollow, isLoginUser, onClickFollow }) => {
+const ProfileHeader: FC<ProfileProps> = ({ profile, post_count, isFollow, isLoginUser, onClickFollow, isLogin }) => {
   return (
     <div className="w-[400px] py-8 pl-4">
       <div className="flex items-center space-x-4">
@@ -25,7 +26,7 @@ const ProfileHeader: FC<ProfileProps> = ({ profile, post_count, isFollow, isLogi
 
         <div className="flex flex-col">
           {/* フォローボタン */}
-          {!isLoginUser && (
+          {!isLoginUser && isLogin && (
             <div className="flex justify-start pl-4">
               <Button onClick={onClickFollow} className="rounded font-bold text-white shadow-sm">
                 {isFollow ? 'フォロー解除' : 'フォローする'}
