@@ -10,7 +10,7 @@ type Props = {
   isHome?: boolean
   isLoginUser?: boolean
   post_id?: string
-  profile_id?: number
+  profile_id?: string
 }
 
 // 投稿画面のナビゲーションバー
