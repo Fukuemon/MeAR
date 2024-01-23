@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { LogOut, Settings, User } from 'lucide-react'
+import { LogOut, PenSquare, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 import { LoginUserType } from '@/app/(auth)/atom'
 import {
@@ -13,13 +13,14 @@ import {
 import { DropdownMenuShortcut } from '@/components/ui/dropdown-menu'
 
 type Props = {
+  postId?: string
   user: LoginUserType
   onClickLogout: () => void
   isPost?: boolean
   isProfile?: boolean
 }
 
-export const BackNavDropdown: FC<Props> = ({ user, onClickLogout, isPost, isProfile }) => {
+export const BackNavDropdown: FC<Props> = ({ postId, user, onClickLogout, isPost, isProfile }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,12 +30,14 @@ export const BackNavDropdown: FC<Props> = ({ user, onClickLogout, isPost, isProf
         <DropdownMenuLabel>{user.username}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {isPost && (
-          <DropdownMenuItem>
-            <DropdownMenuShortcut>
-              <Settings />
-            </DropdownMenuShortcut>
-            投稿編集
-          </DropdownMenuItem>
+          <Link href={`/post/${postId}/edit`}>
+            <DropdownMenuItem>
+              投稿編集
+              <DropdownMenuShortcut>
+                <PenSquare />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
         )}
         {isProfile && (
           <Link href={`/profile/${user.id}/edit`}>
