@@ -52,6 +52,7 @@ export const BackNavbar: FC<Props> = (props) => {
             onClickLogout={onLogout}
             isPost={props.post_id ? true : false}
             isProfile={props.profile_id ? true : false}
+            postId={props.post_id}
           />
         ) : null}
       </div>
