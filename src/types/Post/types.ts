@@ -32,6 +32,13 @@ export type Restaurant = {
   url: string
 }
 
+export type PostListApiResponse = {
+  count: number
+  next: string | null
+  previous: string | null
+  results: PostListItem[]
+}
+
 export type PostListItem = {
   id: number
   author: string
