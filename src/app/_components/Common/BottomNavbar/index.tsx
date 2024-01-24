@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -62,9 +62,16 @@ export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
 
 export const BottomNavbarContainer = () => {
   const myProfile = useAtomValue(LoginUserAtom)
-  const myProfileId = myProfile?.id
-  const myProfilePath = myProfileId ? `/profile/${myProfileId}` : '/login/confirm'
-  const searchShopPath = myProfileId ? '/shop/search' : '/login/confirm'
+  const [myProfilePath, setMyProfilePath] = useState('/login/confirm')
+  const [searchShopPath, setSearchShopPath] = useState('/shop/search')
+  useEffect(() => {
+    const myProfileId = myProfile?.id
+    if (myProfileId) {
+      setMyProfilePath(`/profile/${myProfileId}`)
+      setSearchShopPath('/shop/search')
+    }
+  }, [myProfile])
+
   const path = usePathname()
   const items: NavbarItem[] = [
     { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
