@@ -1,13 +1,13 @@
+'use client'
 import { Suspense } from 'react'
-import { cookies } from 'next/headers'
+import { hasCookie } from 'cookies-next'
 import Navbar from './_components/Common/Navbar/NavigationBar'
 import Loading from './loading'
 import { PostCardList } from './post/_components/CardList/PostCardList'
 
-export default async function Home({ searchParams }: { searchParams: { page: string } }) {
+export default function Home({ searchParams }: { searchParams: { page: string } }) {
   const pageId = searchParams.page || '1'
-  const cookiesList = cookies()
-  const isLogin = cookiesList.has('access')
+  const isLogin = hasCookie('access')
 
   return (
     <div>

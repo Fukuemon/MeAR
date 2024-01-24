@@ -19,7 +19,7 @@ async function handleToken(request: NextRequest, accessToken: string | undefined
       return response
     } else {
       toast({ title: 'ログインしてください' })
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(new URL('/login/confirm', request.url))
     }
   }
   // accessTokenがあり、検証できた場合は、そのままNextResponse.next()を返す
@@ -29,7 +29,7 @@ async function handleToken(request: NextRequest, accessToken: string | undefined
   // どちらもない場合は、ログイン画面にリダイレクトする
   if (!accessToken && !refreshToken) {
     toast({ title: 'ログインしてください' })
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/login/confirm', request.url))
   }
 }
 
@@ -41,6 +41,13 @@ export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/login')) {
     await request.cookies.delete('access')
     await request.cookies.delete('refresh')
+    await request.cookies.delete('loginUserId')
+  }
+
+  if (request.nextUrl.pathname.startsWith('/login/confirm')) {
+    await request.cookies.delete('access')
+    await request.cookies.delete('refresh')
+    await request.cookies.delete('loginUserId')
   }
 
   if (loginUserId && request.nextUrl.pathname.startsWith(`/profile/${loginUserId}`)) {

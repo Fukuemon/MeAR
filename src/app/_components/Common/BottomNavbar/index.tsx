@@ -63,11 +63,12 @@ export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
 export const BottomNavbarContainer = () => {
   const myProfile = useAtomValue(LoginUserAtom)
   const myProfileId = myProfile?.id
-  const myProfilePath = myProfileId ? `/profile/${myProfileId}` : '/login'
+  const myProfilePath = myProfileId ? `/profile/${myProfileId}` : '/login/confirm'
+  const searchShopPath = myProfileId ? '/shop/search' : '/login/confirm'
   const path = usePathname()
   const items: NavbarItem[] = [
     { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
-    { paths: ['/shop/search', '/post/create'], label: 'Post', icon: <PiNotePencil /> },
+    { paths: [searchShopPath], label: 'Post', icon: <PiNotePencil /> },
     { paths: [myProfilePath], label: 'Profile', icon: <AiOutlineUser /> }
   ]
   return <BottomNavbar items={items} path={path} />
