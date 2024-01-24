@@ -2,7 +2,6 @@ import '@/styles/globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import { notojp } from '@/libs/font'
 import Providers from '@/store/Provider'
-import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
 
 import type { Metadata } from 'next'
 
@@ -18,7 +17,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="h-screen bg-background font-notojp text-base ">
         <Providers>
           {children}
-          <BottomNavbarContainer />
           <Toaster />
         </Providers>
       </body>

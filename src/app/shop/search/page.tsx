@@ -1,5 +1,6 @@
 // SearchShopPage.tsx
 import { Suspense } from 'react'
+import { BottomNavbarContainer } from '@/app/_components/Common/BottomNavbar'
 import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import ShopSearchInput from './_components/Search/ShopSearchInput'
@@ -23,6 +24,7 @@ export default async function SearchShopPage({ searchParams }: { searchParams: S
           </Suspense>
         </div>
       </main>
+      <BottomNavbarContainer />
     </div>
   )
 }

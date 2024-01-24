@@ -1,6 +1,7 @@
 'use client'
 import { Suspense } from 'react'
 import { hasCookie } from 'cookies-next'
+import { BottomNavbarContainer } from './_components/Common/BottomNavbar'
 import Navbar from './_components/Common/Navbar/NavigationBar'
 import Loading from './loading'
 import { PostCardList } from './post/_components/CardList/PostCardList'
@@ -17,6 +18,7 @@ export default function Home({ searchParams }: { searchParams: { page: string } 
           <PostCardList pageId={pageId} />
         </Suspense>
       </main>
+      <BottomNavbarContainer />
     </div>
   )
 }
