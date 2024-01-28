@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
 import { getCookie } from 'cookies-next'
+import { format } from 'date-fns'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -83,7 +84,8 @@ export const useCreatePostForm = () => {
       menu_photo: null,
       menu_model: null,
       review_text: '',
-      visited_date: ''
+      // TODO: 日付の初期値を今日にする
+      visited_date: format(new Date(), 'yyyy-MM-dd')
     }
   })
 
@@ -105,6 +107,7 @@ export const useCreatePostForm = () => {
   }
 
   const createFormData = async (data: PostCreate): Promise<FormData> => {
+    console.log(data.visited_date)
     const formData = new FormData() as CustomFormData
     Object.entries(data).forEach(([key, value]) => {
       if (key === 'menu_model' && (value === null || value === undefined)) {
