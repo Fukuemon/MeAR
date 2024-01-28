@@ -15,15 +15,15 @@ const meta: Meta<typeof BottomNavbar> = {
 }
 
 type Item = {
-  paths: string[]
+  path: string
   label: string
   icon: React.ReactNode
 }
 
 const items: Item[] = [
-  { paths: ['/'], label: 'Home', icon: <AiOutlineHome /> },
-  { paths: ['/shop/search', '/post/create'], label: 'Post', icon: <PiNotePencil /> },
-  { paths: ['/profile'], label: 'Profile', icon: <AiOutlineUser /> }
+  { path: '/', label: 'Home', icon: <AiOutlineHome /> },
+  { path: '/shop/search', label: 'Post', icon: <PiNotePencil /> },
+  { path: '/profile', label: 'Profile', icon: <AiOutlineUser /> }
 ]
 
 export default meta

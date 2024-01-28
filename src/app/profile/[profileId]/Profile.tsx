@@ -17,42 +17,38 @@ type ProfileProps = {
 
 export const Profile: FC<ProfileProps> = ({ profileId }) => {
   const [isLoginUser, setIsLoginUser] = useState(false)
-  const { posts, profilePostError, mutateProfilePost } = useGetPostByProfileId(profileId)
-  const { likedPosts, errorLikedPost, mutateLikedPost } = useGetPostByLiked(profileId)
-  const posts_count = posts?.length
+  const { posts, profilePostError } = useGetPostByProfileId(profileId)
+  const { likedPosts, errorLikedPost } = useGetPostByLiked(profileId)
   const { profile, error, mutateProfile } = useGetProfileById(profileId)
+  const posts_count = posts?.length
 
   // tokenを取得
-  const loginUserId = getCookie('loginUserId')?.toString()
   const accessToken = getCookie('access')?.toString()
 
   useEffect(() => {
-    const checkLogin = async () => {
-      if (profile) {
+    if (profile && accessToken) {
+      const checkLogin = async () => {
         const isLoginUser = await checkLoginUser(profile.id, accessToken)
         setIsLoginUser(isLoginUser)
       }
+      checkLogin()
     }
-    checkLogin()
-  }, [profile])
+  }, [profile, accessToken])
 
-  // フォローしているかどうか
-
-  if (!profile) return <Loading />
-
-  let isFollow = false
-  if (loginUserId && profile.followers.map((follower) => follower.id.toString()).includes(loginUserId)) {
-    isFollow = true
+  if (!profile) {
+    return <Loading />
   }
 
-  // ユーザーがログインしているかどうか
-  const isLogin = getCookie('access') ? true : false
+  // フォローしているかどうかのチェック
+  const loginUserId = getCookie('loginUserId')?.toString()
+  const isFollow = profile.followers.some((follower) => follower.id.toString() === loginUserId)
 
   // フォロー機能
-  const method = isFollow ? 'DELETE' : 'POST'
   const onClickFollow = async () => {
-    const massage = isFollow ? 'フォローを解除しました' : 'フォローしました'
+    const method = isFollow ? 'DELETE' : 'POST'
+    const message = isFollow ? 'フォローを解除しました' : 'フォローしました'
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}profile/follow/${profileId}/`
+
     try {
       const res = await fetch(url, {
         method: method,
@@ -64,22 +60,20 @@ export const Profile: FC<ProfileProps> = ({ profileId }) => {
         throw new Error('エラーが発生しました')
       }
       mutateProfile()
-      mutateProfilePost()
-      mutateLikedPost()
-      toast({ title: massage })
+      toast({ title: message })
     } catch (err) {
       console.error(err)
       toast({ title: 'エラーが発生しました' })
     }
   }
 
-  if (!profile) {
-    return <Loading />
-  }
   // エラー処理
   if (error || profilePostError || errorLikedPost) {
     return <div>エラーが発生しました</div>
   }
+  // ログインしているかどうか
+  const isLogin = getCookie('access') ? true : false
+
   return (
     <div>
       <Suspense fallback={<Loading />}>
