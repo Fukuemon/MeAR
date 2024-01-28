@@ -53,6 +53,14 @@ export const useSignUp = () => {
       const compressedImage = await compressImage(data.img, data.img.name)
       formData.append('img', compressedImage)
     }
+    if (!data.img) {
+      const userImage = await fetch('/user.png')
+      // 画像圧縮処理
+      const blob = await userImage.blob()
+      const userFile = new File([blob], 'user.png')
+      const compressedImage = await compressImage(userFile, 'user.png')
+      formData.append('img', compressedImage)
+    }
   }
 
   const onSubmit = async (data: SignUpFormType) => {
