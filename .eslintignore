@@ -15,4 +15,5 @@ jest.config.js
 jest.setup.js
 commitlint.config.js
 src/libs/fetcher/fetcher.ts
+changelog.config.js
 ```
