@@ -1,98 +1,54 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-#!/bin/bash
-
-echo -e "\033[37;1m🪝 Running Git Hooks: commit-msg\033[0m"
-# コミットメッセージを定義
 MSG="$(cat "$1")"
-readonly MSG
-# 終了コードを定義。0: OK 1: NG
-code=0
+current_branch=$(git branch --show-current)
+issue_number=$(echo $(git branch --show-current) | awk -F'/' '{print $NF}')
+echo $MSG
 
-# gitmojiの存在チェック
-echo -en " - gitmojiの存在チェック: "
-readonly GITMOJI="✨|🐛|📝|💄|♻️|⚡️|✅|🎨|🚀|🩹|🔥|🚚|🔧|🎉|🏷️"
-if ! echo "$MSG" | grep -Eq "^(${GITMOJI}).*"; then
-    echo -e "\033[31;22mNG"
-    echo -e "================================================================"
-    echo -e "コミットメッセージに有効なgitmojiが含まれていません。"
-    echo -e ""
-    echo -e "Valid gitmojis: ✨ 🐛 📝 💄 ♻️ ⚡️ ✅ 🎨 🚀 🩹 🔥 🚚 🔧 🎉 🏷️"
-    echo -e "================================================================\033[0m\n"
-    code=1
+# gitmojiの確認
+readonly GITMOJI="✨|🐛|📝|💄|♻️|⚡️|✅|🎨|🚀|🩹|🔥|🚚|🔧|🎉|🏷️|👷|🤖"
+
+echo "gitmojiの確認"
+if ! echo $MSG | grep -q -E "$GITMOJI"; then
+  echo "コミットメッセージにgitmojiを含めてください"
+  echo "GITMOJI: ✨|🐛|📝|💄|♻️|⚡️|✅|🎨|🚀|🩹|🔥|🚚|🔧|🎉|🏷️|👷|🤖"
+  exit 1
 else
-    echo -e "\033[32;22mOK\033[0m"
+  echo "チェックOK!!"
 fi
 
-
-# Prefixの存在チェック
-echo -en " - Prefixの存在チェック: "
-## 必要なPrefixを定義
-readonly CORRECT_PREFIXES=('feat' 'fix' 'docs' 'style' 'refactor' 'perf' 'test' 'art' 'deploy' 'typo' 'fire' 'move' 'config' 'chore' 'revert' 'custom-type' 'start' 'type')
-## 各要素に": "を追加
-for i in "${!CORRECT_PREFIXES[@]}"; do
-  correct_prefixes[i]="${CORRECT_PREFIXES[i]}: "
+# prefixの確認
+readonly COMMIT_PREFIXS=( 'feat' 'style' 'chore' 'art' 'fix' 'refactor' 'docs' 'fire' 'move' 'types' 'typo' 'test' 'ci' 'perf' 'release' )
+# 各要素に:を追加
+for i in "${!COMMIT_PREFIXS[@]}"; do
+  prefixs[i]="${COMMIT_PREFIXS[i]}: "
 done
-## `grep -E`で配列からOR検索をするため、半角スペース(" ")の区切り文字をパイプ("|")に変更
+
 prefixes="$(
   IFS="|"
   echo "${correct_prefixes[*]}"
 )"
-if ! echo "$MSG" | grep -Eq "${prefixes}"; then
-  echo -e "\033[31;22mNG"
-  echo -e "================================================================"
-  echo -e "コミットメッセージにPrefixが含まれていません。"
-  echo -e ""
-  echo -e "Prefix"
-  echo -e "  ${correct_prefixes[*]}"
-  echo -e "================================================================\033[0m\n"
-  code=1
+
+echo "prefixの確認"
+if ! echo $MSG | grep -q -E "${prefixes}"; then
+  echo "コミットメッセージにはprefixを含めてください"
+  echo "prefix: feat|style|chore|art|fix|refactor|docs|fire|move|types|typo|test|ci|perf|release"
+  exit 1
 else
-  echo -e "\033[32;22mOK\033[0m"
+  echo "チェックOK!!"
 fi
 
-# issue番号の存在チェック
-echo -en " - issue番号の存在チェック: "
-readonly ISSUE_NO="\#[1-9]"
-if ! echo "$MSG" | grep -q "${ISSUE_NO}"; then
-  echo -e "\033[31;22mNG"
-  echo -e "================================================================"
-  echo -e "コミットメッセージにissue番号が含まれていません。"
-  echo -e ""
-  echo -e "Example: #1234"
-  echo -e "================================================================\033[0m\n"
-  code=1
-else
-  echo -e "\033[32;22mOK\033[0m"
-fi
-
-# コミットメッセージ形式のチェック
-echo -en " - コミットメッセージ形式のチェック: "
 ## 指定された形式の正規表現を定義します
-readonly FORMAT_REGEX="^(${GITMOJI}) *(${prefixes}) *${ISSUE_NO} *.+"
-if ! echo "$MSG" | grep -Eq "${FORMAT_REGEX}"; then
-    echo -e "\033[31;22mNG"
-    echo -e "================================================================"
-    echo -e "コミットメッセージが指定された形式に従っていません。"
-    echo -e ""
-    echo -e "Expected Format: <gitmoji><Type>:<#issue番号><内容>"
-    echo -e "Example: ✨feat: #1234 Implemented a new feature"
-    echo -e "================================================================\033[0m\n"
-    code=1
+readonly FORMAT_REGEX="^(${GITMOJI}) (${prefixes}) *.+"
+
+echo "コミットメッセージの形式を確認"
+if ! echo $MSG | grep -q -E "${FORMAT_REGEX}"; then
+  echo "コミットメッセージの形式が正しくありません"
+  echo "例: ✨ feat: 新しい機能を追加"
+  exit 1
 else
-    echo -e "\033[32;22mOK\033[0m"
+  echo "チェックOK!!"
 fi
 
-
-# 終了宣言
-if [ ${code} -eq 0 ]; then
-  echo ""
-  echo -e "\033[32;1m✨ALL PASS!!\033[0m\n\n"
-else
-  echo ""
-  echo -e "\033[31;1mGit Hooks: commit-msg: NG\033[0m\n\n"
-fi
-
-exit ${code}
-
+## issue番号を付与する
+echo "issue番号を付与"
+MSG="${MSG}(${issue_number})"
+echo $MSG > $1
