@@ -16,7 +16,7 @@ type Props = {
   onClickLogout: () => void
 }
 
-export const NavDropdown: FC<Props> = ({ user, onClickLogout }) => {
+export const FeedNavDropdown: FC<Props> = ({ user, onClickLogout }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

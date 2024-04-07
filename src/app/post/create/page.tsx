@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import { BackNavbar } from '@/app/_components/Common/BackNavbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import CreatePost from '@/app/post/create/_components/CreatePost'
 

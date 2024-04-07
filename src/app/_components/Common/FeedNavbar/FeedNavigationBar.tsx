@@ -6,12 +6,13 @@ import { RESET } from 'jotai/utils'
 import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
 import { LoginUserAtom } from '@/app/(auth)/atom'
-import { NavDropdown } from './NavDropdown'
+import { FeedNavDropdown } from './FeedDropdown/FeedNavDropdown'
+import { FeedTabsContainer } from './FeedTabs/FeedTabsContainer'
 type Props = {
   isLogin: boolean
 }
 
-const Navbar: FC<Props> = ({ isLogin }) => {
+const FeedNavbar: FC<Props> = ({ isLogin }) => {
   const router = useRouter()
   const [user, setUser] = useAtom(LoginUserAtom)
 
@@ -32,11 +33,11 @@ const Navbar: FC<Props> = ({ isLogin }) => {
 
   return (
     // ナビゲーションバー
-    <nav className="navbar">
-      <div className="flex justify-center">
+    <nav className="fixed z-50  w-full flex-col items-center space-y-6  border-2 bg-white p-4 text-base text-text sm:text-3xl md:h-14">
+      <div className="flex justify-end">
         {/*右側のコンテンツ*/}
         {isLogin && user ? (
-          <NavDropdown user={user} onClickLogout={onLogout} />
+          <FeedNavDropdown user={user} onClickLogout={onLogout} />
         ) : (
           // // ログインしている場合：Avatar画像
           // <div className="flex items-center" onClick={onLogout}>
@@ -48,8 +49,9 @@ const Navbar: FC<Props> = ({ isLogin }) => {
           </div>
         )}
       </div>
+      <FeedTabsContainer />
     </nav>
   )
 }
 
-export default Navbar
+export default FeedNavbar

@@ -2,7 +2,7 @@
 import { FC, Suspense, useEffect, useState } from 'react'
 import { getCookie } from 'cookies-next'
 import { checkLoginUser } from '@/app/(auth)/lib/checkLoginUser'
-import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import { BackNavbar } from '@/app/_components/Common/BackNavbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import { toast } from '@/components/ui/use-toast'
 import ProfileHeader from '../_components/Header'
