@@ -1,4 +1,4 @@
 import { atom } from 'jotai'
 
-export const tabDataAtom = atom(['All', 'フォロー中'])
-export const selectedTabAtom = atom('All')
+export const tabDataAtom = atom(['すべての投稿', 'フォロー中のみ'])
+export const selectedTabAtom = atom('すべての投稿')
