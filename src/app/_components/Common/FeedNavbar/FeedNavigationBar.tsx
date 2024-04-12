@@ -1,6 +1,6 @@
 'use client'
 import React, { FC } from 'react'
-import { deleteCookie, getCookie } from 'cookies-next'
+import { deleteCookie } from 'cookies-next'
 import { useAtom } from 'jotai'
 import { RESET } from 'jotai/utils'
 import { useRouter } from 'next/navigation'
@@ -11,12 +11,12 @@ import { FeedNavDropdown } from './FeedDropdown/FeedNavDropdown'
 import { FeedTabsContainer } from './FeedTabs/FeedTabsContainer'
 type Props = {
   isLogin: boolean
+  accessToken: string | undefined
 }
 
-const FeedNavbar: FC<Props> = ({ isLogin }) => {
+const FeedNavbar: FC<Props> = ({ isLogin, accessToken }) => {
   const router = useRouter()
   const [user, setUser] = useAtom(LoginUserAtom)
-  const accessToken = getCookie('access')?.toString()
 
   const onLogin = () => {
     deleteCookie('access')
