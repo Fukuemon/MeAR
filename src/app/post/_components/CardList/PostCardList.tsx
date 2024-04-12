@@ -1,10 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { getCookie } from 'cookies-next'
-import { useAtom } from 'jotai'
+
 import { useRouter } from 'next/navigation'
-import { verifyAccessToken } from '@/app/(auth)/lib/verifyAccessToken'
-import { selectedTabAtom } from '@/app/_components/Common/FeedNavbar/FeedTabs/FeedTabsAtom'
+
 import Loading from '@/app/loading'
 import {
   Pagination,
@@ -15,28 +12,20 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
-import { urlParams } from '@/constants/urlParams'
 import { PostListItem } from '@/types/Post/types'
 import { useGetPostList } from '../../hooks/useGetPostList'
 import PostCardItem from '../CardItem'
 
-export function PostCardList({ pageId }: { pageId: string }) {
-  const accessToken = getCookie('access')?.toString()
-  const selectedTab = useAtom(selectedTabAtom)
+export function PostCardList({
+  pageId,
+  accessToken,
+  params
+}: {
+  pageId: string
+  accessToken?: string
+  params: string
+}) {
   const router = useRouter()
-  const [params, setParams] = useState('')
-
-  useEffect(() => {
-    const verifyAndSetParams = async () => {
-      if (accessToken && (await verifyAccessToken(accessToken)) && selectedTab[0] == 'フォロー中のみ') {
-        setParams(urlParams.following)
-      } else {
-        setParams('')
-      }
-    }
-
-    verifyAndSetParams()
-  }, [selectedTab, accessToken])
 
   const { postList, error } = useGetPostList(pageId, params, accessToken)
   if (error) {
