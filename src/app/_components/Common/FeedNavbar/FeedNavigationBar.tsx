@@ -36,7 +36,7 @@ const FeedNavbar: FC<Props> = ({ isLogin, accessToken }) => {
     // ナビゲーションバー
     <nav
       className={cn(
-        'fixed z-50  w-full flex-col items-center space-y-6  rounded-b-2xl border-2 bg-white px-2 pt-4 text-base text-text sm:text-3xl',
+        'fixed z-50  w-full flex-col items-center space-y-6  rounded-b-xl border-2 bg-white px-2 pt-4 text-base text-text sm:text-3xl',
         !isLogin && 'pb-4'
       )}
     >
