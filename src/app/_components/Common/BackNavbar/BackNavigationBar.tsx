@@ -30,7 +30,7 @@ export const BackNavbar: FC<Props> = (props) => {
   }
 
   return (
-    <nav className="navbar relative items-center justify-center">
+    <nav className="navbar relative items-center justify-center rounded-b-xl">
       {/* 戻るボタン */}
       <div className="absolute left-2 top-3 z-10">
         {props.isLoginUser || props.isHome ? ( // isLoginUserがtrueの場合は何も表示しない // isLoginUserがfalseかつisHomeがtrueの場合、ホーム画面に戻る

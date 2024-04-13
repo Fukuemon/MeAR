@@ -24,7 +24,7 @@ const excludedPaths = ['/login', '/sign-up']
 export const BottomNavbar: FC<BottomNavbarProps> = ({ items, path }) => {
   if (excludedPaths.includes(path)) return null
   return (
-    <div className="md:disabled: fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-center border bg-white">
+    <div className="md:disabled: fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-center rounded-t-2xl border bg-white">
       <ul className="relative flex w-full justify-between px-4">
         {items.map((item, index) => {
           const isActive = item.path == path

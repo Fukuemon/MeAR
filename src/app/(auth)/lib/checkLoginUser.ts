@@ -4,7 +4,6 @@ import { verifyAccessToken } from './verifyAccessToken'
 
 // ログインユーザーのIDを取得し、クッキーに保存する関数
 export async function checkLoginUser(id: string, accessToken?: string) {
-  // const cookiesStore = cookies()
   let loginUserId = getCookie('loginUserId')
   if (!loginUserId && accessToken) {
     const isLogin = await verifyAccessToken(accessToken)

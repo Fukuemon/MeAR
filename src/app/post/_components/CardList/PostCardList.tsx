@@ -1,5 +1,7 @@
 'use client'
+
 import { useRouter } from 'next/navigation'
+
 import Loading from '@/app/loading'
 import {
   Pagination,
@@ -14,13 +16,22 @@ import { PostListItem } from '@/types/Post/types'
 import { useGetPostList } from '../../hooks/useGetPostList'
 import PostCardItem from '../CardItem'
 
-export function PostCardList({ pageId }: { pageId: string }) {
+export function PostCardList({
+  pageId,
+  accessToken,
+  params
+}: {
+  pageId: string
+  accessToken?: string
+  params: string
+}) {
   const router = useRouter()
 
-  const { postList, error } = useGetPostList(pageId)
+  const { postList, error } = useGetPostList(pageId, params, accessToken)
   if (error) {
     return <div>error</div>
   }
+
   if (!postList) {
     return <Loading />
   }
