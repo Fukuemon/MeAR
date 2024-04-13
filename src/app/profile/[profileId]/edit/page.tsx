@@ -1,5 +1,5 @@
 'use client'
-import { BackNavbar } from '@/app/_components/Common/Navbar/BackNavigationBar'
+import { BackNavbar } from '@/app/_components/Common/BackNavbar/BackNavigationBar'
 import Loading from '@/app/loading'
 import { EditProfileType } from '@/types/Profile/types'
 import { useGetProfileById } from '../../hooks/useGetProfileById'

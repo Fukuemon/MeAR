@@ -6,12 +6,15 @@ import { RESET } from 'jotai/utils'
 import { useRouter } from 'next/navigation'
 import { GrLogin } from 'react-icons/gr'
 import { LoginUserAtom } from '@/app/(auth)/atom'
-import { NavDropdown } from './NavDropdown'
+import { cn } from '@/libs/tailwind/utils'
+import { FeedNavDropdown } from './FeedDropdown/FeedNavDropdown'
+import { FeedTabsContainer } from './FeedTabs/FeedTabsContainer'
 type Props = {
   isLogin: boolean
+  accessToken: string | undefined
 }
 
-const Navbar: FC<Props> = ({ isLogin }) => {
+const FeedNavbar: FC<Props> = ({ isLogin, accessToken }) => {
   const router = useRouter()
   const [user, setUser] = useAtom(LoginUserAtom)
 
@@ -29,27 +32,27 @@ const Navbar: FC<Props> = ({ isLogin }) => {
     router.push('/login')
     setUser(RESET)
   }
-
   return (
     // ナビゲーションバー
-    <nav className="navbar">
-      <div className="flex justify-center">
+    <nav
+      className={cn(
+        'fixed z-50  w-full flex-col items-center space-y-6  rounded-b-xl border-2 bg-white px-2 pt-4 text-base text-text sm:text-3xl',
+        !isLogin && 'pb-4'
+      )}
+    >
+      <div className="flex justify-end">
         {/*右側のコンテンツ*/}
         {isLogin && user ? (
-          <NavDropdown user={user} onClickLogout={onLogout} />
+          <FeedNavDropdown user={user} onClickLogout={onLogout} />
         ) : (
-          // // ログインしている場合：Avatar画像
-          // <div className="flex items-center" onClick={onLogout}>
-          //   <img src={user?.img ?? '/user.png'} alt="username" className="h-[40px] w-[40px] rounded-full" />
-          // </div>
-          // ログインしていない場合
           <div className="flex justify-items-center ">
             <GrLogin onClick={onLogin} className="mr-2 text-3xl" />
           </div>
         )}
       </div>
+      {accessToken && <FeedTabsContainer />}
     </nav>
   )
 }
 
-export default Navbar
+export default FeedNavbar
